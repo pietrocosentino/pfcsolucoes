@@ -1,18 +1,50 @@
 # PFC Soluções em Tecnologia
 
-Site institucional da PFC Soluções: secretária virtual no WhatsApp, agendamento online, controle financeiro e sites profissionais para autônomos e pequenos negócios.
+Site institucional da PFC Soluções: agente de IA no WhatsApp, agendamento online, controle financeiro e sites profissionais para autônomos e pequenas empresas.
 
-Site estático em um único `index.html`, sem etapa de build. Publica na Vercel como está.
+Feito com [Astro](https://astro.build): o resultado é HTML estático, sem JavaScript no navegador. Publica na Vercel a cada push na `main`.
+
+## Comandos
+
+```sh
+npm install      # instala as dependências (Node 22+)
+npm run dev      # servidor local em http://localhost:4321
+npm run build    # gera o site em dist/
+npm run check    # verificação de tipos
+npm test         # build + testes do HTML gerado
+```
+
+## Onde mexer
+
+| Quero mudar… | Arquivo |
+|---|---|
+| Textos, serviços, perguntas, link de contato | `src/data/site.ts` |
+| Cores, fontes e espaçamentos | `src/styles/tokens.css` |
+| Ordem das seções | `src/pages/index.astro` |
+| Metatags e prévia de compartilhamento | `src/layouts/BaseLayout.astro` |
+| Domínio do site | `astro.config.mjs` (`site`) |
 
 ## Estrutura
 
 ```
-index.html                 página completa (HTML e CSS)
-assets/favicon.svg         ícone da aba do navegador
-assets/apple-touch-icon.png ícone ao salvar na tela inicial do celular
-assets/og-image.png        imagem de prévia ao compartilhar o link (1200×630)
-assets/logo-pfc.svg        logo em vetor, fundo sálvia
-assets/logo-pfc-1080.png   logo 1080×1080, usado na foto do Instagram
+src/
+  data/site.ts            todo o conteúdo do site
+  styles/                 tokens (claro e escuro) e estilos globais
+  layouts/BaseLayout      <head>, metatags, link "pular para o conteúdo"
+  components/
+    Logo                  monograma PFC em SVG
+    Button                link com cara de botão (primary, secondary, inverse)
+    Section               seção padrão com sobrancelha, título e texto
+    SiteHeader, SiteFooter
+    Hero, ChatMock        abertura com exemplo de conversa do agente
+    WarningSigns          4 sinais de que o negócio perde dinheiro
+    Solutions, SolutionCard
+    ProcessSteps          levantamento, análise, processo, solução
+    SocialLinks           ícones de WhatsApp e Instagram (número e @ só no link)
+    About, Faq, ContactCta
+  pages/index.astro       monta a página
+public/                   favicon, ícone do celular, imagem de prévia e logo
+tests/                    testes do HTML gerado (node:test)
 ```
 
 ## Identidade visual
@@ -23,14 +55,10 @@ assets/logo-pfc-1080.png   logo 1080×1080, usado na foto do Instagram
 | F (letra média) | Coral `#F2542D` |
 | C (letra pequena) | Azul claro `#5674AE` |
 | Fundo | Sálvia `#E4EBE2` |
-| Fundo de apoio | Sálvia escuro `#D3DED0` |
 
-Fonte: Inter (Google Fonts). As iniciais mantêm sempre as mesmas cores; em fundo escuro, o logo vai sobre uma placa sálvia.
+Fonte: Inter. O coral puro é usado no logo e no contorno de foco; em textos e botões ele é escurecido (`#B5391A` / `#C8401D`) para atingir o contraste mínimo de leitura (WCAG AA).
 
 ## Pendências
 
-- Contato hoje é pelo direct do Instagram (`ig.me/m/pfc.solucoes`). Acrescentar WhatsApp e e-mail quando definidos.
-
-## Ver localmente
-
-Abra `index.html` no navegador.
+- E-mail de contato entra quando o domínio próprio for registrado.
+- Trocar `site` em `astro.config.mjs` quando o domínio próprio for registrado.

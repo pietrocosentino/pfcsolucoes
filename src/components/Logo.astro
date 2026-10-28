@@ -1,0 +1,43 @@
+---
+// Monograma PFC. O traço "knockout" usa a cor do fundo para separar as letras
+// que se sobrepõem; passe a cor da superfície onde o logo está aplicado.
+interface Props {
+  size?: number;
+  knockout?: string;
+  class?: string;
+}
+
+const { size = 40, knockout = 'var(--color-bg)', class: className } = Astro.props;
+
+const paths = {
+  p: 'M3.41 44L14.31 6L23.31 6A12.11 9.1 -40.92 0 1 30.8 16.5A12.11 9.1 -40.92 0 1 17.29 27L8.29 27',
+  f: 'M23.27 48L31.87 18L48.87 18M27.57 33L40.57 33',
+  c: 'M55.25 33.64A10.38 7.8 -40.92 1 0 51.6 46.36',
+};
+---
+
+<svg
+  class={className}
+  width={size}
+  height={Math.round(size * 0.855)}
+  viewBox="-1.1 1.5 60.8 52"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g fill="none" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d={paths.c} stroke="#5674AE" />
+    <path d={paths.f} stroke={knockout} stroke-width="10.5" />
+    <path d={paths.f} stroke="#F2542D" />
+    <path d={paths.p} stroke={knockout} stroke-width="10.5" />
+    <path d={paths.p} stroke="#1B2A4A" class="logo-p" />
+  </g>
+</svg>
+
+<style>
+  /* No tema escuro o P navy some no fundo; clareia só a letra. */
+  @media (prefers-color-scheme: dark) {
+    .logo-p {
+      stroke: #e9eef6;
+    }
+  }
+</style>

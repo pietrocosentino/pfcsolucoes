@@ -1,0 +1,62 @@
+---
+import Section from './Section.astro';
+import Button from './Button.astro';
+import { about } from '../data/site';
+---
+
+<Section id="sobre" tone="band" eyebrow={about.eyebrow} title={about.name}>
+  <div class="about">
+    <div class="bio">
+      <p class="lead">{about.bio}</p>
+      <Button href={about.portfolio.href} variant="secondary" external>{about.portfolio.label}</Button>
+    </div>
+    <dl class="facts">
+      {about.facts.map((fact) => (
+        <div>
+          <dt>{fact.label}</dt>
+          <dd>{fact.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</Section>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .bio {
+    display: grid;
+    gap: 20px;
+    justify-items: start;
+  }
+  .facts {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+  }
+  .facts div {
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+  dt {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-muted);
+  }
+  dd {
+    margin: 2px 0 0;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  @media (max-width: 760px) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

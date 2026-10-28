@@ -1,0 +1,23 @@
+{
+  "name": "pfcsolucoes",
+  "private": true,
+  "type": "module",
+  "description": "Site institucional da PFC Soluções em Tecnologia.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "astro build && node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "astro": "5.18.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.4",
+    "typescript": "5.7.3"
+  }
+}
