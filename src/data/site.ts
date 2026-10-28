@@ -56,16 +56,52 @@ export const chat = {
   ] satisfies ChatMessage[],
 };
 
+export type WarningSign = { stat: string; fact: string; cost: string; source: string };
+
+// Dados de pesquisas públicas (fontes no fim de cada item). Ao trocar um número,
+// confira a fonte: o atendente de IA também usa estes dados.
 export const warningSigns = {
-  eyebrow: 'Sinais de alerta',
-  title: '4 sinais de que o seu negócio está perdendo dinheiro',
-  lead: 'Quantos você reconhece?',
+  eyebrow: 'Por que o cliente vai embora',
+  title: 'O que faz o cliente ir para a concorrência',
+  lead: 'Nem sempre é o preço. Muitas vezes é demora, dificuldade para agendar ou falta de confiança.',
   items: [
-    { sign: 'Cliente fica sem resposta depois do expediente.', cost: 'Ele fecha com o concorrente.' },
-    { sign: 'Agenda no caderno e cliente que esquece o horário.', cost: 'Cada horário vazio é dinheiro que não volta.' },
-    { sign: 'No fim do mês, você não sabe quanto sobrou.', cost: 'Você decide no escuro.' },
-    { sign: 'Seu negócio não aparece quando alguém procura.', cost: 'O cliente nem chega até você.' },
-  ],
+    {
+      stat: '7x',
+      fact: 'mais chance de avançar a venda quando a resposta vem em até 1 hora.',
+      cost: 'Demorou para responder? Ele já está falando com outro.',
+      source: 'Harvard Business Review',
+    },
+    {
+      stat: '49%',
+      fact: 'dos clientes na América Latina deixam uma marca depois de uma única experiência ruim.',
+      cost: 'Não existe segunda chance para um atendimento ruim.',
+      source: 'PwC, Experience is everything',
+    },
+    {
+      stat: '81%',
+      fact: 'dos clientes de salão precisam marcar ou mudar horário fora do expediente.',
+      cost: 'Agenda só no horário comercial deixa a cadeira vazia.',
+      source: 'Zenoti, 2025',
+    },
+    {
+      stat: '53%',
+      fact: 'saem de um site no celular que demora mais de 3 segundos para abrir.',
+      cost: 'Metade dos visitantes vai embora antes de ver o seu trabalho.',
+      source: 'Google, The Need for Mobile Speed',
+    },
+    {
+      stat: '63%',
+      fact: 'confiam pouco em empresas que não têm site e só usam rede social.',
+      cost: 'Sem site, o cliente escolhe quem parece mais profissional.',
+      source: 'IEDR, pesquisa com 1.000 consumidores',
+    },
+    {
+      stat: '88%',
+      fact: 'abandonam aplicativos que apresentam erros e falhas.',
+      cost: 'O cliente culpa a sua empresa, não o sistema.',
+      source: 'QualiTest com Google Consumer Surveys',
+    },
+  ] satisfies WarningSign[],
   closing: 'Reconheceu algum? Tem solução.',
 };
 

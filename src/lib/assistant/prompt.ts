@@ -1,6 +1,6 @@
 // Instruções do atendente. O conhecimento vem do mesmo arquivo que alimenta o
 // site, então o atendente nunca fala algo diferente do que está publicado.
-import { about, brand, faq, process, solutions } from '../../data/site.ts';
+import { about, brand, faq, process, solutions, warningSigns } from '../../data/site.ts';
 
 export const HANDOFF_TOOL = 'encaminhar_para_whatsapp';
 
@@ -11,6 +11,7 @@ export function systemPrompt(): string {
     .map((s) => `## ${s.area}: ${s.title}\n${s.description}\n${list(s.features)}\nJá desenvolvido: ${s.project}`)
     .join('\n\n');
   const processText = process.steps.map((step, i) => `${i + 1}. ${step.title}: ${step.text}`).join('\n');
+  const dataText = warningSigns.items.map((d) => `- ${d.stat} ${d.fact} (${d.source})`).join('\n');
   const faqText = faq.items.map((item) => `P: ${item.question}\nR: ${item.answer}`).join('\n\n');
 
   return `Você é o atendente virtual da ${brand.fullName}, no chat do site da empresa.
@@ -42,6 +43,10 @@ Junto com a ferramenta, escreva uma frase curta dizendo que é só tocar no bot�
 ${solutionText}
 
 E o que mais o negócio precisar: cada projeto é feito sob medida.
+
+# Dados que você pode citar
+Use no máximo um dado por mensagem, só quando ajudar o visitante a enxergar o problema dele, e diga a fonte. Não cite números que não estejam aqui.
+${dataText}
 
 # Como funciona
 ${processText}
