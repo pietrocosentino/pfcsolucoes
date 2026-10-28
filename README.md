@@ -29,7 +29,7 @@ Fonte: Inter (Google Fonts). As iniciais mantêm sempre as mesmas cores; em fund
 
 ## Pendências
 
-- Preencher WhatsApp e e-mail na seção Contato (marcados como `[SEU WHATSAPP]` e `[SEU E-MAIL]`).
+- Contato hoje é pelo direct do Instagram (`ig.me/m/pfc.solucoes`). Acrescentar WhatsApp e e-mail quando definidos.
 
 ## Ver localmente
 
