@@ -1,7 +1,6 @@
 ---
 import Logo from './Logo.astro';
 import Button from './Button.astro';
-import SocialLinks from './SocialLinks.astro';
 import { brand, contact, navigation } from '../data/site';
 ---
 
@@ -23,8 +22,7 @@ import { brand, contact, navigation } from '../data/site';
       </ul>
     </nav>
 
-    <SocialLinks class="header-social" />
-    <Button href={contact.instagramDirect} size="sm" external class="header-cta">
+    <Button href={contact.whatsapp} size="sm" external class="header-cta">
       {contact.ctaLabel}
     </Button>
   </div>
@@ -92,11 +90,6 @@ import { brand, contact, navigation } from '../data/site';
     background: var(--color-chip);
   }
 
-  .bar :global(.header-social) {
-    gap: 0;
-    margin-right: -8px;
-  }
-
   /* Celular: a navegação desce para uma segunda linha, toda visível. */
   @media (max-width: 760px) {
     .bar {
@@ -106,9 +99,6 @@ import { brand, contact, navigation } from '../data/site';
     }
     .brand-text span {
       display: none;
-    }
-    .bar :global(.header-social) {
-      display: none; /* sem espaço no celular; os ícones ficam no contato e no rodapé */
     }
     .nav {
       order: 3;

@@ -17,8 +17,7 @@ const whatsappMessage = 'Olá! Vim pelo site da PFC Soluções e quero saber mai
 export const contact = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
-  instagramDirect: 'https://ig.me/m/pfc.solucoes',
-  ctaLabel: 'Chamar no direct',
+  ctaLabel: 'Falar no WhatsApp',
 };
 
 export const navigation = [
@@ -148,11 +147,6 @@ export const about = {
   name: 'Pietro Cosentino',
   bio: 'Analista de requisitos, de sistemas e funcional sênior, com experiência em educação, pagamentos e sistemas corporativos. A PFC Soluções leva esse olhar de negócio para quem não tem um time de tecnologia.',
   portfolio: { href: 'https://www.pietrocosentino.com.br/', label: 'Ver trajetória completa' },
-  facts: [
-    { label: 'Atendimento', value: 'Online, para todo o Brasil' },
-    { label: 'Foco', value: 'Autônomos e pequenas empresas' },
-    { label: 'Entregas', value: 'WhatsApp, aplicativos e sites' },
-  ],
 };
 
 export const faq = {
@@ -185,5 +179,5 @@ export const faq = {
 export const contactSection = {
   eyebrow: 'Contato',
   title: 'Vamos simplificar o seu negócio?',
-  lead: 'Conte o que mais toma o seu tempo hoje. A gente responde com uma proposta, sem compromisso.',
+  lead: 'Conte o que mais toma o seu tempo hoje e receba uma proposta sob medida.',
 };
