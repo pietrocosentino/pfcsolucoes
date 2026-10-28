@@ -1,18 +1,14 @@
 ---
 import Section from './Section.astro';
 import SolutionCard from './SolutionCard.astro';
-import Button from './Button.astro';
-import { contact, solutions } from '../data/site';
+import { solutions } from '../data/site';
 ---
 
 <Section id="solucoes" tone="band" eyebrow={solutions.eyebrow} title={solutions.title} lead={solutions.lead}>
   <div class="cards">
     {solutions.items.map((solution) => <SolutionCard solution={solution} />)}
   </div>
-  <div class="more">
-    <p>{solutions.closing}</p>
-    <Button href={contact.whatsapp} external chat>Contar o meu problema</Button>
-  </div>
+  <p class="more">{solutions.closing}</p>
 </Section>
 
 <style>
@@ -27,17 +23,7 @@ import { contact, solutions } from '../data/site';
     }
   }
   .more {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
     margin-top: 28px;
-    padding: 22px 26px;
-    border-radius: var(--radius-md);
-    border: 2px dashed var(--color-line);
-  }
-  .more p {
     font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-ink);

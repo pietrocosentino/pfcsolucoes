@@ -1,7 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import Button from './Button.astro';
-import { brand, contact, navigation } from '../data/site';
+import { brand, navigation } from '../data/site';
 ---
 
 <header class="site-header">
@@ -21,10 +20,6 @@ import { brand, contact, navigation } from '../data/site';
         ))}
       </ul>
     </nav>
-
-    <Button href={contact.whatsapp} size="sm" external chat class="header-cta">
-      {contact.ctaLabel}
-    </Button>
   </div>
 </header>
 
