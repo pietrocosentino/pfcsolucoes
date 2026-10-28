@@ -4,14 +4,15 @@ import { warningSigns } from '../data/site';
 ---
 
 <Section id="sinais" eyebrow={warningSigns.eyebrow} title={warningSigns.title} lead={warningSigns.lead}>
-  <ol class="signs">
+  <ul class="signs">
     {warningSigns.items.map((item) => (
       <li>
-        <p class="sign">{item.sign}</p>
+        <p class="fact"><strong class="stat">{item.stat}</strong> {item.fact}</p>
         <p class="cost">{item.cost}</p>
+        <p class="source">Fonte: {item.source}</p>
       </li>
     ))}
-  </ol>
+  </ul>
   <p class="closing">
     {warningSigns.closing} <a href="#solucoes">Veja como resolvemos</a>
   </p>
@@ -20,35 +21,42 @@ import { warningSigns } from '../data/site';
 <style>
   .signs {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 16px;
     margin: 0;
     padding: 0;
     list-style: none;
-    counter-reset: sinal;
   }
   .signs li {
-    counter-increment: sinal;
-    display: grid;
-    align-content: start;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    padding: 22px;
+    padding: 24px;
     border-radius: var(--radius-md);
     background: var(--color-surface);
     border: 1px solid var(--color-line);
   }
-  .signs li::before {
-    content: counter(sinal, decimal-leading-zero);
-    font-size: 0.875rem;
+  .fact {
+    color: var(--color-ink);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .stat {
+    display: block;
+    margin-bottom: 6px;
+    font-size: clamp(2.5rem, 5vw, 3.25rem);
     font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
     color: var(--color-accent-text);
   }
-  .sign {
-    font-weight: 700;
-    color: var(--color-ink);
-    line-height: 1.35;
-  }
   .cost {
+    color: var(--color-muted);
+  }
+  .source {
+    margin-top: auto;
+    padding-top: 8px;
+    font-size: 0.8125rem;
     color: var(--color-muted);
   }
   .closing {

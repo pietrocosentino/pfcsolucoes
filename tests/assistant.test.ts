@@ -69,6 +69,7 @@ test('resumo do WhatsApp ignora campos vazios e corta textos longos', () => {
 test('instruções trazem todas as soluções do site', () => {
   const prompt = systemPrompt();
   for (const area of ['Atendimento', 'Agenda', 'Finanças', 'Presença online']) assert.match(prompt, new RegExp(area));
+  assert.match(prompt, /Harvard Business Review/);
 });
 
 test('limite por aparelho bloqueia excesso de mensagens', () => {
