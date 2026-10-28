@@ -1,7 +1,7 @@
 // Testes do atendente com a API do Claude simulada (não precisa de chave nem de rede).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { ChatError, parseMessages, runTurn, toApiMessages } from '../src/lib/assistant/chat.ts';
+import { ChatError, isSameOrigin, parseMessages, runTurn, toApiMessages } from '../src/lib/assistant/chat.ts';
 import { buildHandoff } from '../src/lib/assistant/handoff.ts';
 import { systemPrompt } from '../src/lib/assistant/prompt.ts';
 import { allowRequest } from '../src/lib/assistant/rate-limit.ts';
@@ -76,4 +76,12 @@ test('limite por aparelho bloqueia excesso de mensagens', () => {
   for (let i = 0; i < 30; i++) assert.equal(allowRequest('ip-teste', now), true);
   assert.equal(allowRequest('ip-teste', now), false);
   assert.equal(allowRequest('ip-teste', now + 11 * 60 * 1000), true);
+});
+
+test('aceita o próprio site atrás do proxy da Vercel e recusa outros sites', () => {
+  const site = new Headers({ origin: 'https://pfcsolucoes.vercel.app', 'x-forwarded-host': 'pfcsolucoes.vercel.app' });
+  assert.equal(isSameOrigin(site, 'localhost'), true); // host interno diferente não importa
+  const other = new Headers({ origin: 'https://outro-site.com', 'x-forwarded-host': 'pfcsolucoes.vercel.app' });
+  assert.equal(isSameOrigin(other, 'localhost'), false);
+  assert.equal(isSameOrigin(new Headers({ origin: 'lixo' }), 'localhost'), false);
 });

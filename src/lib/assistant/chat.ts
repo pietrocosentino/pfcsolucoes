@@ -19,6 +19,21 @@ export class ChatError extends Error {
   }
 }
 
+// Aceita só chamadas do próprio site. Na Vercel a URL vista pela função é um
+// endereço interno, então o host público vem do cabeçalho repassado pelo proxy.
+export function isSameOrigin(headers: Headers, fallbackHost: string): boolean {
+  const origin = headers.get('origin');
+  if (!origin) return true; // navegadores sempre enviam Origin em POST; sem ele não é um navegador no nosso site
+  let originHost: string;
+  try {
+    originHost = new URL(origin).host;
+  } catch {
+    return false;
+  }
+  const publicHost = headers.get('x-forwarded-host') ?? headers.get('host') ?? fallbackHost;
+  return originHost === publicHost.split(',')[0].trim();
+}
+
 export function parseMessages(body: unknown): ChatMessage[] {
   const raw = (body as { messages?: unknown } | null)?.messages;
   if (!Array.isArray(raw) || raw.length === 0) throw new ChatError('Conversa vazia.', 400);
