@@ -94,13 +94,8 @@ section{padding-block:80px}
 .card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;color:var(--text);font-size:15px}
 .card li::marker{color:var(--coral)}
 
-/* projetos */
-.projects{background:var(--surface);border-block:1px solid var(--line)}
-.plist{display:flex;flex-direction:column}
-.proj{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:center;padding-block:28px;border-top:1px solid var(--line)}
-.proj:last-child{border-bottom:1px solid var(--line)}
-.proj .kind{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
-.proj p{color:var(--muted);font-size:15px;margin-top:6px}
+
+.band{background:var(--surface);border-block:1px solid var(--line)}
 
 /* processo */
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;counter-reset:s}
@@ -132,7 +127,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   .hero .wrap{grid-template-columns:minmax(0,1fr);padding-block:44px 52px;gap:36px}
   .grid,.about{grid-template-columns:minmax(0,1fr)}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .proj{grid-template-columns:minmax(0,1fr);gap:8px}
   section{padding-block:56px}
 }
 @media (max-width:520px){
@@ -156,7 +150,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     </a>
     <nav aria-label="Seções"><ul>
       <li><a href="#solucoes">Soluções</a></li>
-      <li><a href="#projetos">Projetos</a></li>
       <li><a href="#como">Como trabalho</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul></nav>
@@ -193,8 +186,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <section id="solucoes">
   <div class="wrap">
     <div class="head">
-      <p class="eyebrow">Soluções</p>
-      <h2>O que eu já construí</h2>
+      <p class="eyebrow">Soluções e Projetos</p>
+      <h2>Projetos desenvolvidos</h2>
       <p class="lead">Cada solução nasceu de um problema real de quem trabalha sozinho ou tem uma equipe pequena.</p>
     </div>
     <div class="grid">
@@ -246,32 +239,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   </div>
 </section>
 
-<section id="projetos" class="projects">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Projetos</p>
-      <h2>Projetos desenvolvidos</h2>
-    </div>
-    <div class="plist">
-      <div class="proj">
-        <p class="kind">Agendamento</p>
-        <div><h3>Agendamento para barbearia</h3><p>Página de agendamento com serviços, próxima vaga e reserva completa em poucos toques.</p></div>
-      </div>
-      <div class="proj">
-        <p class="kind">Site profissional</p>
-        <div><h3>Site para personal trainer</h3><p>Site de consultoria online com modalidades, etapas do acompanhamento e contato direto pelo WhatsApp.</p></div>
-      </div>
-      <div class="proj">
-        <p class="kind">Atendimento</p>
-        <div><h3>Secretária Virtual</h3><p>Link de agendamento com IA para a bio do Instagram e painel do profissional no celular.</p></div>
-      </div>
-      <div class="proj">
-        <p class="kind">Finanças</p>
-        <div><h3>FinançaFácil</h3><p>Aplicativo para Android e iPhone que organiza rendas e despesas do mês, com contas recorrentes, lembretes e importação de planilha Excel.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="como">
   <div class="wrap">
@@ -289,7 +256,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   </div>
 </section>
 
-<section id="sobre" class="projects">
+<section id="sobre" class="band">
   <div class="wrap about">
     <div class="head" style="margin-bottom:0">
       <p class="eyebrow">Quem está por trás</p>
