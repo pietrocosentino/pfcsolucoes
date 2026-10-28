@@ -49,8 +49,13 @@ test('número do WhatsApp e @ do Instagram não aparecem como texto', () => {
   assert.doesNotMatch(text, /98459|@pfc/i);
 });
 
-test('ícones de contato levam ao WhatsApp e ao Instagram', () => {
-  const hrefs = tags('a').map((t) => attr(t, 'href') ?? '');
-  assert.ok(hrefs.some((h) => h.startsWith('https://wa.me/5511984597523')));
-  assert.ok(hrefs.some((h) => h.startsWith('https://www.instagram.com/pfc.solucoes')));
+test('rodapé leva ao Instagram e não mostra o WhatsApp', () => {
+  const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
+  assert.match(footer, /https:\/\/www\.instagram\.com\/pfc\.solucoes/);
+  assert.doesNotMatch(footer, /wa\.me/);
+});
+
+test('poucos botões de conversa: topo e contato, além do botão flutuante', () => {
+  const ctas = tags('a').filter((t) => /data-chat-open/.test(t));
+  assert.equal(ctas.length, 2);
 });
