@@ -90,9 +90,6 @@ section{padding-block:80px}
 /* soluções */
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.status{font-size:12px;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:999px;background:var(--chip);color:var(--ink);white-space:nowrap}
-.status.live{background:#2E7D5B;color:#fff}
 .for{font-size:14px;font-weight:600;color:var(--muted)}
 .card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;color:var(--text);font-size:15px}
 .card li::marker{color:var(--coral)}
@@ -202,7 +199,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     </div>
     <div class="grid">
       <article class="card">
-        <div class="card-top"><h3>Secretária Virtual</h3><span class="status">Em piloto</span></div>
+        <h3>Secretária Virtual</h3>
         <p class="for">Para personal trainers, manicures, barbeiros e outros autônomos</p>
         <p>Uma secretária no WhatsApp que entende o cliente em linguagem natural e cuida da agenda por você.</p>
         <ul>
@@ -213,7 +210,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
         </ul>
       </article>
       <article class="card">
-        <div class="card-top"><h3>Agendamento online</h3><span class="status live">No ar</span></div>
+        <h3>Agendamento online</h3>
         <p class="for">Para barbearias, salões e estúdios</p>
         <p>Uma página de agendamento só sua, onde o cliente escolhe serviço e horário pelo celular.</p>
         <ul>
@@ -224,7 +221,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
         </ul>
       </article>
       <article class="card">
-        <div class="card-top"><h3>FinançaFácil</h3><span class="status">Em testes</span></div>
+        <h3>FinançaFácil</h3>
         <p class="for">Aplicativo de finanças pessoais para Android e iPhone</p>
         <p>Organiza rendas e despesas do mês sem planilha complicada.</p>
         <ul>
@@ -235,7 +232,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
         </ul>
       </article>
       <article class="card">
-        <div class="card-top"><h3>Sites profissionais</h3><span class="status live">No ar</span></div>
+        <h3>Sites profissionais</h3>
         <p class="for">Para profissionais que querem ser encontrados</p>
         <p>Sites rápidos, que funcionam bem no celular e levam o visitante direto para o seu WhatsApp.</p>
         <ul>

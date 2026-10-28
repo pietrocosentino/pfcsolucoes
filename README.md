@@ -30,7 +30,6 @@ Fonte: Inter (Google Fonts). As iniciais mantêm sempre as mesmas cores; em fund
 ## Pendências
 
 - Preencher WhatsApp e e-mail na seção Contato (marcados como `[SEU WHATSAPP]` e `[SEU E-MAIL]`).
-- Confirmar o status de cada solução (Em piloto, Em testes, No ar).
 
 ## Ver localmente
 
