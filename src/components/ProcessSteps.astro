@@ -1,0 +1,53 @@
+---
+import Section from './Section.astro';
+import { process } from '../data/site';
+---
+
+<Section id="como-funciona" eyebrow={process.eyebrow} title={process.title} lead={process.lead}>
+  <ol class="steps">
+    {process.steps.map((step, index) => (
+      <li>
+        <span class="number" aria-hidden="true">{index + 1}</span>
+        <h3>{step.title}</h3>
+        <p>{step.text}</p>
+      </li>
+    ))}
+  </ol>
+</Section>
+
+<style>
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .steps li {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding-top: 18px;
+    border-top: 3px solid var(--color-line);
+  }
+  .number {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--brand-navy);
+    color: #ffffff;
+    font-weight: 800;
+  }
+  .steps p {
+    color: var(--color-muted);
+  }
+  @media (prefers-color-scheme: dark) {
+    .number {
+      background: var(--color-button);
+      color: var(--color-button-text);
+    }
+  }
+</style>

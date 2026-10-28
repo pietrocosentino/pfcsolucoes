@@ -1,0 +1,42 @@
+---
+import Logo from './Logo.astro';
+import { brand, contact } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap row">
+    <p class="brand">
+      <Logo size={28} />
+      <span>{brand.fullName}</span>
+    </p>
+    <p>
+      <a href={contact.instagramProfile} target="_blank" rel="noopener noreferrer">{contact.instagramHandle}<span class="visually-hidden"> no Instagram (abre em nova aba)</span></a>
+      <span aria-hidden="true"> · </span>© {year}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 28px 0 calc(28px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--color-line);
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+</style>

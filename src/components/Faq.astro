@@ -1,0 +1,57 @@
+---
+import Section from './Section.astro';
+import { faq } from '../data/site';
+---
+
+<Section id="duvidas" eyebrow={faq.eyebrow} title={faq.title}>
+  <div class="faq">
+    {faq.items.map((item) => (
+      <details>
+        <summary>{item.question}</summary>
+        <p>{item.answer}</p>
+      </details>
+    ))}
+  </div>
+</Section>
+
+<style>
+  .faq {
+    display: grid;
+    gap: 10px;
+    max-width: 760px;
+  }
+  details {
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 56px;
+    padding: 14px 20px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::after {
+    content: '+';
+    flex: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-accent-text);
+  }
+  details[open] summary::after {
+    content: '−';
+  }
+  details p {
+    padding: 0 20px 18px;
+    color: var(--color-muted);
+  }
+</style>

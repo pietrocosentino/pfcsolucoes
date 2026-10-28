@@ -1,0 +1,30 @@
+---
+import Section from './Section.astro';
+import Button from './Button.astro';
+import { contact, contactSection } from '../data/site';
+---
+
+<Section id="contato" tone="dark" align="center" eyebrow={contactSection.eyebrow} title={contactSection.title} lead={contactSection.lead}>
+  <div class="cta">
+    <Button href={contact.instagramDirect} variant="inverse" external>{contact.ctaLabel}</Button>
+    <p>
+      Ou siga <a class="profile" href={contact.instagramProfile} target="_blank" rel="noopener noreferrer">{contact.instagramHandle}<span class="visually-hidden"> no Instagram (abre em nova aba)</span></a>
+    </p>
+  </div>
+</Section>
+
+<style>
+  .cta {
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    margin-top: -12px;
+  }
+  .cta p {
+    color: var(--color-dark-muted);
+  }
+  .profile {
+    color: #ffffff;
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+// Bloco de seção padrão: espaçamento, cor de fundo e cabeçalho (sobrancelha,
+// título e texto de apoio). O título vira o nome acessível da seção.
+interface Props {
+  id: string;
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  tone?: 'default' | 'band' | 'dark';
+  align?: 'start' | 'center';
+}
+
+const { id, eyebrow, title, lead, tone = 'default', align = 'start' } = Astro.props;
+const headingId = `${id}-titulo`;
+---
+
+<section id={id} class:list={['section', `section--${tone}`]} aria-labelledby={headingId}>
+  <div class="wrap">
+    <header class:list={['section-head', `section-head--${align}`]}>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2 id={headingId}>{title}</h2>
+      {lead && <p class="lead">{lead}</p>}
+    </header>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-block: var(--section-space);
+  }
+  .section--band {
+    background: var(--color-band);
+  }
+  .section--dark {
+    background: var(--color-dark-bg);
+    color: var(--color-dark-text);
+  }
+  .section--dark h2 {
+    color: #ffffff;
+  }
+  .section--dark .eyebrow {
+    color: var(--color-dark-accent);
+  }
+  .section--dark .lead {
+    color: var(--color-dark-muted);
+  }
+
+  .section-head {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .section-head--center {
+    justify-items: center;
+    text-align: center;
+  }
+  .section-head--center .lead {
+    margin-inline: auto;
+  }
+</style>

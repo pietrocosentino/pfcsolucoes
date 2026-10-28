@@ -1,0 +1,64 @@
+---
+import Section from './Section.astro';
+import { warningSigns } from '../data/site';
+---
+
+<Section id="sinais" eyebrow={warningSigns.eyebrow} title={warningSigns.title} lead={warningSigns.lead}>
+  <ol class="signs">
+    {warningSigns.items.map((item) => (
+      <li>
+        <p class="sign">{item.sign}</p>
+        <p class="cost">{item.cost}</p>
+      </li>
+    ))}
+  </ol>
+  <p class="closing">
+    {warningSigns.closing} <a href="#solucoes">Veja como resolvemos</a>
+  </p>
+</Section>
+
+<style>
+  .signs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: sinal;
+  }
+  .signs li {
+    counter-increment: sinal;
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: 22px;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+  .signs li::before {
+    content: counter(sinal, decimal-leading-zero);
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: var(--color-accent-text);
+  }
+  .sign {
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1.35;
+  }
+  .cost {
+    color: var(--color-muted);
+  }
+  .closing {
+    margin-top: 28px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .closing a {
+    margin-left: 4px;
+    font-weight: 700;
+  }
+</style>

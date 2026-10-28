@@ -1,0 +1,115 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import { brand, contact, navigation } from '../data/site';
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#inicio" aria-label={`${brand.name}, voltar ao início`}>
+      <Logo size={38} knockout="var(--color-band)" />
+      <span class="brand-text">
+        <strong>{brand.name}</strong>
+        <span>{brand.tagline}</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Principal">
+      <ul>
+        {navigation.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <Button href={contact.instagramDirect} size="sm" external class="header-cta">
+      {contact.ctaLabel}
+    </Button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--color-band) 94%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--color-line);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    min-height: 68px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-ink);
+    text-decoration: none;
+    margin-right: auto;
+  }
+  .brand-text {
+    display: grid;
+    line-height: 1.15;
+  }
+  .brand-text strong {
+    font-size: 1.0625rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .brand-text span {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+  }
+
+  .nav ul {
+    display: flex;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: var(--radius-sm);
+    color: var(--color-ink);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+  .nav a:hover {
+    background: var(--color-chip);
+  }
+
+  /* Celular: a navegação desce para uma segunda linha, toda visível. */
+  @media (max-width: 760px) {
+    .bar {
+      flex-wrap: wrap;
+      gap: 0 12px;
+      padding-top: 8px;
+    }
+    .brand-text span {
+      display: none;
+    }
+    .nav {
+      order: 3;
+      width: 100%;
+      border-top: 1px solid var(--color-line);
+    }
+    .nav ul {
+      justify-content: space-between;
+    }
+    .nav a {
+      padding: 0 8px;
+    }
+  }
+</style>

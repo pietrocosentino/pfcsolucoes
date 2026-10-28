@@ -1,0 +1,59 @@
+/* Cores, tipografia e espaçamentos da marca. Os componentes usam só estes tokens. */
+:root {
+  /* Marca (fixas) */
+  --brand-navy: #1b2a4a;
+  --brand-coral: #f2542d;
+  --brand-blue: #5674ae;
+  --brand-sage: #e4ebe2;
+
+  /* Tema claro */
+  --color-bg: #f7f9f6;
+  --color-band: #e4ebe2;
+  --color-surface: #ffffff;
+  --color-ink: #1b2a4a;
+  --color-text: #2e3a52;
+  --color-muted: #4f5b72;
+  --color-line: #d5ddd3;
+  --color-chip: #eef2ec;
+  --color-accent-text: #b5391a; /* coral escurecido: 4,8:1 sobre o sálvia */
+  --color-button: #c8401d; /* texto branco: 5:1 */
+  --color-button-hover: #a83416;
+  --color-button-text: #ffffff;
+  --color-bubble-out: #dcebdd;
+  --color-focus: #f2542d;
+
+  /* Faixa escura (contato) — igual nos dois temas */
+  --color-dark-bg: #1b2a4a;
+  --color-dark-text: #e9eef6;
+  --color-dark-muted: #c9d2e3;
+  --color-dark-accent: #ff8a6a;
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+  --content-width: 1080px;
+  --section-space: clamp(56px, 8vw, 88px);
+  --gutter-left: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #111827;
+    --color-band: #16223a;
+    --color-surface: #18233a;
+    --color-ink: #f1f4f0;
+    --color-text: #d6dce6;
+    --color-muted: #a3aec2;
+    --color-line: #2a3752;
+    --color-chip: #22304d;
+    --color-accent-text: #ff8a6a;
+    --color-button: #ff7a55;
+    --color-button-hover: #ff9474;
+    --color-button-text: #1b2a4a; /* 5,5:1 */
+    --color-bubble-out: #263f35;
+    color-scheme: dark;
+  }
+}

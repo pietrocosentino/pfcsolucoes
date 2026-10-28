@@ -1,0 +1,71 @@
+---
+// Link com aparência de botão. Use `external` para links que abrem outra aba:
+// o componente adiciona rel seguro e avisa leitores de tela.
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'inverse';
+  size?: 'md' | 'sm';
+  external?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'primary', size = 'md', external = false, class: className } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={['btn', `btn--${variant}`, `btn--${size}`, className]}
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  <slot />
+  {external && <span class="visually-hidden"> (abre em nova aba)</span>}
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px; /* alvo de toque confortável */
+    padding: 12px 22px;
+    border-radius: var(--radius-pill);
+    border: 2px solid transparent;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .btn--sm {
+    min-height: 44px;
+    padding: 8px 18px;
+    font-size: 0.9375rem;
+  }
+
+  .btn--primary {
+    background: var(--color-button);
+    color: var(--color-button-text);
+  }
+  .btn--primary:hover {
+    background: var(--color-button-hover);
+  }
+
+  .btn--secondary {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+  }
+  .btn--secondary:hover {
+    background: var(--color-ink);
+    color: var(--color-bg);
+  }
+
+  .btn--inverse {
+    background: var(--color-dark-accent);
+    color: var(--brand-navy);
+  }
+  .btn--inverse:hover {
+    background: #ffffff;
+  }
+</style>

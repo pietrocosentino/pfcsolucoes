@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import WarningSigns from '../components/WarningSigns.astro';
+import Solutions from '../components/Solutions.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import About from '../components/About.astro';
+import Faq from '../components/Faq.astro';
+import ContactCta from '../components/ContactCta.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+
+<BaseLayout>
+  <SiteHeader />
+  <main id="conteudo" tabindex="-1">
+    <Hero />
+    <WarningSigns />
+    <Solutions />
+    <ProcessSteps />
+    <About />
+    <Faq />
+    <ContactCta />
+  </main>
+  <SiteFooter />
+</BaseLayout>
