@@ -10,8 +10,12 @@ export const brand = {
   shareText: 'Seu negócio atende, agenda e cobra mesmo quando você está ocupado.',
 };
 
+// O número e o @ ficam só nos links; não aparecem no texto do site.
+const whatsappNumber = '5511984597523';
+const whatsappMessage = 'Olá! Vim pelo site da PFC Soluções e quero saber mais.';
+
 export const contact = {
-  instagramHandle: '@pfc.solucoes',
+  whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
   instagramDirect: 'https://ig.me/m/pfc.solucoes',
   ctaLabel: 'Chamar no direct',

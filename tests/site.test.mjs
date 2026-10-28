@@ -42,3 +42,15 @@ test('og:image é endereço absoluto e o arquivo existe', () => {
 test('nenhum estilo inline sobrou no HTML', () => {
   assert.equal(tags('[a-z]+').filter((t) => /\sstyle="/i.test(t)).length, 0);
 });
+
+test('número do WhatsApp e @ do Instagram não aparecem como texto', () => {
+  const body = html.slice(html.indexOf('<body'));
+  const text = body.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<[^>]+>/g, ' ');
+  assert.doesNotMatch(text, /98459|@pfc/i);
+});
+
+test('ícones de contato levam ao WhatsApp e ao Instagram', () => {
+  const hrefs = tags('a').map((t) => attr(t, 'href') ?? '');
+  assert.ok(hrefs.some((h) => h.startsWith('https://wa.me/5511984597523')));
+  assert.ok(hrefs.some((h) => h.startsWith('https://www.instagram.com/pfc.solucoes')));
+});

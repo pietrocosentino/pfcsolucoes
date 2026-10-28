@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
-import { brand, contact } from '../data/site';
+import SocialLinks from './SocialLinks.astro';
+import { brand } from '../data/site';
 
 const year = new Date().getFullYear();
 ---
@@ -11,10 +12,10 @@ const year = new Date().getFullYear();
       <Logo size={28} />
       <span>{brand.fullName}</span>
     </p>
-    <p>
-      <a href={contact.instagramProfile} target="_blank" rel="noopener noreferrer">{contact.instagramHandle}<span class="visually-hidden"> no Instagram (abre em nova aba)</span></a>
-      <span aria-hidden="true"> · </span>© {year}
-    </p>
+    <div class="end">
+      <SocialLinks />
+      <p>© {year}</p>
+    </div>
   </div>
 </footer>
 
@@ -30,6 +31,11 @@ const year = new Date().getFullYear();
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
+  }
+  .end {
+    display: flex;
+    align-items: center;
     gap: 12px;
   }
   .brand {

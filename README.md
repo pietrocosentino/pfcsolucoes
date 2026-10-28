@@ -40,6 +40,7 @@ src/
     WarningSigns          4 sinais de que o negócio perde dinheiro
     Solutions, SolutionCard
     ProcessSteps          levantamento, análise, processo, solução
+    SocialLinks           ícones de WhatsApp e Instagram (número e @ só no link)
     About, Faq, ContactCta
   pages/index.astro       monta a página
 public/                   favicon, ícone do celular, imagem de prévia e logo
@@ -59,5 +60,5 @@ Fonte: Inter. O coral puro é usado no logo e no contorno de foco; em textos e b
 
 ## Pendências
 
-- Contato hoje é pelo direct do Instagram (`ig.me/m/pfc.solucoes`). Acrescentar WhatsApp quando houver número comercial.
+- E-mail de contato entra quando o domínio próprio for registrado.
 - Trocar `site` em `astro.config.mjs` quando o domínio próprio for registrado.
