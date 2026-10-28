@@ -1,7 +1,7 @@
 // Endpoint do atendente de IA. Roda como função na Vercel; o resto do site é estático.
 import type { APIRoute } from 'astro';
 import { getSecret } from 'astro:env/server';
-import { ChatError, parseMessages, runTurn } from '../../lib/assistant/chat.ts';
+import { ChatError, isSameOrigin, parseMessages, runTurn } from '../../lib/assistant/chat.ts';
 import { allowRequest } from '../../lib/assistant/rate-limit.ts';
 
 export const prerender = false;
@@ -13,9 +13,7 @@ const json = (body: unknown, status = 200) =>
   });
 
 export const POST: APIRoute = async ({ request, url, clientAddress }) => {
-  // Só aceita chamadas do próprio site.
-  const origin = request.headers.get('origin');
-  if (origin && new URL(origin).host !== url.host) return json({ error: 'Origem não permitida.' }, 403);
+  if (!isSameOrigin(request.headers, url.host)) return json({ error: 'Origem não permitida.' }, 403);
 
   const apiKey = getSecret('ANTHROPIC_API_KEY');
   if (!apiKey) return json({ error: 'O atendente ainda não foi ativado.', offline: true }, 503);
