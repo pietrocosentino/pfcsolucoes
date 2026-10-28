@@ -1,15 +1,12 @@
 ---
 import Section from './Section.astro';
 import Button from './Button.astro';
-import SocialLinks from './SocialLinks.astro';
 import { contact, contactSection } from '../data/site';
 ---
 
 <Section id="contato" tone="dark" align="center" eyebrow={contactSection.eyebrow} title={contactSection.title} lead={contactSection.lead}>
   <div class="cta">
-    <Button href={contact.instagramDirect} variant="inverse" external>{contact.ctaLabel}</Button>
-    <p>Ou, se preferir:</p>
-    <SocialLinks labeled tone="dark" />
+    <Button href={contact.whatsapp} variant="inverse" external chat>{contact.ctaLabel}</Button>
   </div>
 </Section>
 
@@ -19,9 +16,5 @@ import { contact, contactSection } from '../data/site';
     justify-items: center;
     gap: 16px;
     margin-top: -12px;
-  }
-  .cta p {
-    text-align: center;
-    color: var(--color-dark-muted);
   }
 </style>

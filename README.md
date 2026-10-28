@@ -2,7 +2,16 @@
 
 Site institucional da PFC Soluções: agente de IA no WhatsApp, agendamento online, controle financeiro e sites profissionais para autônomos e pequenas empresas.
 
-Feito com [Astro](https://astro.build): o resultado é HTML estático, sem JavaScript no navegador. Publica na Vercel a cada push na `main`.
+Feito com [Astro](https://astro.build): as páginas são HTML estático e só o atendente de IA (`/api/chat`) roda como função na Vercel. Publica na Vercel a cada push na `main`.
+
+## Atendente de IA
+
+Os botões "Conversar agora" abrem um chat com um atendente (Claude) que entende o negócio do visitante, indica a solução e, quando ele quer fechar, abre o WhatsApp do Pietro com um resumo pronto. Não há banco de dados: a conversa fica no navegador do visitante.
+
+- Conhecimento: o mesmo `src/data/site.ts` do site, então o atendente nunca diz algo diferente do que está publicado.
+- Regras e tom: `src/lib/assistant/prompt.ts`.
+- Ativação: crie a variável `ANTHROPIC_API_KEY` em Vercel → Settings → Environment Variables (Production e Preview) e faça um novo deploy. Sem a chave, o chat avisa que está fora do ar e oferece o WhatsApp.
+- Custo: defina um limite mensal de gastos no console da Anthropic. O endpoint também limita tamanho de mensagem, número de turnos e mensagens por aparelho.
 
 ## Comandos
 
@@ -11,7 +20,7 @@ npm install      # instala as dependências (Node 22+)
 npm run dev      # servidor local em http://localhost:4321
 npm run build    # gera o site em dist/
 npm run check    # verificação de tipos
-npm test         # build + testes do HTML gerado
+npm test         # build + testes do HTML e do atendente
 ```
 
 ## Onde mexer
@@ -23,6 +32,7 @@ npm test         # build + testes do HTML gerado
 | Ordem das seções | `src/pages/index.astro` |
 | Metatags e prévia de compartilhamento | `src/layouts/BaseLayout.astro` |
 | Domínio do site | `astro.config.mjs` (`site`) |
+| Instruções do atendente de IA | `src/lib/assistant/prompt.ts` |
 
 ## Estrutura
 
@@ -41,10 +51,13 @@ src/
     Solutions, SolutionCard
     ProcessSteps          levantamento, análise, processo, solução
     SocialLinks           ícones de WhatsApp e Instagram (número e @ só no link)
+    ChatWidget            janela do atendente de IA
     About, Faq, ContactCta
+  lib/assistant/         atendente: instruções, chamada ao Claude, resumo do WhatsApp
   pages/index.astro       monta a página
+  pages/api/chat.ts       endpoint do atendente (função na Vercel)
 public/                   favicon, ícone do celular, imagem de prévia e logo
-tests/                    testes do HTML gerado (node:test)
+tests/                    testes do HTML gerado e do atendente (node:test)
 ```
 
 ## Identidade visual

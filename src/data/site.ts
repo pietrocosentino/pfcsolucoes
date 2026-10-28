@@ -11,14 +11,13 @@ export const brand = {
 };
 
 // O número e o @ ficam só nos links; não aparecem no texto do site.
-const whatsappNumber = '5511984597523';
+export const whatsappNumber = '5511984597523';
 const whatsappMessage = 'Olá! Vim pelo site da PFC Soluções e quero saber mais.';
 
 export const contact = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
-  instagramDirect: 'https://ig.me/m/pfc.solucoes',
-  ctaLabel: 'Chamar no direct',
+  ctaLabel: 'Conversar agora',
 };
 
 export const navigation = [
@@ -32,7 +31,7 @@ export const hero = {
   title: 'Seu negócio atende, agenda e cobra',
   highlight: 'mesmo quando você está ocupado.',
   lead: 'Criamos sistemas sob medida que cuidam do trabalho repetitivo: atendimento no WhatsApp, agenda, finanças e site. Você fica livre para se dedicar aos seus clientes.',
-  note: 'Conversa inicial sem compromisso.',
+  note: 'Atendimento na hora, sem compromisso.',
 };
 
 export type ChatMessage = { from: 'cliente' | 'agente'; text: string; tag?: string };
@@ -148,11 +147,6 @@ export const about = {
   name: 'Pietro Cosentino',
   bio: 'Analista de requisitos, de sistemas e funcional sênior, com experiência em educação, pagamentos e sistemas corporativos. A PFC Soluções leva esse olhar de negócio para quem não tem um time de tecnologia.',
   portfolio: { href: 'https://www.pietrocosentino.com.br/', label: 'Ver trajetória completa' },
-  facts: [
-    { label: 'Atendimento', value: 'Online, para todo o Brasil' },
-    { label: 'Foco', value: 'Autônomos e pequenas empresas' },
-    { label: 'Entregas', value: 'WhatsApp, aplicativos e sites' },
-  ],
 };
 
 export const faq = {
@@ -185,5 +179,5 @@ export const faq = {
 export const contactSection = {
   eyebrow: 'Contato',
   title: 'Vamos simplificar o seu negócio?',
-  lead: 'Conte o que mais toma o seu tempo hoje. A gente responde com uma proposta, sem compromisso.',
+  lead: 'Conte o que mais toma o seu tempo hoje. O atendente entende o seu caso na hora e, se fizer sentido, já te passa para falar com o Pietro.',
 };
