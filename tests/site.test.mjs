@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 
-const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../dist/client/index.html', import.meta.url), 'utf8');
 const tags = (name) => html.match(new RegExp(`<${name}\\b[^>]*>`, 'gi')) ?? [];
 const attr = (tag, name) => tag.match(new RegExp(`\\s${name}="([^"]*)"`, 'i'))?.[1];
 
@@ -36,7 +36,7 @@ test('og:image é endereço absoluto e o arquivo existe', () => {
   const og = tags('meta').find((t) => attr(t, 'property') === 'og:image');
   const url = attr(og, 'content');
   assert.match(url, /^https:\/\//);
-  assert.ok(existsSync(new URL(`../dist${new URL(url).pathname}`, import.meta.url)));
+  assert.ok(existsSync(new URL(`../dist/client${new URL(url).pathname}`, import.meta.url)));
 });
 
 test('nenhum estilo inline sobrou no HTML', () => {

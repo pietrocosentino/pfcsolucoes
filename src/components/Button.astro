@@ -1,24 +1,27 @@
 ---
 // Link com aparência de botão. Use `external` para links que abrem outra aba:
-// o componente adiciona rel seguro e avisa leitores de tela.
+// o componente adiciona rel seguro e avisa leitores de tela. Com `chat`, o
+// clique abre o atendente de IA (o href fica como alternativa sem JavaScript).
 interface Props {
   href: string;
   variant?: 'primary' | 'secondary' | 'inverse';
   size?: 'md' | 'sm';
   external?: boolean;
+  chat?: boolean;
   class?: string;
 }
 
-const { href, variant = 'primary', size = 'md', external = false, class: className } = Astro.props;
+const { href, variant = 'primary', size = 'md', external = false, chat = false, class: className } = Astro.props;
 ---
 
 <a
   href={href}
   class:list={['btn', `btn--${variant}`, `btn--${size}`, className]}
   {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+  {...chat ? { 'data-chat-open': '', 'aria-haspopup': 'dialog' } : {}}
 >
   <slot />
-  {external && <span class="visually-hidden"> (abre em nova aba)</span>}
+  {external && !chat && <span class="visually-hidden"> (abre em nova aba)</span>}
 </a>
 
 <style>

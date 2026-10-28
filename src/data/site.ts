@@ -11,13 +11,13 @@ export const brand = {
 };
 
 // O número e o @ ficam só nos links; não aparecem no texto do site.
-const whatsappNumber = '5511984597523';
+export const whatsappNumber = '5511984597523';
 const whatsappMessage = 'Olá! Vim pelo site da PFC Soluções e quero saber mais.';
 
 export const contact = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
-  ctaLabel: 'Falar no WhatsApp',
+  ctaLabel: 'Conversar agora',
 };
 
 export const navigation = [
@@ -31,7 +31,7 @@ export const hero = {
   title: 'Seu negócio atende, agenda e cobra',
   highlight: 'mesmo quando você está ocupado.',
   lead: 'Criamos sistemas sob medida que cuidam do trabalho repetitivo: atendimento no WhatsApp, agenda, finanças e site. Você fica livre para se dedicar aos seus clientes.',
-  note: 'Conversa inicial sem compromisso.',
+  note: 'Atendimento na hora, sem compromisso.',
 };
 
 export type ChatMessage = { from: 'cliente' | 'agente'; text: string; tag?: string };
@@ -179,5 +179,5 @@ export const faq = {
 export const contactSection = {
   eyebrow: 'Contato',
   title: 'Vamos simplificar o seu negócio?',
-  lead: 'Conte o que mais toma o seu tempo hoje e receba uma proposta sob medida.',
+  lead: 'Conte o que mais toma o seu tempo hoje. O atendente entende o seu caso na hora e, se fizer sentido, já te passa para falar com o Pietro.',
 };
