@@ -4,12 +4,6 @@
 import { assistant, contact } from '../data/site';
 
 const greeting = assistant.greeting;
-const suggestions = [
-  'Perco clientes no WhatsApp',
-  'Quero agenda online',
-  'Quero organizar as finanças',
-  'Preciso de um site',
-];
 ---
 
 <button type="button" class="launcher" data-chat-open aria-haspopup="dialog" aria-controls="chat-panel" hidden>
@@ -45,10 +39,6 @@ const suggestions = [
 
   <ol class="log" aria-live="polite" aria-label="Mensagens"></ol>
 
-  <div class="chips" data-chips>
-    {suggestions.map((text) => <button type="button" class="chip" data-suggestion={text}>{text}</button>)}
-  </div>
-
   <form class="composer" novalidate>
     <label for="chat-input" class="visually-hidden">Sua mensagem</label>
     <textarea id="chat-input" rows="1" maxlength="1000" placeholder="Escreva sua mensagem" autocomplete="off"></textarea>
@@ -69,7 +59,6 @@ const suggestions = [
   const form = panel.querySelector('form') as HTMLFormElement;
   const input = panel.querySelector('textarea') as HTMLTextAreaElement;
   const send = panel.querySelector('.send') as HTMLButtonElement;
-  const chips = panel.querySelector('[data-chips]') as HTMLElement;
   const launcher = document.querySelector('.launcher') as HTMLButtonElement;
   const whatsapp = panel.dataset.whatsapp!;
   const STORAGE_KEY = 'pfc-chat';
@@ -161,7 +150,6 @@ const suggestions = [
   const render = () => {
     log.replaceChildren();
     messages.forEach(addBubble);
-    chips.hidden = messages.some((m) => m.role === 'user');
   };
 
   const addInfo = (text: string) => {
@@ -267,10 +255,6 @@ const suggestions = [
   panel.querySelector('[data-chat-close]')!.addEventListener('click', close);
   panel.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') close();
-  });
-  chips.addEventListener('click', (event) => {
-    const chip = (event.target as HTMLElement).closest<HTMLElement>('[data-suggestion]');
-    if (chip) ask(chip.dataset.suggestion!);
   });
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -484,31 +468,6 @@ const suggestions = [
     .log :global(.msg--typing i) {
       animation: none;
     }
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 0 16px 12px;
-    background: var(--color-chip);
-  }
-  .chips[hidden] {
-    display: none;
-  }
-  .chip {
-    min-height: 40px;
-    padding: 8px 14px;
-    border: 1.5px solid var(--color-ink);
-    border-radius: var(--radius-pill);
-    background: var(--color-surface);
-    color: var(--color-ink);
-    font: 600 0.875rem/1.2 var(--font-sans);
-    cursor: pointer;
-  }
-  .chip:hover {
-    background: var(--color-ink);
-    color: var(--color-surface);
   }
 
   .composer {
