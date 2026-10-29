@@ -47,12 +47,12 @@ test('responde com o texto do Claude e envia instruções e ferramenta', async (
 test('quando o Claude encaminha, devolve o link do WhatsApp com o resumo', async () => {
   const { fetchImpl } = fakeClaude([
     { type: 'text', text: 'Toque no botão abaixo.' },
-    { type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { nome: 'Ana', negocio: 'Tenho um salão', necessidade: 'Preciso de agenda online', solucao: 'Agenda online' } },
+    { type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { nome: 'Ana', negocio: 'Tenho um salão', necessidade: 'Minhas clientes faltam muito', contexto: 'Hoje anoto tudo num caderno' } },
   ]);
   const out = await runTurn([{ role: 'user', text: 'Quero fechar' }], { apiKey: 'teste', fetchImpl });
   assert.equal(out.reply, 'Toque no botão abaixo.');
   assert.ok(out.handoff?.url.startsWith('https://wa.me/5511984597523?text='));
-  assert.match(decodeURIComponent(out.handoff!.url), /conversei com a marcIA\.\nMeu nome é Ana\.\nTenho um salão\.\nPreciso de agenda online\.\nTenho interesse em: Agenda online/);
+  assert.match(decodeURIComponent(out.handoff!.url), /conversei com a marcIA\.\nMeu nome é Ana\.\nTenho um salão\.\nMinhas clientes faltam muito\.\nHoje anoto tudo num caderno\./);
 });
 
 test('erro da API vira mensagem amigável', async () => {
@@ -71,7 +71,7 @@ test('instruções trazem todas as soluções do site', () => {
   for (const area of ['Atendimento', 'Agenda', 'Finanças', 'Presença online']) assert.match(prompt, new RegExp(area));
   assert.match(prompt, /Harvard Business Review/);
   assert.match(prompt, /Você é a marcIA/);
-  for (const rule of ['Nunca deixe o visitante sem resposta', 'Nunca cite nomes de clientes', 'Quanto custa?', 'Nome primeiro', 'Valide a dor']) {
+  for (const rule of ['Nunca deixe o visitante sem resposta', 'Nunca cite nomes de clientes', 'Quanto custa?', 'Nome primeiro', 'Valide a dor', 'NÃO é um cardápio', 'Escute antes de propor']) {
     assert.ok(prompt.includes(rule), rule);
   }
 });

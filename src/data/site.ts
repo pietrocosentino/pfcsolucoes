@@ -162,10 +162,10 @@ export type Solution = {
 };
 
 export const solutions = {
-  eyebrow: 'Soluções e projetos',
-  title: 'Um sistema para cada problema',
-  lead: 'Cada solução nasceu de um problema real de quem trabalha sozinho ou tem uma equipe pequena.',
-  closing: 'E o que mais o seu negócio precisar.',
+  eyebrow: 'Exemplos do que já construímos',
+  title: 'Cada problema, um sistema sob medida',
+  lead: 'Estes projetos nasceram de problemas reais de quem trabalha sozinho ou com uma equipe pequena. O seu será desenhado a partir da sua rotina, não escolhido de uma lista.',
+  closing: 'Automações, sistemas, aplicativos, sites: o que o seu problema pedir.',
   items: [
     {
       area: 'Atendimento',

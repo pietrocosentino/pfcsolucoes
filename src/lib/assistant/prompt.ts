@@ -34,9 +34,9 @@ ${howWeWork}
 # Etapas do trabalho, como aparecem no site
 ${processText}
 
-# Soluções, como aparecem no site
+# Exemplos que aparecem no site (não é cardápio: cada cliente recebe um sistema personalizado)
 ${summaryText}
-E o que mais o negócio precisar: cada projeto é feito sob medida.
+A PFC faz o que o problema pedir: automações, sistemas, aplicativos, sites e integrações, sob medida.
 ${solutionDetails}
 # Dados que você pode citar
 Só estes números, no máximo um por mensagem, sempre com a fonte.
@@ -60,7 +60,11 @@ export const handoffTool = {
         type: 'string',
         description: 'O problema ou pedido, em primeira pessoa e em uma ou duas frases. Ex.: "Perco clientes porque não consigo responder o WhatsApp enquanto atendo."',
       },
-      solucao: { type: 'string', description: 'Solução da PFC que mais combina, em poucas palavras. Ex.: "Agente de IA no WhatsApp".' },
+      contexto: {
+        type: 'string',
+        description:
+          'Detalhes úteis para o Pietro, em primeira pessoa: desde quando acontece, como resolve hoje, o que já tentou, o impacto. Ex.: "Hoje respondo tudo à mão no WhatsApp e perco umas 3 clientes por semana."',
+      },
     },
     required: ['necessidade'],
   },
