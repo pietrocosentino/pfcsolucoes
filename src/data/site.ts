@@ -64,7 +64,8 @@ export const footer = {
 
 // Primeira dobra: o visitante decide aqui se continua. Segue o teste de clareza
 // (o que oferecemos, como melhora a vida dele, o que fazer agora).
-export type Transformation = { before: string; after: string };
+// Antes, depois e ponte: a dor na voz do cliente, como fica a vida dele e o que a PFC entrega.
+export type Transformation = { pain: string; gain: string; solution: string };
 
 export const hero = {
   eyebrow: 'Sistemas sob medida para autônomos e pequenas empresas',
@@ -76,15 +77,29 @@ export const hero = {
   note: 'Conversa sem compromisso com a marcIA, nossa atendente. Proposta clara antes de qualquer decisão.',
   proof: ['5 projetos já desenvolvidos', 'Atendimento online para todo o Brasil', 'Escopo, prazo e valor antes de começar'],
   transformation: {
-    title: 'O que muda no seu negócio',
-    beforeLabel: 'Hoje',
-    afterLabel: 'Com a PFC',
+    title: 'Você se reconhece?',
+    subtitle: 'O que donos de pequenos negócios vivem hoje, e como fica depois.',
     items: [
-      { before: 'Cliente sem resposta à noite', after: 'Respondido na hora, a qualquer hora' },
-      { before: 'Agenda no caderno e faltas', after: 'Agenda online com lembrete automático' },
-      { before: 'Sem saber quanto sobra no mês', after: 'Entradas, saídas e sobra no celular' },
-      { before: 'Só rede social, sem site', after: 'Site profissional que leva ao contato' },
-      { before: 'Sistema genérico que não serve', after: 'Feito para a sua rotina' },
+      {
+        pain: 'Vejo a mensagem do cliente só no fim do dia. Quando respondo, ele já marcou em outro lugar.',
+        gain: 'Cada cliente é respondido na hora, até de madrugada, e sai com o horário marcado.',
+        solution: 'Agente de IA no WhatsApp',
+      },
+      {
+        pain: 'O cliente marca, esquece e não aparece. O horário fica vazio e o dinheiro não volta.',
+        gain: 'O cliente recebe lembrete e confirma. Se alguém desmarca, a vaga é oferecida para outro.',
+        solution: 'Agenda online com lembretes',
+      },
+      {
+        pain: 'Trabalho o mês inteiro e não sei dizer quanto sobrou.',
+        gain: 'Você abre o celular e vê quanto entrou, quanto saiu e quanto sobra.',
+        solution: 'App de finanças',
+      },
+      {
+        pain: 'Quem me procura acha só um perfil no Instagram e fica na dúvida se eu sou sério.',
+        gain: 'Quem procura encontra um site profissional e fala com você em um toque.',
+        solution: 'Site profissional',
+      },
     ] satisfies Transformation[],
   },
 };
