@@ -8,7 +8,13 @@ export const HANDOFF_TOOL = 'encaminhar_para_whatsapp';
 
 export function systemPrompt(): string {
   const summaryText = solutions.items.map((s) => `- ${s.area}: ${s.title}. ${s.description}`).join('\n');
-  const processText = process.steps.map((step, i) => `${i + 1}. ${step.title}: ${step.text}`).join('\n');
+  const processText = [
+    ...process.steps.map(
+      (step, i) =>
+        `${i + 1}. ${step.title} (${step.summary}): ${step.text} O cliente recebe: ${step.deliverable} Participação do cliente: ${step.participation}`,
+    ),
+    `Compromissos: ${process.principles.map((p) => `${p.title}: ${p.text}`).join(' ')}`,
+  ].join('\n');
   const dataText = warningSigns.items.map((d) => `- ${d.stat} ${d.fact} (Fonte: ${d.source})`).join('\n');
   const faqText = faq.items.map((item) => `P: ${item.question}\nR: ${item.answer}`).join('\n\n');
 
@@ -20,7 +26,7 @@ ${company}
 # Quem está por trás
 ${about.name}: ${about.bio}
 ${howWeWork}
-# Etapas, como aparecem no site
+# Etapas do trabalho, como aparecem no site
 ${processText}
 
 # Soluções, como aparecem no site

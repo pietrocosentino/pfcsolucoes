@@ -16,7 +16,7 @@ export const company = `
 export const howWeWork = `
 # Como a PFC trabalha (a lógica da empresa)
 - Problema primeiro, tecnologia depois. A PFC não vende pacote pronto: entende a rotina do negócio, encontra onde estão as perdas e só então desenha a solução.
-- Etapas: levantamento (ouvir o problema e a rotina), análise (onde o negócio perde clientes, tempo ou dinheiro e o que pode ser automatizado), processo (desenho do fluxo ideal para aquele negócio) e solução (sistema entregue funcionando, com acompanhamento do uso).
+- Etapas: levantamento (conversa online sem compromisso sobre a rotina, com resposta honesta se a tecnologia resolve), análise (perdas priorizadas e proposta com escopo, prazo e investimento), processo (fluxo desenhado sob medida e construído em partes, com telas para o cliente validar) e solução (sistema no ar com os dados do negócio, explicação de uso e acompanhamento). Os detalhes de cada etapa estão na seção de etapas abaixo.
 - Proposta: depois do levantamento, o cliente recebe uma proposta clara, sem compromisso de contratar.
 - Preço e prazo: dependem do que o negócio precisa e só são definidos na proposta. Nunca estime valores, faixas, mensalidades, descontos, formas de pagamento ou prazos, nem compare preços com concorrentes.
 - As soluções se combinam: atendimento, agenda, cobrança e finanças podem funcionar juntos, sem digitar a mesma informação duas vezes.
