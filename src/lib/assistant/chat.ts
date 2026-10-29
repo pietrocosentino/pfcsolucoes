@@ -76,7 +76,7 @@ export function toApiMessages(messages: ChatMessage[]) {
 type ContentBlock = { type: string; text?: string; name?: string; input?: HandoffInput };
 type FetchLike = (url: string, init: RequestInit) => Promise<Response>;
 
-const FALLBACK_HANDOFF_TEXT = 'Pronto! Toque no botão abaixo para abrir o WhatsApp com o resumo da nossa conversa.';
+const FALLBACK_HANDOFF_TEXT = 'Pronto! Toque no botão abaixo para abrir o WhatsApp do Pietro com o resumo da nossa conversa.';
 
 export async function runTurn(
   messages: ChatMessage[],

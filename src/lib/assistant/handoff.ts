@@ -13,6 +13,9 @@ export type Handoff = { url: string; summary: string };
 const clean = (value: unknown, max: number) =>
   typeof value === 'string' ? value.replace(/\s+/g, ' ').trim().slice(0, max) : '';
 
+// Garante ponto final, para o resumo ler como mensagem escrita pelo visitante.
+const sentence = (text: string) => (/[.!?]$/.test(text) ? text : `${text}.`);
+
 export function buildHandoff(input: HandoffInput): Handoff {
   const nome = clean(input.nome, 60);
   const negocio = clean(input.negocio, 120);
@@ -20,11 +23,11 @@ export function buildHandoff(input: HandoffInput): Handoff {
   const solucao = clean(input.solucao, 120);
 
   const lines = [
-    'Olá, Pietro! Vim pelo site da PFC Soluções.',
-    nome && `Nome: ${nome}`,
-    negocio && `Negócio: ${negocio}`,
-    `O que preciso: ${necessidade}`,
-    solucao && `Solução de interesse: ${solucao}`,
+    'Olá, Pietro! Vim pelo site da PFC Soluções e conversei com a marcIA.',
+    nome && `Meu nome é ${nome}.`,
+    negocio && sentence(negocio),
+    sentence(necessidade),
+    solucao && `Tenho interesse em: ${solucao}`,
   ].filter(Boolean);
 
   const summary = lines.join('\n');

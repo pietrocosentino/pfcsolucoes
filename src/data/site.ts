@@ -17,7 +17,17 @@ const whatsappMessage = 'Olá! Vim pelo site da PFC Soluções e quero saber mai
 export const contact = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
-  ctaLabel: 'Conversar agora',
+  ctaLabel: 'Falar com a marcIA',
+};
+
+// Atendente de IA do site (primeiro contato). Instruções em src/lib/assistant/.
+export const assistant = {
+  name: 'marcIA',
+  role: 'atendente de primeiro contato',
+  status: 'Atendente da PFC Soluções',
+  greeting:
+    'Oi! Eu sou a marcIA, atendente da PFC Soluções. Me conta: qual é o seu negócio e o que mais toma o seu tempo hoje?',
+  launcher: 'Fale com a marcIA',
 };
 
 export const navigation = [
@@ -206,6 +216,10 @@ export const faq = {
       answer: 'Não. O atendimento é online, para todo o Brasil.',
     },
     {
+      question: 'Quem é a marcIA?',
+      answer: 'É a nossa atendente virtual, com inteligência artificial. Ela tira as suas dúvidas na hora e, quando você quiser, passa a conversa para o Pietro pelo WhatsApp com um resumo pronto.',
+    },
+    {
       question: 'E se eu precisar de algo que não está na lista?',
       answer: 'Conte o seu problema. As soluções do site são exemplos: cada projeto é feito sob medida.',
     },
@@ -215,5 +229,5 @@ export const faq = {
 export const contactSection = {
   eyebrow: 'Contato',
   title: 'Vamos simplificar o seu negócio?',
-  lead: 'Conte o que mais toma o seu tempo hoje. O atendente entende o seu caso na hora e, se fizer sentido, já te passa para falar com o Pietro.',
+  lead: 'Conte para a marcIA, nossa atendente, o que mais toma o seu tempo hoje. Ela entende o seu caso na hora e, quando você quiser, já te passa para o Pietro com tudo resumido.',
 };
