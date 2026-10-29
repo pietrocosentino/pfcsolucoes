@@ -2,9 +2,8 @@ import { defineConfig, envField } from 'astro/config';
 import vercel from '@astrojs/vercel';
 
 // Endereço público usado nas metatags (og:image, canonical).
-// Troque pelo domínio próprio quando ele for registrado.
 export default defineConfig({
-  site: 'https://pfcsolucoes.vercel.app',
+  site: 'https://pfcsolucoes.com.br',
   // O site é estático; só /api/chat roda como função na Vercel.
   adapter: vercel(),
   build: { inlineStylesheets: 'always' },

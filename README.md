@@ -77,8 +77,11 @@ tests/                    testes do HTML gerado e do atendente (node:test)
 
 Fonte: Inter. O coral puro é usado no logo e no contorno de foco; em textos e botões ele é escurecido (`#B5391A` / `#C8401D`) para atingir o contraste mínimo de leitura (WCAG AA).
 
+## Domínio
+
+`pfcsolucoes.com.br` aponta para a Vercel pelo DNS do Registro.br: dois registros A na raiz (`216.198.79.1` e `64.29.17.1`) e um CNAME `www` → `4bf2da81ffced067.vercel-dns-017.com.`. O `www` redireciona para o domínio sem `www`, e `pfcsolucoes.vercel.app` continua funcionando.
+
 ## Pendências
 
-- Domínio `pfcsolucoes.com.br` já cadastrado no projeto da Vercel (o `www` redireciona para ele). Falta configurar o DNS no Registro.br: dois registros A na raiz (`216.198.79.1` e `64.29.17.1`) e um CNAME `www` → `4bf2da81ffced067.vercel-dns-017.com.`.
-- Depois que o domínio responder: trocar `site` em `astro.config.mjs` para `https://pfcsolucoes.com.br` e atualizar o link da bio do Instagram.
+- Link da bio do Instagram: `pfcsolucoes.com.br` (só dá para editar pelo app).
 - E-mail de contato com o domínio próprio, quando for criado.
