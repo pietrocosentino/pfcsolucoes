@@ -2,6 +2,7 @@
 // dados) vem de src/data/site.ts; o contexto da empresa e as regras de negócio
 // vêm de knowledge.ts.
 import { about, assistant, brand, faq, process, solutions, warningSigns } from '../../data/site.ts';
+import { aboutPage } from '../../data/institutional.ts';
 import { company, conversationRules, howWeWork, solutionDetails } from './knowledge.ts';
 
 export const HANDOFF_TOOL = 'encaminhar_para_whatsapp';
@@ -25,6 +26,10 @@ Entender o negócio e o problema do visitante, mostrar qual solução resolve e,
 ${company}
 # Quem está por trás
 ${about.name}: ${about.bio}
+${aboutPage.story.paragraphs.join(' ')}
+O que nos move: ${aboutPage.purpose.text}
+Valores: ${aboutPage.values.map((v) => `${v.title} (${v.text})`).join('; ')}.
+O site tem as páginas Quem somos e Política de privacidade, ambas no rodapé.
 ${howWeWork}
 # Etapas do trabalho, como aparecem no site
 ${processText}

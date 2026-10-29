@@ -104,7 +104,9 @@ import { brand, navigation } from '../data/site';
       justify-content: space-between;
     }
     .nav a {
-      padding: 0 8px;
+      padding: 0 2px;
+      font-size: clamp(0.75rem, 3.6vw, 0.875rem); /* cabe em telas de 320px */
+      white-space: nowrap;
     }
   }
 </style>

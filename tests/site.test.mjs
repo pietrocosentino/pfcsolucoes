@@ -17,9 +17,26 @@ test('existe exatamente um h1', () => {
 
 test('toda âncora interna aponta para um id existente', () => {
   const ids = new Set(tags('[a-z0-9]+').map((t) => attr(t, 'id')).filter(Boolean));
-  const targets = tags('a').map((t) => attr(t, 'href')).filter((h) => h?.startsWith('#'));
+  const targets = tags('a').map((t) => attr(t, 'href')).filter((h) => h?.startsWith('#') || h?.startsWith('/#'));
   assert.ok(targets.length > 0);
-  for (const href of targets) assert.ok(ids.has(href.slice(1)), `âncora quebrada: ${href}`);
+  for (const href of targets) assert.ok(ids.has(href.split('#')[1]), `âncora quebrada: ${href}`);
+});
+
+test('links para páginas internas levam a páginas que existem', () => {
+  const pages = tags('a').map((t) => attr(t, 'href')).filter((h) => /^\/[a-z]/.test(h ?? ''));
+  assert.ok(pages.includes('/sobre') && pages.includes('/privacidade'));
+  for (const href of new Set(pages)) {
+    assert.ok(existsSync(new URL(`../dist/client${href}/index.html`, import.meta.url)), `página inexistente: ${href}`);
+  }
+});
+
+test('páginas institucionais têm um h1 e o rodapé completo', () => {
+  for (const page of ['sobre', 'privacidade']) {
+    const doc = readFileSync(new URL(`../dist/client/${page}/index.html`, import.meta.url), 'utf8');
+    assert.equal((doc.match(/<h1\b/g) ?? []).length, 1, page);
+    assert.match(doc, /Política de privacidade/);
+    assert.match(doc, /id="chat-panel"/, `${page} sem a marcIA`);
+  }
 });
 
 test('links que abrem nova aba usam rel noopener', () => {
@@ -55,7 +72,8 @@ test('rodapé leva ao Instagram e não mostra o WhatsApp', () => {
   assert.doesNotMatch(footer, /wa\.me/);
 });
 
-test('poucos botões de conversa: topo e contato, além do botão flutuante', () => {
-  const ctas = tags('a').filter((t) => /data-chat-open/.test(t));
+test('poucos botões de conversa: topo e contato, além do botão flutuante e do link no rodapé', () => {
+  const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+  const ctas = main.match(/<a\b[^>]*data-chat-open[^>]*>/g) ?? [];
   assert.equal(ctas.length, 2);
 });

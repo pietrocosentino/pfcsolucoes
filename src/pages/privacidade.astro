@@ -1,0 +1,60 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { brand } from '../data/site';
+import { privacyPage } from '../data/institutional';
+---
+
+<SiteLayout
+  title={`${privacyPage.title} | ${brand.name}`}
+  description="Como a PFC Soluções trata os dados pessoais de quem usa o site e conversa com a marcIA, de acordo com a LGPD."
+>
+  <PageIntro eyebrow="Institucional" title={privacyPage.title} lead={privacyPage.lead}>
+    <p class="updated">Última atualização: {privacyPage.updatedAt}</p>
+  </PageIntro>
+
+  <div class="wrap">
+  <div class="policy">
+    {privacyPage.sections.map((section) => (
+      <section>
+        <h2>{section.title}</h2>
+        {section.paragraphs?.map((text) => <p>{text}</p>)}
+        {section.items && (
+          <ul>
+            {section.items.map((item) => <li>{item}</li>)}
+          </ul>
+        )}
+      </section>
+    ))}
+  </div>
+  </div>
+</SiteLayout>
+
+<style>
+  .updated {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+  .policy {
+    display: grid;
+    gap: 36px;
+    max-width: 72ch;
+    padding-block: clamp(40px, 6vw, 72px);
+  }
+  section {
+    display: grid;
+    gap: 12px;
+  }
+  h2 {
+    font-size: 1.375rem;
+  }
+  ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  li::marker {
+    color: var(--color-accent-text);
+  }
+</style>

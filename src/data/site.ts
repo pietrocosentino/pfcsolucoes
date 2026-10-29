@@ -30,11 +30,37 @@ export const assistant = {
   launcher: 'Fale com a marcIA',
 };
 
+// Links com "/" na frente funcionam em qualquer página do site.
 export const navigation = [
-  { href: '#solucoes', label: 'Soluções' },
-  { href: '#como-funciona', label: 'Como funciona' },
-  { href: '#duvidas', label: 'Dúvidas' },
+  { href: '/#solucoes', label: 'Soluções' },
+  { href: '/#como-funciona', label: 'Como funciona' },
+  { href: '/sobre', label: 'Quem somos' },
+  { href: '/#duvidas', label: 'Dúvidas' },
 ];
+
+export const footer = {
+  summary: 'Sistemas sob medida para autônomos e pequenas empresas. Atendimento online para todo o Brasil.',
+  columns: [
+    {
+      title: 'Institucional',
+      links: [
+        { href: '/sobre', label: 'Quem somos' },
+        { href: '/#como-funciona', label: 'Como funciona' },
+        { href: '/#duvidas', label: 'Perguntas frequentes' },
+        { href: '/privacidade', label: 'Política de privacidade' },
+      ],
+    },
+    {
+      title: 'Soluções',
+      links: [
+        { href: '/#solucoes', label: 'Atendimento com IA' },
+        { href: '/#solucoes', label: 'Agenda online' },
+        { href: '/#solucoes', label: 'Finanças' },
+        { href: '/#solucoes', label: 'Sites profissionais' },
+      ],
+    },
+  ],
+};
 
 export const hero = {
   eyebrow: 'Tecnologia para autônomos e pequenas empresas',

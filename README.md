@@ -28,7 +28,8 @@ npm test         # build + testes do HTML e do atendente
 
 | Quero mudar… | Arquivo |
 |---|---|
-| Textos, serviços, perguntas, link de contato | `src/data/site.ts` |
+| Textos, serviços, perguntas, menu e rodapé | `src/data/site.ts` |
+| Quem somos e Política de privacidade | `src/data/institutional.ts` |
 | Cores, fontes e espaçamentos | `src/styles/tokens.css` |
 | Ordem das seções | `src/pages/index.astro` |
 | Metatags e prévia de compartilhamento | `src/layouts/BaseLayout.astro` |
@@ -42,6 +43,7 @@ src/
   data/site.ts            todo o conteúdo do site
   styles/                 tokens (claro e escuro) e estilos globais
   layouts/BaseLayout      <head>, metatags, link "pular para o conteúdo"
+  layouts/SiteLayout      cabeçalho, rodapé e marcIA em todas as páginas
   components/
     Logo                  monograma PFC em SVG
     Button                link com cara de botão (primary, secondary, inverse)
@@ -52,10 +54,13 @@ src/
     Solutions, SolutionCard
     ProcessSteps          4 etapas com entregas, participação do cliente e compromissos
     SocialLinks           ícone do Instagram no rodapé (o WhatsApp fica com a marcIA)
+    PageIntro             abertura das páginas internas
     ChatWidget            janela do atendente de IA
     About, Faq, ContactCta
   lib/assistant/         marcIA: conhecimento, instruções, chamada ao Claude, resumo do WhatsApp
-  pages/index.astro       monta a página
+  pages/index.astro       página inicial
+  pages/sobre.astro       Quem somos
+  pages/privacidade.astro Política de privacidade (LGPD)
   pages/api/chat.ts       endpoint do atendente (função na Vercel)
 public/                   favicon, ícone do celular, imagem de prévia e logo
 tests/                    testes do HTML gerado e do atendente (node:test)
