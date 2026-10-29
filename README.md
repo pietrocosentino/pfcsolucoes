@@ -48,10 +48,10 @@ src/
     Section               seção padrão com sobrancelha, título e texto
     SiteHeader, SiteFooter
     Hero, ChatMock        abertura com exemplo de conversa do agente
-    WarningSigns          4 sinais de que o negócio perde dinheiro
+    WarningSigns          o que faz o cliente ir para a concorrência (dados com fonte)
     Solutions, SolutionCard
-    ProcessSteps          levantamento, análise, processo, solução
-    SocialLinks           ícones de WhatsApp e Instagram (número e @ só no link)
+    ProcessSteps          4 etapas com entregas, participação do cliente e compromissos
+    SocialLinks           ícone do Instagram no rodapé (o WhatsApp fica com a marcIA)
     ChatWidget            janela do atendente de IA
     About, Faq, ContactCta
   lib/assistant/         marcIA: conhecimento, instruções, chamada ao Claude, resumo do WhatsApp
@@ -74,5 +74,6 @@ Fonte: Inter. O coral puro é usado no logo e no contorno de foco; em textos e b
 
 ## Pendências
 
-- E-mail de contato entra quando o domínio próprio for registrado.
-- Trocar `site` em `astro.config.mjs` quando o domínio próprio for registrado.
+- Domínio `pfcsolucoes.com.br` já cadastrado no projeto da Vercel (o `www` redireciona para ele). Falta configurar o DNS no Registro.br: dois registros A na raiz (`216.198.79.1` e `64.29.17.1`) e um CNAME `www` → `4bf2da81ffced067.vercel-dns-017.com.`.
+- Depois que o domínio responder: trocar `site` em `astro.config.mjs` para `https://pfcsolucoes.com.br` e atualizar o link da bio do Instagram.
+- E-mail de contato com o domínio próprio, quando for criado.
