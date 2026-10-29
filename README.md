@@ -49,7 +49,7 @@ src/
     Button                link com cara de botão (primary, secondary, inverse)
     Section               seção padrão com sobrancelha, título e texto
     SiteHeader, SiteFooter
-    Hero, ChatMock        abertura com exemplo de conversa do agente
+    Hero                  primeira dobra: problema, resultado, próximo passo e "hoje × com a PFC"
     WarningSigns          o que faz o cliente ir para a concorrência (dados com fonte)
     Solutions, SolutionCard
     ProcessSteps          4 etapas com entregas, participação do cliente e compromissos

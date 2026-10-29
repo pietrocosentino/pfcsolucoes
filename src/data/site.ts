@@ -7,7 +7,7 @@ export const brand = {
   tagline: 'Soluções em Tecnologia',
   description:
     'Sistemas sob medida para autônomos e pequenas empresas: agente de IA no WhatsApp, agendamento online, controle financeiro e sites profissionais.',
-  shareText: 'Seu negócio atende, agenda e cobra mesmo quando você está ocupado.',
+  shareText: 'Seu negócio perde clientes e dinheiro onde você não vê. A gente encontra e resolve.',
 };
 
 // O número e o @ ficam só nos links; não aparecem no texto do site.
@@ -62,34 +62,31 @@ export const footer = {
   ],
 };
 
+// Primeira dobra: o visitante decide aqui se continua. Segue o teste de clareza
+// (o que oferecemos, como melhora a vida dele, o que fazer agora).
+export type Transformation = { before: string; after: string };
+
 export const hero = {
-  eyebrow: 'Tecnologia para autônomos e pequenas empresas',
-  title: 'Seu negócio atende, agenda e cobra',
-  highlight: 'mesmo quando você está ocupado.',
-  lead: 'Criamos sistemas sob medida que cuidam do trabalho repetitivo: atendimento no WhatsApp, agenda, finanças e site. Você fica livre para se dedicar aos seus clientes.',
-  note: 'Atendimento na hora, sem compromisso.',
-};
-
-export type ChatMessage = { from: 'cliente' | 'agente'; text: string; tag?: string };
-
-export const chat = {
-  title: 'Agente de IA',
-  status: 'responde na hora',
-  time: 'Terça, 23:14',
-  note: 'Exemplo de conversa com dados fictícios',
-  summary:
-    'Exemplo de conversa: às 23h14, um cliente pede horário pelo WhatsApp e o agente de IA agenda, envia o Pix do sinal e avisa que vai lembrar o cliente.',
-  messages: [
-    { from: 'cliente', text: 'Oi! Dá pra amanhã depois das 18?' },
-    { from: 'agente', text: 'Tenho 18h30 ou 19h15 para corte e barba. Qual fica melhor?' },
-    { from: 'cliente', text: '18h30' },
-    {
-      from: 'agente',
-      text: 'Pronto, reservado para amanhã às 18h30. Para confirmar, é só pagar o sinal pelo Pix.',
-      tag: 'Pix copia e cola enviado',
-    },
-    { from: 'agente', text: 'Te lembro amanhã, duas horas antes.' },
-  ] satisfies ChatMessage[],
+  eyebrow: 'Sistemas sob medida para autônomos e pequenas empresas',
+  title: 'Seu negócio perde clientes e dinheiro onde você não vê.',
+  highlight: 'A gente encontra e resolve.',
+  lead: 'Analisamos a sua rotina e criamos o sistema que fecha cada brecha: atendimento, agenda, cobrança, finanças e site. Sob medida, simples de usar no celular, sem você precisar entender de tecnologia.',
+  primaryCta: 'Descobrir onde estou perdendo',
+  secondaryCta: { href: '#como-funciona', label: 'Ver como funciona' },
+  note: 'Conversa sem compromisso com a marcIA, nossa atendente. Proposta clara antes de qualquer decisão.',
+  proof: ['5 projetos já desenvolvidos', 'Atendimento online para todo o Brasil', 'Escopo, prazo e valor antes de começar'],
+  transformation: {
+    title: 'O que muda no seu negócio',
+    beforeLabel: 'Hoje',
+    afterLabel: 'Com a PFC',
+    items: [
+      { before: 'Cliente sem resposta à noite', after: 'Respondido na hora, a qualquer hora' },
+      { before: 'Agenda no caderno e faltas', after: 'Agenda online com lembrete automático' },
+      { before: 'Sem saber quanto sobra no mês', after: 'Entradas, saídas e sobra no celular' },
+      { before: 'Só rede social, sem site', after: 'Site profissional que leva ao contato' },
+      { before: 'Sistema genérico que não serve', after: 'Feito para a sua rotina' },
+    ] satisfies Transformation[],
+  },
 };
 
 export type WarningSign = { stat: string; fact: string; cost: string; source: string };
