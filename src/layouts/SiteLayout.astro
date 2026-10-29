@@ -1,0 +1,23 @@
+---
+// Estrutura comum a todas as páginas: cabeçalho, conteúdo, rodapé e a marcIA.
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main id="conteudo" tabindex="-1">
+    <slot />
+  </main>
+  <SiteFooter />
+  <ChatWidget />
+</BaseLayout>

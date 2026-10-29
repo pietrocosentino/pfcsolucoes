@@ -8,7 +8,10 @@ import { about } from '../data/site';
   <div class="about">
     <div class="bio">
       <p class="lead">{about.bio}</p>
-      <Button href={about.portfolio.href} variant="secondary" external>{about.portfolio.label}</Button>
+      <div class="links">
+        <Button href="/sobre">Conheça a PFC</Button>
+        <Button href={about.portfolio.href} variant="secondary" external>{about.portfolio.label}</Button>
+      </div>
     </div>
   </div>
 </Section>
@@ -16,6 +19,11 @@ import { about } from '../data/site';
 <style>
   .about {
     max-width: 760px;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
   }
   .bio {
     display: grid;

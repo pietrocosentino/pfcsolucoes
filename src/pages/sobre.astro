@@ -1,0 +1,114 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+import { about, brand, contact } from '../data/site';
+import { aboutPage } from '../data/institutional';
+---
+
+<SiteLayout
+  title={`${aboutPage.title} | ${brand.name}`}
+  description="Conheça a PFC Soluções em Tecnologia: quem somos, de onde vem o nome, o que nos move e o que já construímos."
+>
+  <PageIntro eyebrow="Institucional" title={aboutPage.title} lead={aboutPage.lead} />
+
+  <Section id="historia" title={aboutPage.story.title}>
+    <div class="prose">
+      {aboutPage.story.paragraphs.map((text) => <p>{text}</p>)}
+    </div>
+  </Section>
+
+  <Section id="proposito" tone="band" title={aboutPage.purpose.title}>
+    <p class="prose purpose">{aboutPage.purpose.text}</p>
+    <ul class="values" aria-label="Nossos valores">
+      {aboutPage.values.map((value) => (
+        <li>
+          <strong>{value.title}</strong>
+          <span>{value.text}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section id="fundador" eyebrow="Quem está por trás" title={about.name}>
+    <div class="prose">
+      <p>{about.bio}</p>
+    </div>
+    <div class="actions">
+      <Button href={about.portfolio.href} variant="secondary" external>{about.portfolio.label}</Button>
+    </div>
+  </Section>
+
+  <Section id="projetos" tone="band" title={aboutPage.built.title}>
+    <ul class="built">
+      {aboutPage.built.items.map((item) => <li>{item}</li>)}
+    </ul>
+    <div class="actions">
+      <Button href={contact.whatsapp} external chat>{contact.ctaLabel}</Button>
+    </div>
+  </Section>
+</SiteLayout>
+
+<style>
+  .prose {
+    display: grid;
+    gap: 16px;
+    max-width: 68ch;
+    font-size: 1.0625rem;
+  }
+  .purpose {
+    display: block;
+    margin-bottom: 28px;
+  }
+  .values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .values li {
+    display: grid;
+    align-content: start;
+    gap: 4px;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+  .values strong {
+    color: var(--color-ink);
+  }
+  .values span {
+    color: var(--color-muted);
+  }
+  .built {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .built li {
+    position: relative;
+    padding-left: 28px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .built li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.45em;
+    width: 12px;
+    height: 7px;
+    border-left: 2.5px solid var(--color-accent-text);
+    border-bottom: 2.5px solid var(--color-accent-text);
+    transform: rotate(-45deg);
+  }
+  .actions {
+    margin-top: 28px;
+  }
+</style>

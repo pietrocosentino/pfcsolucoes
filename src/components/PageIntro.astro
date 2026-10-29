@@ -1,0 +1,36 @@
+---
+// Abertura das páginas internas (Quem somos, Privacidade): sobrancelha, h1 e texto.
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+}
+
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<section class="intro" aria-labelledby="pagina-titulo">
+  <div class="wrap content">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 id="pagina-titulo">{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .intro {
+    background: var(--color-band);
+    padding-block: clamp(40px, 6vw, 72px);
+  }
+  .content {
+    display: grid;
+    gap: 16px;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    max-width: 22ch;
+  }
+</style>
