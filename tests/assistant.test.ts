@@ -90,3 +90,12 @@ test('aceita o próprio site atrás do proxy da Vercel e recusa outros sites', (
   assert.equal(isSameOrigin(other, 'localhost'), false);
   assert.equal(isSameOrigin(new Headers({ origin: 'lixo' }), 'localhost'), false);
 });
+
+test('encaminhamento sem texto da IA usa mensagem calorosa com o nome', async () => {
+  const { fetchImpl } = fakeClaude([
+    { type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { nome: 'Roberto Silva', necessidade: 'Organizar a oficina' } },
+  ]);
+  const out = await runTurn([{ role: 'user', text: 'Pode passar pro Pietro' }], { apiKey: 'teste', fetchImpl });
+  assert.match(out.reply, /^Obrigada pela confiança, Roberto!/);
+  assert.match(out.reply, /cuidar pessoalmente/);
+});
