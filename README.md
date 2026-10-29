@@ -6,7 +6,7 @@ Feito com [Astro](https://astro.build): as páginas são HTML estático e só o 
 
 ## marcIA, a atendente de IA
 
-Os botões "Falar com a marcIA" abrem um chat com a marcIA, atendente de primeiro contato (Claude), que entende o negócio do visitante, indica a solução e, quando ele quer fechar, abre o WhatsApp do Pietro com um resumo pronto. Não há banco de dados: a conversa fica no navegador do visitante.
+Os botões "Falar com a marcIA" abrem um chat com a marcIA, atendente de primeiro contato (Claude), que entende o negócio do visitante, indica a solução e, quando ele quer fechar, abre o WhatsApp do Pietro com um resumo pronto. Não há banco de dados: a conversa fica no navegador do visitante e é apagada depois de 5 minutos sem atividade.
 
 - Conhecimento: o mesmo `src/data/site.ts` do site, então o atendente nunca diz algo diferente do que está publicado.
 - Contexto da empresa, lógica de trabalho, detalhes de cada solução, regras de negócio e respostas a objeções: `src/lib/assistant/knowledge.ts`. Ao mudar uma regra comercial, atualize esse arquivo.

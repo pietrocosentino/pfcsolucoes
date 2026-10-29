@@ -65,7 +65,7 @@ export const privacyPage = {
     {
       title: 'Por quanto tempo guardamos',
       items: [
-        'A conversa com a marcIA não é guardada em banco de dados da PFC. Ela fica salva só no seu navegador e some quando você fecha a aba. O provedor de IA trata o texto conforme as políticas dele.',
+        'A conversa com a marcIA não é guardada em banco de dados da PFC. Ela fica salva só no seu navegador e é apagada depois de 5 minutos sem atividade ou quando você fecha a aba. O provedor de IA trata o texto conforme as políticas dele.',
         'As conversas pelo WhatsApp ficam guardadas enquanto forem necessárias para o atendimento, a proposta e a relação comercial, ou pelo prazo exigido por lei.',
         'Os dados técnicos de acesso seguem os prazos da hospedagem.',
       ],

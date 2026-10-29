@@ -73,23 +73,48 @@ const suggestions = [
   const launcher = document.querySelector('.launcher') as HTMLButtonElement;
   const whatsapp = panel.dataset.whatsapp!;
   const STORAGE_KEY = 'pfc-chat';
+  // Depois de 5 minutos sem atividade, a conversa é apagada e a marcIA recomeça.
+  const IDLE_MS = 5 * 60 * 1000;
 
-  let messages: Message[] = [];
+  const greetingOnly = (): Message[] => [{ role: 'assistant', text: panel.dataset.greeting! }];
+
+  let messages: Message[] = greetingOnly();
+  let lastActivity = Date.now();
+  let idleTimer: number | undefined;
   let busy = false;
   let opener: HTMLElement | null = null;
 
+  // Formato salvo: { messages, at }. Conversa antiga, sem data, ou parada há
+  // mais de 5 minutos não é restaurada.
   try {
-    messages = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
+    const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
+    if (saved && Array.isArray(saved.messages) && saved.messages.length && Date.now() - saved.at < IDLE_MS) {
+      messages = saved.messages;
+      lastActivity = saved.at;
+    } else {
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
   } catch {
-    messages = [];
-  }
-  if (!Array.isArray(messages) || messages.length === 0) {
-    messages = [{ role: 'assistant', text: panel.dataset.greeting! }];
+    /* armazenamento indisponível: começa do zero */
   }
 
+  const hasConversation = () => messages.some((m) => m.role === 'user');
+
+  const scheduleExpiry = () => {
+    window.clearTimeout(idleTimer);
+    if (!hasConversation()) return;
+    idleTimer = window.setTimeout(expireIfIdle, Math.max(0, IDLE_MS - (Date.now() - lastActivity)));
+  };
+
+  const touch = () => {
+    lastActivity = Date.now();
+    scheduleExpiry();
+  };
+
   const save = () => {
+    touch();
     try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ messages, at: lastActivity }));
     } catch {
       /* navegação privada: a conversa vale só enquanto a página estiver aberta */
     }
@@ -139,6 +164,37 @@ const suggestions = [
     chips.hidden = messages.some((m) => m.role === 'user');
   };
 
+  const addInfo = (text: string) => {
+    const li = document.createElement('li');
+    li.className = 'msg msg--info';
+    const p = document.createElement('p');
+    p.textContent = text;
+    li.append(p);
+    log.prepend(li);
+  };
+
+  function expireIfIdle() {
+    if (!hasConversation()) return;
+    // Enquanto a marcIA responde ou o visitante digita, a conversa segue ativa.
+    if (busy || input.value.trim()) {
+      touch();
+      return;
+    }
+    if (Date.now() - lastActivity < IDLE_MS) {
+      scheduleExpiry();
+      return;
+    }
+    window.clearTimeout(idleTimer);
+    messages = greetingOnly();
+    try {
+      sessionStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* nada a apagar */
+    }
+    render();
+    addInfo('A conversa anterior foi encerrada depois de 5 minutos sem resposta.');
+  }
+
   const setBusy = (value: boolean) => {
     busy = value;
     send.disabled = value;
@@ -184,6 +240,7 @@ const suggestions = [
   const open = (from?: HTMLElement) => {
     opener = from ?? null;
     render();
+    expireIfIdle();
     panel.hidden = false;
     launcher.setAttribute('aria-expanded', 'true');
     document.body.classList.add('chat-open');
@@ -228,7 +285,14 @@ const suggestions = [
       form.requestSubmit();
     }
   });
+  // O navegador atrasa cronômetros em abas escondidas; ao voltar, confere de novo.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') expireIfIdle();
+  });
+  scheduleExpiry();
+
   input.addEventListener('input', () => {
+    if (hasConversation()) touch();
     input.style.height = '';
     input.style.height = `${Math.min(input.scrollHeight, 120)}px`;
   });
@@ -367,6 +431,16 @@ const suggestions = [
   .log :global(.msg--user p) {
     background: var(--color-bubble-out);
     border-bottom-right-radius: 4px;
+  }
+  .log :global(.msg--info) {
+    align-self: center;
+    max-width: 100%;
+  }
+  .log :global(.msg--info p) {
+    padding: 4px 10px;
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+    text-align: center;
   }
   .log :global(.handoff) {
     justify-self: start;
