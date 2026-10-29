@@ -71,7 +71,7 @@ test('instruções trazem todas as soluções do site', () => {
   for (const area of ['Atendimento', 'Agenda', 'Finanças', 'Presença online']) assert.match(prompt, new RegExp(area));
   assert.match(prompt, /Harvard Business Review/);
   assert.match(prompt, /Você é a marcIA/);
-  for (const rule of ['Nunca deixe o visitante sem resposta', 'Nunca cite nomes de clientes', 'Quanto custa?', 'Nome primeiro', 'Valide a dor', 'NÃO é um cardápio', 'Escute antes de propor']) {
+  for (const rule of ['Nunca deixe o visitante sem resposta', 'Nunca cite nomes de clientes', 'Quanto custa?', 'Nome primeiro', 'Valide a dor', 'NÃO é um cardápio', 'Escute antes de propor', 'Nunca liste opções']) {
     assert.ok(prompt.includes(rule), rule);
   }
 });
