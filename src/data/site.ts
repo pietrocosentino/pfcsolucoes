@@ -176,15 +176,55 @@ export const solutions = {
   ] satisfies Solution[],
 };
 
+export type ProcessStep = {
+  title: string;
+  summary: string;
+  text: string;
+  deliverable: string;
+  participation: string;
+};
+
+// Método de trabalho. A marcIA também usa este texto, então ele precisa
+// refletir o que a PFC realmente faz em cada etapa.
 export const process = {
   eyebrow: 'Como funciona',
   title: 'Do seu problema à solução funcionando',
-  lead: 'Antes de escrever qualquer linha de código, entendemos como o seu negócio funciona hoje.',
+  lead: 'Entender antes de construir, validar antes de entregar e acompanhar depois. Em cada etapa você sabe o que fazemos, o que recebe e como participa.',
   steps: [
-    { title: 'Levantamento', text: 'Ouvimos o seu problema e entendemos a sua rotina.' },
-    { title: 'Análise', text: 'Encontramos onde estão as perdas e o que pode ser automatizado.' },
-    { title: 'Processo', text: 'Desenhamos o fluxo ideal para o seu negócio. Nada de pacote pronto.' },
-    { title: 'Solução', text: 'Entregamos o sistema funcionando e acompanhamos o uso.' },
+    {
+      title: 'Levantamento',
+      summary: 'Entendemos a sua rotina',
+      text: 'Uma conversa sobre como você atende, agenda, cobra e controla as contas hoje, e onde sente que perde clientes, tempo ou dinheiro.',
+      deliverable: 'Um retrato do seu cenário e uma resposta honesta: se a tecnologia resolve o seu problema e por onde vale começar.',
+      participation: 'Uma conversa online, sem compromisso.',
+    },
+    {
+      title: 'Análise',
+      summary: 'Encontramos as perdas e definimos o escopo',
+      text: 'Organizamos o que foi levantado, medimos o impacto de cada problema e priorizamos o que traz retorno primeiro.',
+      deliverable: 'Uma proposta clara, com escopo, prazo e investimento definidos antes de começar. Sem surpresas.',
+      participation: 'Você aprova, pede ajustes ou decide não seguir.',
+    },
+    {
+      title: 'Processo',
+      summary: 'Desenhamos e construímos sob medida',
+      text: 'Desenhamos o fluxo ideal para o seu negócio, de como o cliente chega até como ele agenda, paga e é lembrado, e construímos em partes.',
+      deliverable: 'Telas e fluxos para validar antes da versão final, já com os seus serviços, preços e horários.',
+      participation: 'Você testa durante a construção e diz o que ajustar.',
+    },
+    {
+      title: 'Solução',
+      summary: 'Entregamos funcionando e acompanhamos',
+      text: 'Colocamos no ar, configuramos com os dados do seu negócio e mostramos como usar no dia a dia, no celular.',
+      deliverable: 'O sistema funcionando, explicação simples de uso e acompanhamento para ajustar o que for preciso.',
+      participation: 'Você usa na rotina e conta o que pode melhorar.',
+    },
+  ] satisfies ProcessStep[],
+  principles: [
+    { title: 'Nada de pacote pronto', text: 'Cada solução nasce da sua rotina, não de um modelo genérico.' },
+    { title: 'Sem surpresas', text: 'Escopo, prazo e investimento combinados antes de começar.' },
+    { title: 'Você acompanha tudo', text: 'Valida cada etapa e vê o sistema antes da entrega final.' },
+    { title: 'Feito para o celular', text: 'Para você e para os seus clientes usarem onde estiverem.' },
   ],
 };
 

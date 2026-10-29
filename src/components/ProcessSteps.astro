@@ -6,48 +6,140 @@ import { process } from '../data/site';
 <Section id="como-funciona" eyebrow={process.eyebrow} title={process.title} lead={process.lead}>
   <ol class="steps">
     {process.steps.map((step, index) => (
-      <li>
-        <span class="number" aria-hidden="true">{index + 1}</span>
-        <h3>{step.title}</h3>
-        <p>{step.text}</p>
+      <li class="step">
+        <div class="head">
+          <span class="number" aria-hidden="true">{index + 1}</span>
+          <h3>
+            <span class="visually-hidden">Etapa {index + 1}: </span>{step.title}
+            <span class="summary">{step.summary}</span>
+          </h3>
+        </div>
+        <p class="text">{step.text}</p>
+        <dl>
+          <div>
+            <dt>Você recebe</dt>
+            <dd>{step.deliverable}</dd>
+          </div>
+          <div>
+            <dt>Sua participação</dt>
+            <dd>{step.participation}</dd>
+          </div>
+        </dl>
       </li>
     ))}
   </ol>
+
+  <ul class="principles" aria-label="Nossos compromissos">
+    {process.principles.map((item) => (
+      <li>
+        <strong>{item.title}</strong>
+        <span>{item.text}</span>
+      </li>
+    ))}
+  </ul>
 </Section>
 
 <style>
   .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .steps li {
-    display: grid;
-    align-content: start;
-    gap: 8px;
-    padding-top: 18px;
-    border-top: 3px solid var(--color-line);
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 26px;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+  }
+  .head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
   }
   .number {
     display: grid;
     place-items: center;
-    width: 40px;
-    height: 40px;
+    flex: none;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: var(--brand-navy);
     color: #ffffff;
     font-weight: 800;
+    font-size: 1.125rem;
   }
-  .steps p {
+  h3 {
+    display: grid;
+    gap: 2px;
+  }
+  .summary {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--color-accent-text);
+  }
+  .text {
+    color: var(--color-text);
+  }
+  dl {
+    display: grid;
+    gap: 10px;
+    margin: auto 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-line);
+  }
+  dt {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-muted);
   }
+  dd {
+    margin: 2px 0 0;
+    color: var(--color-ink);
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px 24px;
+    margin: 32px 0 0;
+    padding: 22px 26px;
+    list-style: none;
+    border-radius: var(--radius-md);
+    background: var(--color-band);
+  }
+  .principles li {
+    display: grid;
+    align-content: start;
+    gap: 2px;
+  }
+  .principles strong {
+    color: var(--color-ink);
+  }
+  .principles span {
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+  }
+
   @media (prefers-color-scheme: dark) {
     .number {
       background: var(--color-button);
       color: var(--color-button-text);
+    }
+  }
+  @media (max-width: 760px) {
+    .steps {
+      grid-template-columns: 1fr;
     }
   }
 </style>
