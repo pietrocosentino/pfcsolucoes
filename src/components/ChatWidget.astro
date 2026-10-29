@@ -1,10 +1,9 @@
 ---
 // Janela do atendente de IA. Qualquer link com `data-chat-open` abre o chat; sem
 // JavaScript esses links continuam levando ao WhatsApp.
-import { contact } from '../data/site';
+import { assistant, contact } from '../data/site';
 
-const greeting =
-  'Oi! Sou o atendente virtual da PFC Soluções. Me conta: qual é o seu negócio e o que mais toma o seu tempo hoje?';
+const greeting = assistant.greeting;
 const suggestions = [
   'Perco clientes no WhatsApp',
   'Quero agenda online',
@@ -17,7 +16,7 @@ const suggestions = [
   <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
     <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5v-8Z" fill="currentColor" />
   </svg>
-  <span>Tire suas dúvidas</span>
+  <span>{assistant.launcher}</span>
 </button>
 
 <section
@@ -28,13 +27,14 @@ const suggestions = [
   aria-labelledby="chat-title"
   hidden
   data-greeting={greeting}
+  data-name={assistant.name}
   data-whatsapp={contact.whatsapp}
 >
   <div class="top">
-    <span class="avatar" aria-hidden="true">IA</span>
+    <span class="avatar" aria-hidden="true">M</span>
     <div class="who">
-      <h2 id="chat-title">Atendente PFC</h2>
-      <p>Responde na hora</p>
+      <h2 id="chat-title">{assistant.name}</h2>
+      <p>{assistant.status}</p>
     </div>
     <button type="button" class="close" data-chat-close aria-label="Fechar o chat">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
@@ -58,7 +58,7 @@ const suggestions = [
       </svg>
     </button>
   </form>
-  <p class="foot">Atendimento automático com IA. Quer falar com uma pessoa? É só pedir.</p>
+  <p class="foot">A {assistant.name} é uma atendente com IA. Quer falar com o Pietro? É só pedir.</p>
 </section>
 
 <script>
@@ -114,7 +114,7 @@ const suggestions = [
     li.className = `msg msg--${message.role}`;
     const who = document.createElement('span');
     who.className = 'visually-hidden';
-    who.textContent = message.role === 'user' ? 'Você: ' : 'Atendente: ';
+    who.textContent = message.role === 'user' ? 'Você: ' : `${panel.dataset.name}: `;
     const p = document.createElement('p');
     p.append(who, message.text);
     li.append(p);
@@ -147,7 +147,7 @@ const suggestions = [
     if (value && !typing) {
       const li = document.createElement('li');
       li.className = 'msg msg--assistant msg--typing';
-      li.innerHTML = '<p><span class="visually-hidden">Atendente digitando</span><i></i><i></i><i></i></p>';
+      li.innerHTML = `<p><span class="visually-hidden">${panel.dataset.name} digitando</span><i></i><i></i><i></i></p>`;
       log.append(li);
       log.scrollTop = log.scrollHeight;
     } else if (!value) typing?.remove();

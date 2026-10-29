@@ -4,12 +4,13 @@ Site institucional da PFC Soluções: agente de IA no WhatsApp, agendamento onli
 
 Feito com [Astro](https://astro.build): as páginas são HTML estático e só o atendente de IA (`/api/chat`) roda como função na Vercel. Publica na Vercel a cada push na `main`.
 
-## Atendente de IA
+## marcIA, a atendente de IA
 
-Os botões "Conversar agora" abrem um chat com um atendente (Claude) que entende o negócio do visitante, indica a solução e, quando ele quer fechar, abre o WhatsApp do Pietro com um resumo pronto. Não há banco de dados: a conversa fica no navegador do visitante.
+Os botões "Falar com a marcIA" abrem um chat com a marcIA, atendente de primeiro contato (Claude), que entende o negócio do visitante, indica a solução e, quando ele quer fechar, abre o WhatsApp do Pietro com um resumo pronto. Não há banco de dados: a conversa fica no navegador do visitante.
 
 - Conhecimento: o mesmo `src/data/site.ts` do site, então o atendente nunca diz algo diferente do que está publicado.
-- Regras e tom: `src/lib/assistant/prompt.ts`.
+- Contexto da empresa, lógica de trabalho, detalhes de cada solução, regras de negócio e respostas a objeções: `src/lib/assistant/knowledge.ts`. Ao mudar uma regra comercial, atualize esse arquivo.
+- Montagem das instruções: `src/lib/assistant/prompt.ts`.
 - Ativação: crie a variável `ANTHROPIC_API_KEY` em Vercel → Settings → Environment Variables (Production e Preview) e faça um novo deploy. Sem a chave, o chat avisa que está fora do ar e oferece o WhatsApp.
 - Custo: defina um limite mensal de gastos no console da Anthropic. O endpoint também limita tamanho de mensagem, número de turnos e mensagens por aparelho.
 
@@ -32,7 +33,7 @@ npm test         # build + testes do HTML e do atendente
 | Ordem das seções | `src/pages/index.astro` |
 | Metatags e prévia de compartilhamento | `src/layouts/BaseLayout.astro` |
 | Domínio do site | `astro.config.mjs` (`site`) |
-| Instruções do atendente de IA | `src/lib/assistant/prompt.ts` |
+| O que a marcIA sabe e as regras dela | `src/lib/assistant/knowledge.ts` |
 
 ## Estrutura
 
@@ -53,7 +54,7 @@ src/
     SocialLinks           ícones de WhatsApp e Instagram (número e @ só no link)
     ChatWidget            janela do atendente de IA
     About, Faq, ContactCta
-  lib/assistant/         atendente: instruções, chamada ao Claude, resumo do WhatsApp
+  lib/assistant/         marcIA: conhecimento, instruções, chamada ao Claude, resumo do WhatsApp
   pages/index.astro       monta a página
   pages/api/chat.ts       endpoint do atendente (função na Vercel)
 public/                   favicon, ícone do celular, imagem de prévia e logo
