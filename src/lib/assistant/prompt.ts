@@ -63,7 +63,7 @@ export const handoffTool = {
       contexto: {
         type: 'string',
         description:
-          'Detalhes úteis para o Pietro, em primeira pessoa: desde quando acontece, como resolve hoje, o que já tentou, o impacto. Ex.: "Hoje respondo tudo à mão no WhatsApp e perco umas 3 clientes por semana."',
+          'Detalhes úteis para o Pietro, em primeira pessoa: desde quando acontece, como resolve hoje, o que já tentou, o impacto. Use só o que a pessoa contou; não inclua dúvidas, suposições nem perguntas que ela não respondeu. Ex.: "Hoje respondo tudo à mão no WhatsApp e perco umas 3 clientes por semana."',
       },
     },
     required: ['necessidade'],

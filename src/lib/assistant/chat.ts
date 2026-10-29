@@ -76,7 +76,9 @@ export function toApiMessages(messages: ChatMessage[]) {
 type ContentBlock = { type: string; text?: string; name?: string; input?: HandoffInput };
 type FetchLike = (url: string, init: RequestInit) => Promise<Response>;
 
-const FALLBACK_HANDOFF_TEXT = 'Pronto! Toque no botão abaixo para abrir o WhatsApp do Pietro com o resumo da nossa conversa.';
+// Usado quando a IA encaminha sem escrever nada junto: mantém o tom acolhedor.
+const fallbackHandoffText = (name: string) =>
+  `${name ? `Obrigada pela confiança, ${name}!` : 'Obrigada pela confiança!'} O Pietro vai cuidar pessoalmente do seu caso. É só tocar no botão abaixo para abrir o WhatsApp dele com o resumo da nossa conversa.`;
 
 export async function runTurn(
   messages: ChatMessage[],
@@ -110,7 +112,11 @@ export async function runTurn(
     .join('\n\n');
   const call = content.find((b) => b.type === 'tool_use' && b.name === HANDOFF_TOOL);
 
-  if (call) return { reply: text || FALLBACK_HANDOFF_TEXT, handoff: buildHandoff(call.input ?? {}) };
+  if (call) {
+    const input = call.input ?? {};
+    const name = typeof input.nome === 'string' ? input.nome.trim().split(/\s+/)[0] : '';
+    return { reply: text || fallbackHandoffText(name), handoff: buildHandoff(input) };
+  }
   if (!text) throw new ChatError('O atendente não conseguiu responder. Tente de novo.', 502);
   return { reply: text };
 }
