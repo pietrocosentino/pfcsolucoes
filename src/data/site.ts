@@ -33,6 +33,7 @@ export const assistant = {
 // Links com "/" na frente funcionam em qualquer página do site.
 export const navigation = [
   { href: '/#solucoes', label: 'Soluções' },
+  { href: '/barbearias', label: 'Barbearias e salões' },
   { href: '/#como-funciona', label: 'Como funciona' },
   { href: '/sobre', label: 'Quem somos' },
   { href: '/#duvidas', label: 'Dúvidas' },
@@ -53,6 +54,7 @@ export const footer = {
     {
       title: 'Soluções',
       links: [
+        { href: '/barbearias', label: 'Para barbearias e salões' },
         { href: '/#solucoes', label: 'Atendimento com IA' },
         { href: '/#solucoes', label: 'Agenda online' },
         { href: '/#solucoes', label: 'Finanças' },
