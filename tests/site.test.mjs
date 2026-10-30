@@ -81,6 +81,6 @@ test('poucos botões de conversa: topo e contato, além do botão flutuante e do
 test('página de barbearias mostra o piloto e leva à demonstração', () => {
   const doc = readFileSync(new URL('../dist/client/barbearias/index.html', import.meta.url), 'utf8');
   assert.match(doc, /secretaria-virtual-ten\.vercel\.app\/a\/demo/);
-  assert.match(doc, /R\$ 197\/mês/);
+  assert.doesNotMatch(doc.replace(/<style[\s\S]*?<\/style>/gi, ''), /R\$\s?\d/);
   assert.match(doc, /id="piloto"/);
 });

@@ -6,7 +6,7 @@ import PageIntro from '../components/PageIntro.astro';
 import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
 import { about, contact } from '../data/site';
-import { demoUrl, nichoPage, oferta, reais } from '../data/barbearias';
+import { demoUrl, nichoPage, oferta } from '../data/barbearias';
 
 const { piloto } = oferta;
 ---
@@ -45,19 +45,11 @@ const { piloto } = oferta;
 
   <Section id="piloto" tone="band" eyebrow={nichoPage.piloto.eyebrow} title={nichoPage.piloto.title} lead={nichoPage.piloto.lead}>
     <div class="price">
-      <div class="price-row">
-        <span class="price-label">Implantação</span>
-        <span class="price-value">{reais(piloto.implantacao)}</span>
-        <span class="price-old">valor cheio {reais(piloto.implantacaoCheia)}</span>
-      </div>
-      <div class="price-row">
-        <span class="price-label">Mensalidade</span>
-        <span class="price-value">{reais(piloto.mensalidade)}/mês</span>
-        <span class="price-old">travada por {piloto.mesesTravados} meses (valor cheio {reais(piloto.mensalidadeCheia)}/mês)</span>
-      </div>
+      <ul class="checks">
+        {nichoPage.piloto.beneficios.map((item) => <li>{item}</li>)}
+      </ul>
       <p class="price-terms">
-        {piloto.vagas} vagas. Em troca do valor de fundador, você aceita {piloto.contrapartida}. Escopo, prazo e condições
-        ficam escritos na proposta antes de você decidir.
+        {piloto.vagas} vagas. Em troca do valor de fundador, você aceita {piloto.contrapartida}.
       </p>
       <div class="actions">
         <Button href={contact.whatsapp} external chat>{nichoPage.piloto.cta}</Button>
@@ -156,24 +148,6 @@ const { piloto } = oferta;
     background: var(--color-surface);
     border: 1px solid var(--color-line);
   }
-  .price-row {
-    display: grid;
-    gap: 2px;
-  }
-  .price-label {
-    font-weight: 700;
-    color: var(--color-muted);
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .price-value {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    font-weight: 800;
-    color: var(--color-ink);
-    letter-spacing: -0.02em;
-  }
-  .price-old,
   .price-terms {
     color: var(--color-muted);
   }

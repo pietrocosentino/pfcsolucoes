@@ -1,20 +1,14 @@
 // Página do nicho de entrada: barbearias, salões e quem vive de agenda.
-// Preços e vagas do piloto ficam em `oferta`; a marcIA lê este mesmo arquivo,
-// então mudar um valor aqui muda o que ela responde. Confira antes de publicar.
+// As vagas e as condições do piloto ficam em `oferta`; a marcIA lê este mesmo
+// arquivo. Os valores não são publicados: saem na proposta, depois do levantamento.
 
 export const demoUrl = 'https://secretaria-virtual-ten.vercel.app/a/demo';
 
 export const oferta = {
   nome: 'Secretária marcIA',
   publico: 'barbearias, salões, estúdios de estética e personal trainers',
-  // Valores do piloto de clientes fundadores. Revise com os custos reais
-  // (WhatsApp, IA e hospedagem) e as horas de implantação antes do merge.
   piloto: {
     vagas: 5,
-    implantacao: 497,
-    implantacaoCheia: 697,
-    mensalidade: 197,
-    mensalidadeCheia: 247,
     mesesTravados: 6,
     contrapartida:
       'autorizar o uso dos números do relatório de 30 dias e, se estiver satisfeito, dar um depoimento',
@@ -31,8 +25,6 @@ export const oferta = {
     'Até 2 ajustes por mês em serviços, preços, horários e respostas',
   ],
 };
-
-export const reais = (valor: number) => `R$ ${valor.toLocaleString('pt-BR')}`;
 
 export const nichoPage = {
   meta: {
@@ -84,6 +76,12 @@ export const nichoPage = {
     title: 'Piloto com valor de fundador',
     lead: 'Estamos abrindo poucas vagas porque cada implantação é feita pessoalmente pelo Pietro.',
     cta: 'Quero uma vaga de fundador',
+    beneficios: [
+      'Valor de fundador, abaixo do preço cheio',
+      'Mensalidade travada por 6 meses',
+      'Implantação feita pessoalmente pelo Pietro',
+      'Proposta com escopo, prazo e investimento antes de você decidir',
+    ],
   },
   faq: [
     {
@@ -105,6 +103,11 @@ export const nichoPage = {
       question: 'Posso cancelar?',
       answer:
         'Sim. A mensalidade cobre o funcionamento e os ajustes do mês. As condições de cancelamento ficam escritas na proposta antes de você decidir.',
+    },
+    {
+      question: 'Quanto custa?',
+      answer:
+        'Depende do tamanho da sua agenda e do que você precisa. Depois de uma conversa de 20 minutos, você recebe a proposta com escopo, prazo e investimento, sem compromisso. Clientes fundadores têm valor abaixo do preço cheio e mensalidade travada por 6 meses.',
     },
     {
       question: 'Tem custo do WhatsApp à parte?',
