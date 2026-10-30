@@ -53,6 +53,7 @@ export const footer = {
     {
       title: 'Soluções',
       links: [
+        { href: '/barbearias', label: 'Para barbearias e salões' },
         { href: '/#solucoes', label: 'Atendimento com IA' },
         { href: '/#solucoes', label: 'Agenda online' },
         { href: '/#solucoes', label: 'Finanças' },

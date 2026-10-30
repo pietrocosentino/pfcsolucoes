@@ -4,6 +4,7 @@
 import { about, assistant, brand, faq, process, solutions, warningSigns } from '../../data/site.ts';
 import { aboutPage } from '../../data/institutional.ts';
 import { company, conversationRules, howWeWork, solutionDetails } from './knowledge.ts';
+import { oferta } from '../../data/barbearias.ts';
 
 export const HANDOFF_TOOL = 'encaminhar_para_whatsapp';
 
@@ -17,6 +18,8 @@ export function systemPrompt(): string {
     `Compromissos: ${process.principles.map((p) => `${p.title}: ${p.text}`).join(' ')}`,
   ].join('\n');
   const dataText = warningSigns.items.map((d) => `- ${d.stat} ${d.fact} (Fonte: ${d.source})`).join('\n');
+  const p = oferta.piloto;
+  const pilotText = `A PFC está abrindo ${p.vagas} vagas de clientes fundadores da ${oferta.nome}, para ${oferta.publico}. Fundadores têm valor abaixo do preço cheio e mensalidade travada por ${p.mesesTravados} meses; os valores não são publicados e só saem na proposta, então nunca informe números. Em troca, o cliente aceita ${p.contrapartida}. O que está incluso: ${oferta.inclui.join('; ')}. Prazo para entrar no ar: até ${oferta.prazoDias} dias depois da conversa de levantamento. Escopo, condições de cancelamento e custos do WhatsApp ficam escritos na proposta; não invente essas condições. Existe uma barbearia de demonstração para o visitante testar como cliente; ela está no botão da página Barbearias e salões (não escreva o endereço). Só fale do piloto quando o caso do visitante se encaixar nele.`;
   const faqText = faq.items.map((item) => `P: ${item.question}\nR: ${item.answer}`).join('\n\n');
 
   return `Você é a ${assistant.name}, ${assistant.role} da ${brand.fullName}, no chat do site da empresa.
@@ -38,6 +41,9 @@ ${processText}
 ${summaryText}
 A PFC faz o que o problema pedir: automações, sistemas, aplicativos, sites e integrações, sob medida.
 ${solutionDetails}
+# Piloto para negócios de agendamento
+${pilotText}
+
 # Dados que você pode citar
 Só estes números, no máximo um por mensagem, sempre com a fonte.
 ${dataText}

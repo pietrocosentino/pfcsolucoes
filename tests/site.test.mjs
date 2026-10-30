@@ -31,7 +31,7 @@ test('links para páginas internas levam a páginas que existem', () => {
 });
 
 test('páginas institucionais têm um h1 e o rodapé completo', () => {
-  for (const page of ['sobre', 'privacidade']) {
+  for (const page of ['sobre', 'privacidade', 'barbearias']) {
     const doc = readFileSync(new URL(`../dist/client/${page}/index.html`, import.meta.url), 'utf8');
     assert.equal((doc.match(/<h1\b/g) ?? []).length, 1, page);
     assert.match(doc, /Política de privacidade/);
@@ -76,4 +76,11 @@ test('poucos botões de conversa: topo e contato, além do botão flutuante e do
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
   const ctas = main.match(/<a\b[^>]*data-chat-open[^>]*>/g) ?? [];
   assert.equal(ctas.length, 2);
+});
+
+test('página de barbearias mostra o piloto e leva à demonstração', () => {
+  const doc = readFileSync(new URL('../dist/client/barbearias/index.html', import.meta.url), 'utf8');
+  assert.match(doc, /secretaria-virtual-ten\.vercel\.app\/a\/demo/);
+  assert.doesNotMatch(doc.replace(/<style[\s\S]*?<\/style>/gi, ''), /R\$\s?\d/);
+  assert.match(doc, /id="piloto"/);
 });

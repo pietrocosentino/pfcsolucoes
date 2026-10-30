@@ -99,3 +99,11 @@ test('encaminhamento sem texto da IA usa mensagem calorosa com o nome', async ()
   assert.match(out.reply, /^Obrigada pela confiança, Roberto!/);
   assert.match(out.reply, /cuidar pessoalmente/);
 });
+
+test('a marcIA conhece o piloto, mas não informa valores', () => {
+  const text = systemPrompt();
+  assert.match(text, /Piloto para negócios de agendamento/);
+  assert.match(text, /nunca informe números/);
+  assert.doesNotMatch(text, /R\$\s?\d/);
+  assert.match(text, /Nunca invente preço/);
+});
