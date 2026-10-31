@@ -62,7 +62,7 @@ src/
   pages/sobre.astro       Quem somos
   pages/privacidade.astro Política de privacidade (LGPD)
   pages/api/chat.ts       endpoint do atendente (função na Vercel)
-public/                   favicon, ícone do celular, imagem de prévia e logo
+public/                   favicon, ícone do celular e imagem de prévia
 tests/                    testes do HTML gerado e do atendente (node:test)
 ```
 

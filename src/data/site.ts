@@ -65,7 +65,7 @@ export const footer = {
 // Primeira dobra: o visitante decide aqui se continua. Segue o teste de clareza
 // (o que oferecemos, como melhora a vida dele, o que fazer agora).
 // Antes, depois e ponte: a dor na voz do cliente, como fica a vida dele e o que a PFC entrega.
-export type Transformation = { pain: string; gain: string; solution: string };
+type Transformation = { pain: string; gain: string; solution: string };
 
 export const hero = {
   eyebrow: 'Sistemas sob medida para autônomos e pequenas empresas',
@@ -104,7 +104,7 @@ export const hero = {
   },
 };
 
-export type WarningSign = { stat: string; fact: string; cost: string; source: string };
+type WarningSign = { stat: string; fact: string; cost: string; source: string };
 
 // Dados de pesquisas públicas (fontes no fim de cada item). Ao trocar um número,
 // confira a fonte: o atendente de IA também usa estes dados.
@@ -214,7 +214,7 @@ export const solutions = {
   ] satisfies Solution[],
 };
 
-export type ProcessStep = {
+type ProcessStep = {
   title: string;
   summary: string;
   text: string;

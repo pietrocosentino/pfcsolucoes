@@ -5,11 +5,11 @@
 import { buildHandoff, type Handoff, type HandoffInput } from './handoff.ts';
 import { HANDOFF_TOOL, handoffTool, systemPrompt } from './prompt.ts';
 
-export const MODEL = 'claude-haiku-5-5';
-export const LIMITS = { messageChars: 1000, turns: 20, totalChars: 16000 };
+const MODEL = 'claude-haiku-5-5';
+const LIMITS = { messageChars: 1000, turns: 20, totalChars: 16000 };
 
-export type ChatMessage = { role: 'user' | 'assistant'; text: string };
-export type ChatReply = { reply: string; handoff?: Handoff };
+type ChatMessage = { role: 'user' | 'assistant'; text: string };
+type ChatReply = { reply: string; handoff?: Handoff };
 
 export class ChatError extends Error {
   status: number;

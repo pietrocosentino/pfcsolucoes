@@ -5,18 +5,17 @@
 interface Props {
   href: string;
   variant?: 'primary' | 'secondary' | 'inverse';
-  size?: 'md' | 'sm';
   external?: boolean;
   chat?: boolean;
   class?: string;
 }
 
-const { href, variant = 'primary', size = 'md', external = false, chat = false, class: className } = Astro.props;
+const { href, variant = 'primary', external = false, chat = false, class: className } = Astro.props;
 ---
 
 <a
   href={href}
-  class:list={['btn', `btn--${variant}`, `btn--${size}`, className]}
+  class:list={['btn', `btn--${variant}`, className]}
   {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
   {...chat ? { 'data-chat-open': '', 'aria-haspopup': 'dialog' } : {}}
 >
@@ -41,11 +40,6 @@ const { href, variant = 'primary', size = 'md', external = false, chat = false, 
     transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
 
-  .btn--sm {
-    min-height: 44px;
-    padding: 8px 18px;
-    font-size: 0.9375rem;
-  }
 
   .btn--primary {
     background: var(--color-button);
