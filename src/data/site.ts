@@ -25,7 +25,7 @@ export const contact = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
   email: 'contato@pfcsolucoes.com.br',
-  ctaLabel: 'Falar com a marcIA',
+  ctaLabel: 'Contar meu problema para a marcIA',
 };
 
 // Atendente de IA do site (primeiro contato). Instruções em src/lib/assistant/.
@@ -47,6 +47,8 @@ export const navigation = [
 ];
 
 export const footer = {
+  // O começo do resumo vira link para a página inicial (texto âncora).
+  summaryLink: 'Sistemas sob medida para autônomos e pequenas empresas',
   summary: 'Sistemas sob medida para autônomos e pequenas empresas. Atendimento online para todo o Brasil.',
   columns: [
     {
@@ -118,7 +120,7 @@ type WarningSign = { stat: string; fact: string; cost: string; source: string };
 // confira a fonte: o atendente de IA também usa estes dados.
 export const warningSigns = {
   eyebrow: 'Por que o cliente vai embora',
-  title: 'O que faz o cliente ir para a concorrência',
+  title: 'O que faz o cliente da pequena empresa ir para a concorrência',
   lead: 'Nem sempre é o preço. Muitas vezes é demora, dificuldade para agendar ou falta de confiança.',
   items: [
     {
@@ -171,13 +173,14 @@ export type Solution = {
 
 export const solutions = {
   eyebrow: 'Exemplos do que já construímos',
-  title: 'Cada problema, um sistema sob medida',
-  lead: 'Estes projetos nasceram de problemas reais de quem trabalha sozinho ou com uma equipe pequena. O seu será desenhado a partir da sua rotina, não escolhido de uma lista.',
+  title: 'Sistemas sob medida que já construímos para pequenos negócios',
+  lead: 'Estes projetos nasceram de problemas reais de quem trabalha sozinho ou com uma equipe pequena. O seu sistema personalizado será desenhado a partir da sua rotina, não escolhido de uma lista.',
   closing: 'Automações, sistemas, aplicativos, sites: o que o seu problema pedir.',
+  more: { href: '#contato', label: 'Não achou o seu caso? Conte o seu problema para a marcIA' },
   items: [
     {
       area: 'Atendimento',
-      title: 'Nenhum cliente fica sem resposta',
+      title: 'Agente de IA no WhatsApp: nenhum cliente fica sem resposta',
       description: 'Um agente de IA no WhatsApp que entende o cliente em linguagem natural e cuida da agenda por você.',
       features: [
         'Marca, remarca e cancela na agenda real',
@@ -188,7 +191,7 @@ export const solutions = {
     },
     {
       area: 'Agenda',
-      title: 'Sua agenda se preenche sozinha',
+      title: 'Agenda online: sua agenda se preenche sozinha',
       description: 'Uma página de agendamento só sua, onde o cliente escolhe serviço e horário pelo celular.',
       features: [
         'Mostra só os horários em que o atendimento inteiro cabe',
@@ -199,7 +202,7 @@ export const solutions = {
     },
     {
       area: 'Finanças',
-      title: 'Você sabe quanto sobra no mês',
+      title: 'App de controle financeiro: você sabe quanto sobra no mês',
       description: 'Um aplicativo para Android e iPhone que organiza entradas e saídas sem planilha complicada.',
       features: [
         'Contas recorrentes com lembrete',
@@ -210,7 +213,7 @@ export const solutions = {
     },
     {
       area: 'Presença online',
-      title: 'Quem procura, encontra você',
+      title: 'Site profissional: quem procura, encontra você',
       description: 'Um site rápido, que funciona bem no celular e leva o visitante direto até o seu contato.',
       features: [
         'Serviços, planos e depoimentos',
@@ -234,7 +237,7 @@ type ProcessStep = {
 // refletir o que a PFC realmente faz em cada etapa.
 export const process = {
   eyebrow: 'Como funciona',
-  title: 'Do seu problema à solução funcionando',
+  title: 'Como desenvolvemos o seu sistema sob medida, em 4 etapas',
   lead: 'Entender antes de construir, validar antes de entregar e acompanhar depois. Em cada etapa você sabe o que fazemos, o que recebe e como participa.',
   steps: [
     {
@@ -281,17 +284,55 @@ export const about = {
   portfolio: { href: 'https://www.pietrocosentino.com.br/', label: 'Ver trajetória completa' },
 };
 
+// Seção que ajuda a decidir entre sistema sob medida e aplicativo pronto.
+export const comparison = {
+  eyebrow: 'Sob medida ou pronto?',
+  title: 'Sistema sob medida ou aplicativo pronto: qual vale mais para o seu negócio?',
+  options: [
+    {
+      name: 'Aplicativo pronto',
+      text: 'É rápido de começar, mas foi feito para a média dos negócios. Você se adapta a ele e, no fim, continua usando planilha, papel e WhatsApp para o que ele não faz.',
+    },
+    {
+      name: 'Sistema sob medida',
+      text: 'Parte da sua rotina: atendimento, agenda, cobrança e finanças funcionam juntos, sem digitar a mesma informação duas vezes, e do jeito que o seu cliente já está acostumado.',
+    },
+  ],
+  closing: 'Não sabe qual é o seu caso? No levantamento, a gente diz com honestidade se vale a pena um sistema sob medida ou se uma solução pronta já resolve.',
+  more: { href: '#contato', label: 'Descobrir o que funciona para o meu negócio' },
+};
+
 export const faq = {
   eyebrow: 'Dúvidas',
-  title: 'Perguntas frequentes',
+  title: 'Perguntas frequentes sobre sistemas sob medida',
   items: [
+    {
+      question: 'O que é um sistema sob medida?',
+      answer: 'É um sistema criado a partir da rotina do seu negócio, em vez de um aplicativo genérico. Ele faz o que você precisa, do jeito que você trabalha, e junta atendimento, agenda, cobrança e finanças num lugar só.',
+    },
     {
       question: 'Preciso entender de tecnologia?',
       answer: 'Não. A gente cuida da parte técnica e entrega tudo funcionando, com uma explicação simples de como usar.',
     },
     {
-      question: 'Quanto custa?',
-      answer: 'Depende do que o seu negócio precisa. Depois do levantamento, você recebe uma proposta clara, sem compromisso de contratar.',
+      question: 'Quanto custa um sistema sob medida para pequena empresa?',
+      answer: 'Depende do que o seu negócio precisa. Depois do levantamento, você recebe uma proposta com escopo, prazo e valor definidos, sem compromisso de contratar.',
+    },
+    {
+      question: 'Quanto tempo leva para ficar pronto?',
+      answer: 'O prazo sai na proposta, conforme o escopo. Um agente de IA no WhatsApp para negócios de agendamento, por exemplo, entra no ar em até 7 dias depois do levantamento.',
+    },
+    {
+      question: 'Vale mais que um aplicativo pronto?',
+      answer: 'Vale quando o aplicativo pronto obriga você a usar planilha ou papel junto, ou quando não conversa com o seu WhatsApp. Se uma solução pronta já resolver, a gente diz isso no levantamento.',
+    },
+    {
+      question: 'Serve para MEI e autônomo?',
+      answer: 'Sim. A PFC atende principalmente quem trabalha sozinho ou com uma equipe pequena: barbearias, salões, clínicas, consultórios, personal trainers e prestadores de serviço.',
+    },
+    {
+      question: 'Funciona junto com o WhatsApp que eu já uso?',
+      answer: 'O agente de IA atende os seus clientes pelo WhatsApp. Como fica o número e os custos do WhatsApp vêm descritos na proposta.',
     },
     {
       question: 'Funciona no celular?',
@@ -314,6 +355,6 @@ export const faq = {
 
 export const contactSection = {
   eyebrow: 'Contato',
-  title: 'Vamos simplificar o seu negócio?',
+  title: 'Vamos criar o sistema sob medida do seu negócio?',
   lead: 'Conte para a marcIA, nossa atendente, o que mais toma o seu tempo hoje. Ela entende o seu caso na hora e prepara tudo para o Pietro chegar já sabendo do que você precisa.',
 };

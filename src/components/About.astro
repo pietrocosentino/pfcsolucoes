@@ -4,7 +4,7 @@ import Button from './Button.astro';
 import { about } from '../data/site';
 ---
 
-<Section id="sobre" tone="band" eyebrow={about.eyebrow} title={about.name}>
+<Section id="sobre" tone="band" eyebrow={about.eyebrow} title={`Quem desenvolve o seu sistema: ${about.name}`}>
   <div class="about">
     <div class="bio">
       <p class="lead">{about.bio}</p>

@@ -1,16 +1,20 @@
 ---
 import Logo from './Logo.astro';
 import { brand, navigation } from '../data/site';
+
+// Na página inicial o logo sobe para o topo; nas outras, leva à página inicial.
+const home = Astro.url.pathname === '/';
 ---
 
 <header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="#inicio" aria-label={`${brand.name}, voltar ao início`}>
+    <a class="brand" href={home ? '#inicio' : '/'}>
       <Logo size={38} knockout="var(--color-band)" />
       <span class="brand-text">
         <strong>{brand.name}</strong>
         <span>{brand.tagline}</span>
       </span>
+      <span class="visually-hidden">, {home ? 'voltar ao início' : 'página inicial'}</span>
     </a>
 
     <nav class="nav" aria-label="Principal">
