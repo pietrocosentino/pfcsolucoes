@@ -15,16 +15,16 @@ import { contact, contactSection } from '../data/site';
   .cta {
     display: grid;
     justify-items: center;
-    gap: 16px;
-    margin-top: -12px;
+    gap: var(--space-4);
+    margin-top: calc(-1 * var(--space-6));
   }
   .email {
     margin: 0;
-    color: var(--color-dark-muted);
+    color: var(--dark-muted);
   }
   .email a {
-    color: var(--color-dark-text);
-    font-weight: 600;
+    color: var(--dark-text);
+    font-weight: var(--weight-semibold);
     overflow-wrap: anywhere;
   }
 </style>

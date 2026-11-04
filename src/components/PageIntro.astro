@@ -20,17 +20,14 @@ const { eyebrow, title, lead } = Astro.props;
 
 <style>
   .intro {
-    background: var(--color-band);
-    padding-block: clamp(40px, 6vw, 72px);
+    background: var(--color-subtle);
+    padding-block: clamp(var(--space-12), 6vw, var(--space-16));
   }
   .content {
     display: grid;
-    gap: 16px;
+    gap: var(--space-4);
   }
   h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
     max-width: 22ch;
   }
 </style>

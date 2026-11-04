@@ -1,56 +1,120 @@
-/* Cores, tipografia e espaçamentos da marca. Os componentes usam só estes tokens. */
+/* Design system da PFC Soluções. Os componentes usam só os papéis (--color-*,
+   --text-*, --space-*...), nunca hex ou px soltos. */
 :root {
-  /* Marca (fixa) */
-  --brand-navy: #1b2a4a;
+  /* Marca: uma cor, só para ação e destaque */
+  --brand-300: #ff8a6a; /* ação sobre a faixa escura */
+  --brand-600: #c8401d; /* fundo do botão primário (texto branco 5:1) */
+  --brand-700: #a83416; /* hover do primário, links e destaques (≥ 5:1 nos fundos claros) */
 
-  /* Tema claro */
-  --color-bg: #f7f9f6;
-  --color-band: #e4ebe2;
-  --color-surface: #ffffff;
-  --color-ink: #1b2a4a;
-  --color-text: #2e3a52;
-  --color-muted: #4f5b72;
-  --color-line: #d5ddd3;
-  --color-chip: #eef2ec;
-  --color-accent-text: #b5391a; /* coral escurecido: 4,8:1 sobre o sálvia */
-  --color-button: #c8401d; /* texto branco: 5:1 */
-  --color-button-hover: #a83416;
-  --color-button-text: #ffffff;
-  --color-bubble-out: #dcebdd;
-  --color-focus: #f2542d;
+  /* Neutros (o azul-marinho da marca é o mais escuro) */
+  --n-0: #ffffff;
+  --n-50: #f7f9f6;
+  --n-100: #e9eee7;
+  --n-200: #d5ddd3;
+  --n-500: #4f5b72;
+  --n-700: #2e3a52;
+  --n-900: #1b2a4a;
 
-  /* Faixa escura (contato) — igual nos dois temas */
-  --color-dark-bg: #1b2a4a;
-  --color-dark-text: #e9eef6;
-  --color-dark-muted: #c9d2e3;
-  --color-dark-accent: #ff8a6a;
+  /* Estados: erro sempre com ícone e texto, nunca só a cor */
+  --success: #1f7a4d;
+  --success-bg: #e3f1e8;
+  --warning: #8a5a00;
+  --warning-bg: #fbf0d9;
+  --error: #b3261e;
+  --error-bg: #fdecea;
+  --info: #3d5a94;
+  --info-bg: #e6eefa;
 
+  /* Papéis */
+  --color-bg: var(--n-50);
+  --color-surface: var(--n-0);
+  --color-subtle: var(--n-100);
+  --color-border: var(--n-200);
+  --color-border-strong: var(--n-500);
+  --color-text: var(--n-700);
+  --color-text-muted: var(--n-500);
+  --color-heading: var(--n-900);
+  --color-accent: var(--brand-700);
+  --color-action: var(--brand-600);
+  --color-action-hover: var(--brand-700);
+  --color-on-action: #ffffff;
+  --color-focus: var(--n-900);
+  --color-disabled-bg: var(--n-100);
+  --color-disabled-text: var(--n-500);
+
+  /* Superfície escura fixa (faixa de contato, topo do chat, moldura do celular):
+     igual nos dois temas */
+  --dark-bg: #1b2a4a;
+  --dark-text: #f7f9f6;
+  --dark-muted: #d5ddd3;
+  --dark-action: var(--brand-300);
+  --dark-action-hover: #ffa98f;
+  --dark-focus: #ffffff;
+
+  /* Tipografia: uma fonte, três pesos */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-pill: 999px;
+  --text-xs: 0.75rem; /* 12: rótulo em caixa alta */
+  --text-sm: 0.875rem; /* 14: legendas, chips, rodapé */
+  --text-md: 1rem; /* 16: texto e botões */
+  --text-lg: 1.125rem; /* 18: texto de abertura */
+  --text-xl: 1.25rem; /* 20: h3 */
+  --text-h2: clamp(1.5rem, 4vw, 2rem); /* 24→32 */
+  --text-h1: clamp(2rem, 5vw, 3rem); /* 32→48 */
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;
+  --tracking-tight: -0.02em;
+  --tracking-caps: 0.08em;
+
+  /* Espaçamento (base 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  /* Formas */
+  --radius-sm: 8px; /* campos, imagens, itens de menu */
+  --radius-md: 12px; /* cards, painéis */
+  --radius-pill: 999px; /* botões e chips */
+  --radius-device: 32px; /* moldura de celular (única exceção) */
+  --radius-device-screen: 24px;
+  --shadow-overlay: 0 24px 48px -24px rgb(27 42 74 / 0.5); /* só o que flutua */
+  --focus-ring: 3px solid var(--color-focus);
+  --focus-offset: 3px;
+
+  /* Controles: duas alturas */
+  --control-sm: 44px;
+  --control-md: 48px;
+  --duration: 150ms;
+
+  /* Layout */
   --content-width: 1080px;
-  --section-space: clamp(56px, 8vw, 88px);
+  --section-space: clamp(var(--space-12), 8vw, var(--space-24));
   --gutter-left: max(16px, env(safe-area-inset-left, 0px));
   --gutter-right: max(16px, env(safe-area-inset-right, 0px));
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #111827;
-    --color-band: #16223a;
-    --color-surface: #18233a;
-    --color-ink: #f1f4f0;
-    --color-text: #d6dce6;
-    --color-muted: #a3aec2;
-    --color-line: #2a3752;
-    --color-chip: #22304d;
-    --color-accent-text: #ff8a6a;
-    --color-button: #ff7a55;
-    --color-button-hover: #ff9474;
-    --color-button-text: #1b2a4a; /* 5,5:1 */
-    --color-bubble-out: #263f35;
+    --n-0: #18233a;
+    --n-50: #111827;
+    --n-100: #1f2c45;
+    --n-200: #2a3752;
+    --n-500: #a3aec2;
+    --n-700: #d6dce6;
+    --n-900: #f1f4f0;
+    --color-accent: var(--brand-300);
+    --color-action: #ff7a55;
+    --color-action-hover: #ff9474;
+    --color-on-action: #1b2a4a; /* 5,5:1 */
     color-scheme: dark;
   }
 }

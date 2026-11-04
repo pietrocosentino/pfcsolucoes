@@ -30,26 +30,32 @@ const headingId = `${id}-titulo`;
     padding-block: var(--section-space);
   }
   .section--band {
-    background: var(--color-band);
+    background: var(--color-subtle);
   }
   .section--dark {
-    background: var(--color-dark-bg);
-    color: var(--color-dark-text);
+    background: var(--dark-bg);
+    color: var(--dark-text);
   }
   .section--dark h2 {
-    color: #ffffff;
+    color: var(--dark-text);
+  }
+  .section--dark :global(:focus-visible) {
+    outline-color: var(--dark-focus);
+  }
+  .section--dark :global(a:not(.btn)) {
+    color: var(--dark-text);
   }
   .section--dark .eyebrow {
-    color: var(--color-dark-accent);
+    color: var(--dark-action);
   }
   .section--dark .lead {
-    color: var(--color-dark-muted);
+    color: var(--dark-muted);
   }
 
   .section-head {
     display: grid;
-    gap: 12px;
-    margin-bottom: 40px;
+    gap: var(--space-3);
+    margin-bottom: var(--space-12);
   }
   .section-head--center {
     justify-items: center;

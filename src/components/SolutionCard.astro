@@ -45,80 +45,81 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
   .card {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 26px;
+    gap: var(--space-3);
+    padding: var(--space-6);
     border-radius: var(--radius-md);
     background: var(--color-surface);
-    border: 1px solid var(--color-line);
+    border: 1px solid var(--color-border);
   }
   .area {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-caps);
     text-transform: uppercase;
-    color: var(--color-muted);
+    color: var(--color-text-muted);
   }
   .description {
-    color: var(--color-muted);
+    color: var(--color-text-muted);
   }
   .features {
     display: grid;
-    gap: 6px;
-    margin: 4px 0 0;
+    gap: var(--space-2);
+    margin: var(--space-1) 0 0;
     padding-left: 1.1em;
     color: var(--color-text);
   }
   .features li::marker {
-    color: var(--color-muted);
+    color: var(--color-text-muted);
   }
   .featured {
-    padding: 32px;
-    border-color: var(--color-accent-text);
+    padding: var(--space-8);
+    border-top: 3px solid var(--color-action);
   }
   .featured h3 {
-    font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+    font-size: var(--text-h2);
   }
   .project {
     margin-top: auto;
-    padding-top: 14px;
-    border-top: 1px solid var(--color-line);
-    font-size: 0.875rem;
-    color: var(--color-muted);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
   .project strong {
-    color: var(--color-ink);
+    color: var(--color-heading);
   }
   .text {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--space-3);
     flex: 1;
   }
   .shot {
     display: grid;
-    gap: 8px;
-    margin: 4px 0 0;
+    gap: var(--space-2);
+    margin: var(--space-1) 0 0;
   }
   .shot :global(img) {
     display: block;
     width: 100%;
     height: auto;
-    border: 1px solid var(--color-line);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
   }
   .shot figcaption {
-    font-size: 0.8125rem;
-    color: var(--color-muted);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
   .featured {
     display: grid;
     grid-template-columns: 1fr 220px;
-    gap: 32px;
+    gap: var(--space-8);
     align-items: center;
   }
   .featured .shot.painel-hoje :global(img) {
-    border-radius: 18px;
-    border: 6px solid var(--brand-navy);
+    border-radius: var(--radius-device-screen);
+    border: var(--space-2) solid var(--dark-bg);
+    box-shadow: var(--shadow-overlay);
   }
   @media (max-width: 760px) {
     .featured {
