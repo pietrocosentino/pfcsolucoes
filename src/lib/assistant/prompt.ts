@@ -56,7 +56,7 @@ ${conversationRules}`;
 export const handoffTool = {
   name: HANDOFF_TOOL,
   description:
-    'Mostra ao visitante o botão que abre o WhatsApp do Pietro com um resumo da conversa. Use só nos casos da seção "Encaminhamento para o Pietro": caso pronto, visitante que não consegue explicar depois de 3 tentativas, dúvida fora do seu conhecimento depois de 3 tentativas, terceiro pedido para falar com o Pietro ou assunto que não é venda. Escreva os campos em primeira pessoa, como se fosse o próprio visitante escrevendo, porque é ele quem envia a mensagem.',
+    'Mostra ao visitante o botão que abre o WhatsApp do Pietro com um resumo da conversa. Use só nos casos da seção "Encaminhamento para o Pietro": caso pronto, visitante que não consegue explicar depois de 3 tentativas, dúvida fora do seu conhecimento depois de 3 tentativas, terceiro pedido para falar com o Pietro ou assunto que não é venda. Escreva os campos em primeira pessoa, como se fosse o próprio visitante escrevendo para o Pietro (chame o Pietro de "você"), porque é ele quem envia a mensagem.',
   input_schema: {
     type: 'object',
     properties: {
@@ -69,7 +69,7 @@ export const handoffTool = {
       contexto: {
         type: 'string',
         description:
-          'Detalhes úteis para o Pietro, em primeira pessoa: desde quando acontece, como resolve hoje, o que já tentou, o impacto. Use só o que a pessoa contou; não inclua dúvidas, suposições nem perguntas que ela não respondeu. Ex.: "Hoje respondo tudo à mão no WhatsApp e perco umas 3 clientes por semana."',
+          'Detalhes úteis para o Pietro, em primeira pessoa: desde quando acontece, como resolve hoje, o que já tentou, o impacto. Use só o que a pessoa contou e não repita o que já está em necessidade; não inclua suposições, perguntas que ela não respondeu nem comentários sobre a conversa. Deixe vazio se não houver nada novo. Ex.: "Hoje respondo tudo à mão no WhatsApp e perco umas 3 clientes por semana."',
       },
     },
     required: ['necessidade'],
