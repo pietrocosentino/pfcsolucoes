@@ -34,6 +34,7 @@ const structuredData = {
       logo: new URL('/apple-touch-icon.png', Astro.site).href,
       description: brand.description,
       email: contact.email,
+      taxID: brand.cnpj,
       areaServed: { '@type': 'Country', name: 'Brasil' },
       founder: { '@type': 'Person', name: about.name, url: about.portfolio.href },
       sameAs: [contact.instagramProfile],

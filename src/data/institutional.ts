@@ -41,7 +41,7 @@ export const privacyPage = {
     {
       title: 'Quem é o responsável',
       paragraphs: [
-        'O responsável pelos dados tratados neste site é a PFC Soluções em Tecnologia, representada por Pietro Cosentino. Para qualquer assunto sobre os seus dados, use os canais indicados em "Como falar com a gente".',
+        'O responsável pelos dados tratados neste site é a PFC Soluções em Tecnologia, CNPJ 44.404.492/0001-56, representada por Pietro Cosentino. Para qualquer assunto sobre os seus dados, use os canais indicados em "Como falar com a gente".',
       ],
     },
     {

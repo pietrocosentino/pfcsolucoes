@@ -7,6 +7,7 @@ export const brand = {
   tagline: 'Soluções em Tecnologia',
   // Título da página inicial no Google: o que fazemos, para quem, e a marca.
   seoTitle: 'Sistemas sob medida para pequenas empresas | PFC Soluções',
+  cnpj: '44.404.492/0001-56',
   description:
     'Sistemas sob medida para autônomos e pequenas empresas: agente de IA no WhatsApp, agendamento online, controle financeiro e sites. Atendimento em todo o Brasil.',
   shareText: 'Seu negócio perde clientes e dinheiro onde você não vê. A gente encontra e resolve.',
