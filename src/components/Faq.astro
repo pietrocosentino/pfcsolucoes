@@ -7,7 +7,7 @@ import { faq } from '../data/site';
   <div class="faq">
     {faq.items.map((item) => (
       <details>
-        <summary>{item.question}</summary>
+        <summary><h3>{item.question}</h3></summary>
         <p>{item.answer}</p>
       </details>
     ))}
@@ -36,6 +36,13 @@ import { faq } from '../data/site';
     list-style: none;
     font-weight: 700;
     color: var(--color-ink);
+  }
+  summary h3 {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: normal;
+    margin: 0;
   }
   summary::-webkit-details-marker {
     display: none;

@@ -6,6 +6,10 @@ import Section from '../components/Section.astro';
 import Button from '../components/Button.astro';
 import { about, brand, contact } from '../data/site';
 import { aboutPage } from '../data/institutional';
+
+// A primeira frase leva à página inicial (texto âncora da palavra-chave principal).
+const anchor = 'sistemas sob medida para autônomos e pequenas empresas';
+const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
 ---
 
 <SiteLayout
@@ -13,7 +17,9 @@ import { aboutPage } from '../data/institutional';
   title={`${brand.name}: quem somos e como trabalhamos`}
   description="Conheça o Pietro e a PFC Soluções: sistemas sob medida para pequenos negócios, com proposta clara antes de começar. Veja o que já construímos."
 >
-  <PageIntro eyebrow="Institucional" title={aboutPage.title} lead={aboutPage.lead} />
+  <PageIntro eyebrow="Institucional" title={aboutPage.title}>
+    <p class="lead">{leadBefore}<a href="/">{anchor}</a>{leadAfter}</p>
+  </PageIntro>
 
   <Section id="historia" title={aboutPage.story.title}>
     <div class="prose">

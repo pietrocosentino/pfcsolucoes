@@ -162,3 +162,39 @@ test('páginas internas têm navegação estruturada (breadcrumb)', () => {
   }
   assert.ok(!ldBlocks(html).some((b) => b['@type'] === 'BreadcrumbList'), 'home não precisa de breadcrumb');
 });
+
+test('fontes pré-carregadas são as mesmas que o CSS usa', () => {
+  const preloads = [...html.matchAll(/<link rel="preload" href="([^"]+\.woff2)"/g)].map((m) => m[1]);
+  assert.equal(preloads.length, 2);
+  for (const href of preloads) assert.ok(html.includes(`url(${href})`), `preload sem @font-face: ${href}`);
+  assert.doesNotMatch(html, /inter-latin-500/);
+});
+
+test('arquivos com hash ficam em cache por um ano na Vercel', () => {
+  const vercel = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+  const rule = vercel.headers.find((h) => h.source === '/_astro/(.*)');
+  assert.match(rule.headers[0].value, /max-age=31536000, immutable/);
+});
+
+test('logo do topo tem o mesmo nome visível e leva à página inicial fora dela', () => {
+  const header = html.slice(html.indexOf('<header'), html.indexOf('</header>'));
+  assert.doesNotMatch(header.match(/<a class="brand"[^>]*>/)[0], /aria-label/);
+  const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
+  assert.match(sobre, /<a class="brand" href="\/"/);
+});
+
+test('títulos das seções usam a palavra-chave e sinônimos', () => {
+  const h2 = [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => m[1].replace(/<[^>]+>/g, ''));
+  assert.ok(h2.filter((t) => /sob medida/i.test(t)).length >= 4, h2.join(' | '));
+  assert.ok(h2.some((t) => /aplicativo pronto/i.test(t)));
+  const h3 = [...html.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => m[1]);
+  assert.ok(h3.some((t) => t.startsWith('Agente de IA no WhatsApp:')));
+  assert.ok(h3.includes('O que é um sistema sob medida?'));
+});
+
+test('Quem somos e rodapé linkam para a página inicial com a palavra-chave', () => {
+  const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
+  assert.match(sobre, /<a href="\/"[^>]*>sistemas sob medida para autônomos e pequenas empresas<\/a>/);
+  const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
+  assert.match(footer, /<a class="summary-link" href="\/"[^>]*>Sistemas sob medida para autônomos e pequenas empresas<\/a>/);
+});
