@@ -3,7 +3,7 @@ import Section from './Section.astro';
 import { process } from '../data/site';
 ---
 
-<Section id="como-funciona" eyebrow={process.eyebrow} title={process.title} lead={process.lead}>
+<Section id="como-funciona" title={process.title} lead={process.lead}>
   <ol class="steps">
     {process.steps.map((step, index) => (
       <li class="step">
@@ -29,14 +29,6 @@ import { process } from '../data/site';
     ))}
   </ol>
 
-  <ul class="principles" aria-label="Nossos compromissos">
-    {process.principles.map((item) => (
-      <li>
-        <strong>{item.title}</strong>
-        <span>{item.text}</span>
-      </li>
-    ))}
-  </ul>
 </Section>
 
 <style>
@@ -108,28 +100,6 @@ import { process } from '../data/site';
     line-height: 1.45;
   }
 
-  .principles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px 24px;
-    margin: 32px 0 0;
-    padding: 22px 26px;
-    list-style: none;
-    border-radius: var(--radius-md);
-    background: var(--color-band);
-  }
-  .principles li {
-    display: grid;
-    align-content: start;
-    gap: 2px;
-  }
-  .principles strong {
-    color: var(--color-ink);
-  }
-  .principles span {
-    font-size: 0.9375rem;
-    color: var(--color-muted);
-  }
 
   @media (prefers-color-scheme: dark) {
     .number {
