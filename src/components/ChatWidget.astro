@@ -21,6 +21,7 @@ const greeting = assistant.greeting;
   aria-labelledby="chat-title"
   hidden
   data-greeting={greeting}
+  data-suggestions={JSON.stringify(assistant.suggestions)}
   data-name={assistant.name}
   data-whatsapp={contact.whatsapp}
 >
@@ -147,9 +148,29 @@ const greeting = assistant.greeting;
     log.scrollTop = log.scrollHeight;
   };
 
+  // Antes da primeira mensagem, respostas prontas para tocar (o visitante não
+  // precisa saber como começar). Somem assim que a conversa começa.
+  const suggestions: string[] = JSON.parse(panel.dataset.suggestions || '[]');
+  const addSuggestions = () => {
+    if (hasConversation() || !suggestions.length) return;
+    const li = document.createElement('li');
+    li.className = 'msg msg--suggestions';
+    li.setAttribute('aria-label', 'Respostas prontas');
+    for (const text of suggestions) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'suggestion';
+      button.textContent = text;
+      button.addEventListener('click', () => ask(text));
+      li.append(button);
+    }
+    log.append(li);
+  };
+
   const render = () => {
     log.replaceChildren();
     messages.forEach(addBubble);
+    addSuggestions();
   };
 
   const addInfo = (text: string) => {
@@ -245,6 +266,15 @@ const greeting = assistant.greeting;
   launcher.hidden = false;
   launcher.setAttribute('aria-expanded', 'false');
 
+  // Na página inicial, o topo já tem o botão principal: o flutuante só aparece
+  // depois que ele sai da tela, para não cobrir o conteúdo.
+  const hero = document.getElementById('inicio');
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => launcher.classList.toggle('is-away', entry.isIntersecting), {
+      threshold: 0.15,
+    }).observe(hero);
+  }
+
   document.addEventListener('click', (event) => {
     const trigger = (event.target as HTMLElement).closest<HTMLElement>('[data-chat-open]');
     if (!trigger) return;
@@ -307,6 +337,42 @@ const greeting = assistant.greeting;
   .launcher[hidden],
   :global(body.chat-open) .launcher {
     display: none;
+  }
+  .launcher {
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .launcher.is-away {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .launcher {
+      transition: none;
+    }
+  }
+
+  .log :global(.msg--suggestions) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-self: stretch;
+    max-width: none;
+    padding: 0;
+    background: none;
+  }
+  .log :global(.suggestion) {
+    padding: 9px 14px;
+    border: 1px solid var(--color-accent-text);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    color: var(--color-accent-text);
+    font: 600 0.875rem/1.2 var(--font-sans);
+    text-align: left;
+    cursor: pointer;
+  }
+  .log :global(.suggestion:hover) {
+    background: var(--color-chip);
   }
 
   .panel {

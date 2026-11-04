@@ -6,16 +6,18 @@ interface Props {
 }
 
 const { solution } = Astro.props;
+// Âncora própria de cada cartão (o rodapé linka direto para ele).
+const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-')}`;
 ---
 
-<article class="card">
+<article class="card" id={id}>
   <p class="area">{solution.area}</p>
   <h3>{solution.title}</h3>
   <p class="description">{solution.description}</p>
   <ul class="features">
     {solution.features.map((feature) => <li>{feature}</li>)}
   </ul>
-  <p class="project"><strong>Já desenvolvido:</strong> {solution.project}</p>
+  <p class="project"><strong>Projeto entregue:</strong> {solution.project}</p>
 </article>
 
 <style>

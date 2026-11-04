@@ -4,7 +4,7 @@
 export const brand = {
   name: 'PFC Soluções',
   fullName: 'PFC Soluções em Tecnologia',
-  tagline: 'Soluções em Tecnologia',
+  tagline: 'Sistemas para pequenos negócios',
   // Título da página inicial no Google: o que fazemos, para quem, e a marca.
   seoTitle: 'Sistemas sob medida para pequenas empresas | PFC Soluções',
   cnpj: '44.404.492/0001-56',
@@ -40,7 +40,9 @@ export const assistant = {
   role: 'atendente de primeiro contato',
   status: 'Atendente da PFC Soluções',
   greeting:
-    'Oi, que bom ter você por aqui! Eu sou a marcIA, da PFC Soluções, e estou aqui para te ouvir. Antes de tudo, como posso te chamar?',
+    'Oi, que bom ter você por aqui! Eu sou a marcIA, da PFC Soluções. Me conta: o que mais está te dando trabalho no seu negócio hoje?',
+  // Respostas prontas mostradas antes da primeira mensagem do visitante.
+  suggestions: ['Perco clientes no WhatsApp', 'Meus clientes faltam ou desmarcam', 'Não sei quanto sobra no mês', 'Quero um site profissional'],
   launcher: 'Fale com a marcIA',
 };
 
@@ -63,16 +65,15 @@ export const footer = {
         { href: '/sobre', label: 'Quem somos' },
         { href: '/#como-funciona', label: 'Como funciona' },
         { href: '/#duvidas', label: 'Perguntas frequentes' },
-        { href: '/privacidade', label: 'Política de privacidade' },
       ],
     },
     {
       title: 'Soluções',
       links: [
-        { href: '/#solucoes', label: 'Atendimento com IA' },
-        { href: '/#solucoes', label: 'Agenda online' },
-        { href: '/#solucoes', label: 'Finanças' },
-        { href: '/#solucoes', label: 'Sites profissionais' },
+        { href: '/#solucao-atendimento', label: 'Atendimento com IA' },
+        { href: '/#solucao-agenda', label: 'Agenda online' },
+        { href: '/#solucao-financas', label: 'Finanças' },
+        { href: '/#solucao-presenca-online', label: 'Sites profissionais' },
       ],
     },
   ],
@@ -90,14 +91,13 @@ export const hero = {
   lead: 'Analisamos a sua rotina e criamos o sistema que fecha cada brecha: atendimento, agenda, cobrança, finanças e site. Sob medida, simples de usar no celular, sem você precisar entender de tecnologia.',
   primaryCta: 'Descobrir onde estou perdendo',
   secondaryCta: { href: '#como-funciona', label: 'Ver como funciona' },
-  note: 'Conversa sem compromisso com a marcIA, nossa atendente. Proposta clara antes de qualquer decisão.',
-  proof: ['5 projetos já desenvolvidos', 'Atendimento online para todo o Brasil', 'Escopo, prazo e valor antes de começar'],
+  note: 'Conversa sem compromisso com a marcIA, nossa atendente. Atendimento online para todo o Brasil.',
   transformation: {
     title: 'Você se reconhece?',
     subtitle: 'O que donos de pequenos negócios vivem hoje, e como fica depois.',
     items: [
       {
-        pain: 'Vejo a mensagem do cliente só no fim do dia. Quando respondo, ele já marcou em outro lugar.',
+        pain: 'Você vê a mensagem do cliente só no fim do dia. Quando responde, ele já marcou em outro lugar.',
         gain: 'Cada cliente é respondido na hora, até de madrugada, e sai com o horário marcado.',
         solution: 'Agente de IA no WhatsApp',
       },
@@ -107,12 +107,12 @@ export const hero = {
         solution: 'Agenda online com lembretes',
       },
       {
-        pain: 'Trabalho o mês inteiro e não sei dizer quanto sobrou.',
+        pain: 'Você trabalha o mês inteiro e não sabe dizer quanto sobrou.',
         gain: 'Você abre o celular e vê quanto entrou, quanto saiu e quanto sobra.',
         solution: 'App de finanças',
       },
       {
-        pain: 'Quem me procura acha só um perfil no Instagram e fica na dúvida se eu sou sério.',
+        pain: 'Quem te procura acha só um perfil no Instagram e fica na dúvida se o negócio é sério.',
         gain: 'Quem procura encontra um site profissional e fala com você em um toque.',
         solution: 'Site profissional',
       },
@@ -150,29 +150,8 @@ export const warningSigns = {
       source: 'Zenoti, pesquisa de 2025',
       url: 'https://www.zenoti.com/en-uk/thecheckin/salon-spa-booking-communication-trends',
     },
-    {
-      stat: '53%',
-      fact: 'saem de um site no celular que demora mais de 3 segundos para abrir.',
-      cost: 'Metade dos visitantes vai embora antes de ver o seu trabalho.',
-      source: 'Google, The Need for Mobile Speed',
-      url: 'https://www.marketingdive.com/news/google-53-of-mobile-users-abandon-sites-that-take-over-3-seconds-to-load/426070/',
-    },
-    {
-      stat: '63%',
-      fact: 'dos consumidores irlandeses confiam pouco em empresas que não têm site e só usam rede social.',
-      cost: 'Sem site, o cliente escolhe quem parece mais profissional.',
-      source: 'IEDR, pesquisa com 1.000 consumidores na Irlanda',
-      url: 'https://www.checkout.ie/technology/consumers-low-trust-companies-connect-consumers-via-social-media-platforms-40162',
-    },
-    {
-      stat: '88%',
-      fact: 'abandonam aplicativos que apresentam erros e falhas.',
-      cost: 'O cliente culpa a sua empresa, não o sistema.',
-      source: 'QualiTest com Google Consumer Surveys',
-      url: 'https://appdevelopermagazine.com/Almost-all-users-abandon-apps-with-bugs-and-glitches/',
-    },
   ] satisfies WarningSign[],
-  closing: 'Reconheceu algum? Tem solução.',
+  closing: 'Cada um desses problemas tem solução.',
 };
 
 export type Solution = {
@@ -199,7 +178,7 @@ export const solutions = {
         'Envia o Pix do sinal e lembra o cliente antes do horário',
         'Oferece encaixes quando alguém desmarca',
       ],
-      project: 'Agente de IA que atende e agenda pelo WhatsApp',
+      project: 'Agente de IA no WhatsApp com painel para o dono acompanhar tudo no celular',
     },
     {
       area: 'Agenda',
@@ -250,7 +229,7 @@ type ProcessStep = {
 export const process = {
   eyebrow: 'Como funciona',
   title: 'Como desenvolvemos o seu sistema sob medida, em 4 etapas',
-  lead: 'O desenvolvimento tem 4 etapas: levantamento, análise, construção e entrega com acompanhamento. Você só decide se contrata depois de receber a proposta com escopo, prazo e valor, e em cada etapa sabe o que fazemos, o que recebe e como participa.',
+  lead: 'O desenvolvimento tem 4 etapas: levantamento, análise, construção e entrega com acompanhamento. Você só decide se contrata na etapa 2, e em cada etapa sabe o que fazemos, o que recebe e como participa.',
   steps: [
     {
       title: 'Levantamento',
@@ -267,14 +246,14 @@ export const process = {
       participation: 'Você aprova, pede ajustes ou decide não seguir.',
     },
     {
-      title: 'Processo',
+      title: 'Construção',
       summary: 'Desenhamos e construímos sob medida',
       text: 'Desenhamos o fluxo ideal para o seu negócio, de como o cliente chega até como ele agenda, paga e é lembrado, e construímos em partes.',
       deliverable: 'Telas e fluxos para validar antes da versão final, já com os seus serviços, preços e horários.',
       participation: 'Você testa durante a construção e diz o que ajustar.',
     },
     {
-      title: 'Solução',
+      title: 'Entrega e acompanhamento',
       summary: 'Entregamos funcionando e acompanhamos',
       text: 'Colocamos no ar, configuramos com os dados do seu negócio e mostramos como usar no dia a dia, no celular.',
       deliverable: 'O sistema funcionando, explicação simples de uso e acompanhamento para ajustar o que for preciso.',
@@ -283,7 +262,6 @@ export const process = {
   ] satisfies ProcessStep[],
   principles: [
     { title: 'Nada de pacote pronto', text: 'Cada solução nasce da sua rotina, não de um modelo genérico.' },
-    { title: 'Sem surpresas', text: 'Escopo, prazo e investimento combinados antes de começar.' },
     { title: 'Você acompanha tudo', text: 'Valida cada etapa e vê o sistema antes da entrega final.' },
     { title: 'Feito para o celular', text: 'Para você e para os seus clientes usarem onde estiverem.' },
   ],
@@ -310,7 +288,7 @@ export const comparison = {
     { label: 'Partes do negócio', ready: 'Costuma cobrir uma parte; o resto fica em planilha, papel ou WhatsApp', custom: 'Atendimento, agenda, cobrança e finanças juntos, sem digitar duas vezes' },
     { label: 'WhatsApp', ready: 'Depende do aplicativo e do plano', custom: 'Agente de IA que atende e agenda pelo WhatsApp, quando fizer sentido' },
     { label: 'Ajustes', ready: 'Pelo suporte, quando o recurso existe', custom: 'Você fala direto com quem construiu o sistema' },
-    { label: 'Valor', ready: 'Mensalidade por plano', custom: 'Proposta com escopo, prazo e valor antes de começar' },
+    { label: 'Valor', ready: 'Mensalidade por plano', custom: 'Definido na proposta, antes de você decidir' },
   ],
   closing: 'Não sabe qual é o seu caso? No levantamento, a gente entende a sua rotina e diz com honestidade se a tecnologia resolve o seu problema e por onde vale começar.',
   more: 'Descobrir o que funciona para o meu negócio',
@@ -334,7 +312,7 @@ export const faq = {
     },
     {
       question: 'Quanto tempo leva para ficar pronto?',
-      answer: 'Depende do que o seu negócio precisa. O prazo sai na proposta, junto com o escopo e o valor, antes de começar.',
+      answer: 'Depende do que o seu negócio precisa. O prazo é definido depois do levantamento, antes de você decidir contratar.',
     },
     {
       question: 'Vale mais que um aplicativo pronto?',

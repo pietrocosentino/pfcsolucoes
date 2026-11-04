@@ -28,7 +28,6 @@ export const aboutPage = {
       'Agenda online para barbearia',
       'App de finanças para Android e iPhone',
       'Site de consultoria para personal trainer',
-      'Este site, com a marcIA no atendimento',
     ],
   },
 };
