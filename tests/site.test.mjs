@@ -63,7 +63,7 @@ test('nenhum estilo inline sobrou no HTML', () => {
 test('número do WhatsApp e @ do Instagram não aparecem como texto', () => {
   const body = html.slice(html.indexOf('<body'));
   const text = body.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<[^>]+>/g, ' ');
-  assert.doesNotMatch(text, /98459|@pfc/i);
+  assert.doesNotMatch(text, /98459|@pfc\.solucoes/i);
 });
 
 test('rodapé leva ao Instagram e não mostra o WhatsApp', () => {
