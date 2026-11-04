@@ -6,14 +6,17 @@ import '@fontsource/inter/latin-700.css';
 import '@fontsource/inter/latin-800.css';
 import '../styles/global.css';
 import { about, brand, contact } from '../data/site';
+import type { Schema } from '../lib/schema';
 
 interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  // Blocos extras de dados estruturados desta página (perguntas frequentes, navegação).
+  schema?: Schema[];
 }
 
-const { title = brand.seoTitle, description = brand.seoDescription, noindex = false } = Astro.props;
+const { title = brand.seoTitle, description = brand.seoDescription, noindex = false, schema = [] } = Astro.props;
 
 // Endereços absolutos: o WhatsApp e o Instagram só mostram a prévia com URL completa.
 // Sem barra no fim, igual aos links internos (/sobre).
@@ -79,6 +82,7 @@ const structuredData = {
     <meta name="twitter:card" content="summary_large_image" />
 
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    {schema.map((block) => <script type="application/ld+json" set:html={JSON.stringify(block)} />)}
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>

@@ -1,4 +1,5 @@
 ---
+import { breadcrumbSchema } from '../lib/schema';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Section from '../components/Section.astro';
@@ -8,6 +9,7 @@ import { aboutPage } from '../data/institutional';
 ---
 
 <SiteLayout
+  schema={[breadcrumbSchema(aboutPage.title, '/sobre')]}
   title={`${brand.name}: quem somos e como trabalhamos`}
   description="Conheça o Pietro e a PFC Soluções: sistemas sob medida para pequenos negócios, com proposta clara antes de começar. Veja o que já construímos."
 >

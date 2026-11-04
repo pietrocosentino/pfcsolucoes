@@ -7,9 +7,10 @@ import ProcessSteps from '../components/ProcessSteps.astro';
 import About from '../components/About.astro';
 import Faq from '../components/Faq.astro';
 import ContactCta from '../components/ContactCta.astro';
+import { faqSchema } from '../lib/schema';
 ---
 
-<SiteLayout>
+<SiteLayout schema={[faqSchema]}>
   <Hero />
   <WarningSigns />
   <Solutions />
