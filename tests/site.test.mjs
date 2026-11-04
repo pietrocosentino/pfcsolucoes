@@ -127,3 +127,14 @@ test('CNPJ aparece no rodapé e nos dados estruturados', () => {
   assert.match(footer, /CNPJ 44\.404\.492\/0001-56/);
   assert.match(html, /"taxID":"44\.404\.492\/0001-56"/);
 });
+
+test('títulos e descrições cabem no limite do Google', () => {
+  for (const page of ['index.html', 'sobre/index.html', 'privacidade/index.html']) {
+    const doc = readFileSync(new URL(`../dist/client/${page}`, import.meta.url), 'utf8');
+    const title = doc.match(/<title>(.*?)<\/title>/)[1];
+    const desc = doc.match(/<meta name="description" content="([^"]*)"/)[1];
+    assert.ok(title.length <= 60, `${page}: título com ${title.length}`);
+    assert.ok(desc.length <= 155, `${page}: descrição com ${desc.length}`);
+  }
+  assert.match(html, /content="Pare de perder clientes/);
+});
