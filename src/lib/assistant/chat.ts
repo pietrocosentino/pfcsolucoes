@@ -80,49 +80,69 @@ type FetchLike = (url: string, init: RequestInit) => Promise<Response>;
 const fallbackHandoffText = (name: string) =>
   `${name ? `Obrigada pela confiança, ${name}!` : 'Obrigada pela confiança!'} O Pietro vai cuidar pessoalmente do seu caso. É só tocar no botão abaixo para abrir o WhatsApp dele com o resumo da nossa conversa.`;
 
+// As palavras do próprio visitante, usadas quando a IA encaminha sem preencher o
+// pedido: é melhor o Pietro ler o que a pessoa escreveu do que um texto genérico.
+function visitorWords(messages: ChatMessage[]): string {
+  return messages
+    .filter((m) => m.role === 'user')
+    .slice(-3)
+    .map((m) => m.text.replace(/\s+/g, ' ').trim())
+    .join(' ');
+}
+
+const blank = (value: unknown) => typeof value !== 'string' || !value.trim();
+
 export async function runTurn(
   messages: ChatMessage[],
   { apiKey, fetchImpl = fetch }: { apiKey: string; fetchImpl?: FetchLike },
 ): Promise<ChatReply> {
   const userTurns = messages.filter((m) => m.role === 'user').length;
   const canHandoff = userTurns >= MIN_TURNS_FOR_HANDOFF;
-  const response = await fetchImpl('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 600,
-      system: [
-        { type: 'text', text: systemPrompt(), cache_control: { type: 'ephemeral' } },
-        { type: 'text', text: turnContext(userTurns) },
-      ],
-      // Sem a ferramenta, a IA não tem como encaminhar cedo demais.
-      ...(canHandoff ? { tools: [handoffTool] } : {}),
-      messages: toApiMessages(messages),
-    }),
-    signal: AbortSignal.timeout(30_000),
+  const body = JSON.stringify({
+    model: MODEL,
+    max_tokens: 600,
+    system: [
+      { type: 'text', text: systemPrompt(), cache_control: { type: 'ephemeral' } },
+      { type: 'text', text: turnContext(userTurns) },
+    ],
+    // Sem a ferramenta, a IA não tem como encaminhar cedo demais.
+    ...(canHandoff ? { tools: [handoffTool] } : {}),
+    messages: toApiMessages(messages),
   });
 
-  if (!response.ok) {
-    // Registra só o status e o tipo do erro, nunca a conversa nem a chave.
-    const detail = (await response.json().catch(() => ({}))) as { error?: { type?: string } };
-    console.error('claude_failed', response.status, detail.error?.type ?? '');
-    throw new ChatError('O atendente está indisponível agora.', 502);
-  }
+  // De vez em quando o modelo encerra o turno sem escrever nada; uma segunda
+  // tentativa costuma resolver sem o visitante perceber.
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const response = await fetchImpl('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+      body,
+      signal: AbortSignal.timeout(30_000),
+    });
 
-  const data = (await response.json()) as { content?: ContentBlock[] };
-  const content = data.content ?? [];
-  const text = content
-    .filter((b) => b.type === 'text' && b.text?.trim())
-    .map((b) => b.text!.trim())
-    .join('\n\n');
-  const call = canHandoff ? content.find((b) => b.type === 'tool_use' && b.name === HANDOFF_TOOL) : undefined;
+    if (!response.ok) {
+      // Registra só o status e o tipo do erro, nunca a conversa nem a chave.
+      const detail = (await response.json().catch(() => ({}))) as { error?: { type?: string } };
+      console.error('claude_failed', response.status, detail.error?.type ?? '');
+      throw new ChatError('O atendente está indisponível agora.', 502);
+    }
 
-  if (call) {
-    const input = call.input ?? {};
-    const name = typeof input.nome === 'string' ? input.nome.trim().split(/\s+/)[0] : '';
-    return { reply: text || fallbackHandoffText(name), handoff: buildHandoff(input) };
+    const data = (await response.json()) as { content?: ContentBlock[]; stop_reason?: string };
+    const content = data.content ?? [];
+    const text = content
+      .filter((b) => b.type === 'text' && b.text?.trim())
+      .map((b) => b.text!.trim())
+      .join('\n\n');
+    const call = canHandoff ? content.find((b) => b.type === 'tool_use' && b.name === HANDOFF_TOOL) : undefined;
+
+    if (call) {
+      const input: HandoffInput = { ...(call.input ?? {}) };
+      if (blank(input.necessidade) && blank(input.motivo)) input.necessidade = visitorWords(messages);
+      const name = typeof input.nome === 'string' ? input.nome.trim().split(/\s+/)[0] : '';
+      return { reply: text || fallbackHandoffText(name), handoff: buildHandoff(input) };
+    }
+    if (text) return { reply: text };
+    console.error('claude_empty', attempt, data.stop_reason ?? '');
   }
-  if (!text) throw new ChatError('O atendente não conseguiu responder. Tente de novo.', 502);
-  return { reply: text };
+  throw new ChatError('O atendente não conseguiu responder. Tente de novo.', 502);
 }

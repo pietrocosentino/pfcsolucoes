@@ -24,13 +24,22 @@ export function buildHandoff(input: HandoffInput): Handoff {
   const contexto = clean(input.contexto, 400);
   const motivo = clean(input.motivo, 200);
 
+  // Um campo que só repete o que já foi dito não entra no resumo.
+  const seen: string[] = [];
+  const fresh = (text: string) => {
+    const key = text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+    if (!key || seen.some((s) => s.includes(key))) return '';
+    seen.push(key);
+    return sentence(text);
+  };
+
   const lines = [
     'Olá, Pietro! Vim pelo site da PFC Soluções e conversei com a marcIA.',
     nome && `Meu nome é ${nome}.`,
-    negocio && sentence(negocio),
-    sentence(necessidade),
-    contexto && sentence(contexto),
-    motivo && sentence(motivo),
+    negocio && fresh(negocio),
+    fresh(necessidade),
+    contexto && fresh(contexto),
+    motivo && fresh(motivo),
   ].filter(Boolean);
 
   const summary = lines.join('\n');
