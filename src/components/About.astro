@@ -1,16 +1,18 @@
 ---
 import Section from './Section.astro';
 import Button from './Button.astro';
-import { about } from '../data/site';
+import { about, brand } from '../data/site';
 ---
 
 <Section id="sobre" tone="band" eyebrow={about.eyebrow} title={`Quem desenvolve o seu sistema: ${about.name}`}>
   <div class="about">
     <div class="bio">
-      <p class="lead">{about.bio}</p>
+      <p class="lead">{brand.definition}</p>
+      <p>{about.bio}</p>
       <div class="links">
         <Button href="/sobre">Conheça a PFC</Button>
         <Button href={about.portfolio.href} variant="secondary" external>{about.portfolio.label}</Button>
+        <Button href={about.linkedin} variant="secondary" external>LinkedIn</Button>
       </div>
     </div>
   </div>

@@ -8,6 +8,12 @@ export const brand = {
   // Título da página inicial no Google: o que fazemos, para quem, e a marca.
   seoTitle: 'Sistemas sob medida para pequenas empresas | PFC Soluções',
   cnpj: '44.404.492/0001-56',
+  // Data da última revisão do conteúdo. Atualize ao mudar textos importantes.
+  updatedAt: '2026-11-04',
+  updatedLabel: '4 de novembro de 2026',
+  // Frase que define a empresa: é o trecho que buscadores e IAs citam sobre a PFC.
+  definition:
+    'A PFC Soluções em Tecnologia é uma empresa brasileira, fundada por Pietro Cosentino, que cria sistemas sob medida para autônomos e pequenas empresas: agente de IA no WhatsApp, agenda online, controle financeiro e sites. O atendimento é online, para todo o Brasil.',
   // Texto do Google para a página inicial: benefício e chamada para ação (até 155 caracteres).
   // A descrição neutra (description) segue nos dados estruturados.
   seoDescription:
@@ -114,50 +120,56 @@ export const hero = {
   },
 };
 
-type WarningSign = { stat: string; fact: string; cost: string; source: string };
+type WarningSign = { stat: string; fact: string; cost: string; source: string; url: string };
 
 // Dados de pesquisas públicas (fontes no fim de cada item). Ao trocar um número,
 // confira a fonte: o atendente de IA também usa estes dados.
 export const warningSigns = {
   eyebrow: 'Por que o cliente vai embora',
   title: 'O que faz o cliente da pequena empresa ir para a concorrência',
-  lead: 'Nem sempre é o preço. Muitas vezes é demora, dificuldade para agendar ou falta de confiança.',
+  lead: 'Pequenas empresas perdem clientes principalmente por demora para responder, dificuldade para agendar e falta de confiança, e não só pelo preço. Estes dados mostram o tamanho de cada problema.',
   items: [
     {
       stat: '7x',
       fact: 'mais chance de avançar a venda quando a resposta vem em até 1 hora.',
       cost: 'Demorou para responder? Ele já está falando com outro.',
-      source: 'Harvard Business Review',
+      source: 'Harvard Business Review, The Short Life of Online Sales Leads',
+      url: 'https://scholarsarchive.byu.edu/facpub/9711',
     },
     {
       stat: '49%',
       fact: 'dos clientes na América Latina deixam uma marca depois de uma única experiência ruim.',
       cost: 'Não existe segunda chance para um atendimento ruim.',
       source: 'PwC, Experience is everything',
+      url: 'https://www.pwc.com/cb/en/services/consulting/pdf/customer-experience-placemat.pdf',
     },
     {
       stat: '81%',
-      fact: 'dos clientes de salão precisam marcar ou mudar horário fora do expediente.',
+      fact: 'dos clientes frequentes de salão precisam marcar ou mudar horário fora do expediente.',
       cost: 'Agenda só no horário comercial deixa a cadeira vazia.',
-      source: 'Zenoti, 2025',
+      source: 'Zenoti, pesquisa de 2025',
+      url: 'https://www.zenoti.com/en-uk/thecheckin/salon-spa-booking-communication-trends',
     },
     {
       stat: '53%',
       fact: 'saem de um site no celular que demora mais de 3 segundos para abrir.',
       cost: 'Metade dos visitantes vai embora antes de ver o seu trabalho.',
       source: 'Google, The Need for Mobile Speed',
+      url: 'https://www.marketingdive.com/news/google-53-of-mobile-users-abandon-sites-that-take-over-3-seconds-to-load/426070/',
     },
     {
       stat: '63%',
-      fact: 'confiam pouco em empresas que não têm site e só usam rede social.',
+      fact: 'dos consumidores irlandeses confiam pouco em empresas que não têm site e só usam rede social.',
       cost: 'Sem site, o cliente escolhe quem parece mais profissional.',
-      source: 'IEDR, pesquisa com 1.000 consumidores',
+      source: 'IEDR, pesquisa com 1.000 consumidores na Irlanda',
+      url: 'https://www.checkout.ie/technology/consumers-low-trust-companies-connect-consumers-via-social-media-platforms-40162',
     },
     {
       stat: '88%',
       fact: 'abandonam aplicativos que apresentam erros e falhas.',
       cost: 'O cliente culpa a sua empresa, não o sistema.',
       source: 'QualiTest com Google Consumer Surveys',
+      url: 'https://appdevelopermagazine.com/Almost-all-users-abandon-apps-with-bugs-and-glitches/',
     },
   ] satisfies WarningSign[],
   closing: 'Reconheceu algum? Tem solução.',
@@ -174,7 +186,7 @@ export type Solution = {
 export const solutions = {
   eyebrow: 'Exemplos do que já construímos',
   title: 'Sistemas sob medida que já construímos para pequenos negócios',
-  lead: 'Estes projetos nasceram de problemas reais de quem trabalha sozinho ou com uma equipe pequena. O seu sistema personalizado será desenhado a partir da sua rotina, não escolhido de uma lista.',
+  lead: 'A PFC desenvolve quatro tipos de sistema para pequenos negócios: agente de IA no WhatsApp, agenda online, app de controle financeiro e site profissional. Os exemplos abaixo nasceram de problemas reais; o seu sistema personalizado será desenhado a partir da sua rotina, não escolhido de uma lista.',
   closing: 'Automações, sistemas, aplicativos, sites: o que o seu problema pedir.',
   more: 'Não achou o seu caso? Conte o seu problema para a marcIA',
   items: [
@@ -238,7 +250,7 @@ type ProcessStep = {
 export const process = {
   eyebrow: 'Como funciona',
   title: 'Como desenvolvemos o seu sistema sob medida, em 4 etapas',
-  lead: 'Entender antes de construir, validar antes de entregar e acompanhar depois. Em cada etapa você sabe o que fazemos, o que recebe e como participa.',
+  lead: 'O desenvolvimento tem 4 etapas: levantamento, análise, construção e entrega com acompanhamento. Você só decide se contrata depois de receber a proposta com escopo, prazo e valor, e em cada etapa sabe o que fazemos, o que recebe e como participa.',
   steps: [
     {
       title: 'Levantamento',
@@ -280,7 +292,9 @@ export const process = {
 export const about = {
   eyebrow: 'Quem está por trás',
   name: 'Pietro Cosentino',
-  bio: 'Analista de requisitos, de sistemas e funcional sênior, com experiência em educação, pagamentos e sistemas corporativos. A PFC Soluções leva esse olhar de negócio para quem não tem um time de tecnologia.',
+  role: 'Fundador da PFC Soluções',
+  bio: 'Pietro tem 9 anos de experiência em tecnologia, como Product Owner e analista de requisitos, de sistemas e funcional sênior, em projetos de educação, pagamentos e sistemas corporativos. Está cursando MBA em Inteligência Artificial para Negócios. A PFC Soluções leva esse olhar de negócio para quem não tem um time de tecnologia.',
+  linkedin: 'https://www.linkedin.com/in/pietro-cosentino',
   portfolio: { href: 'https://www.pietrocosentino.com.br/', label: 'Ver trajetória completa' },
 };
 
@@ -288,15 +302,15 @@ export const about = {
 export const comparison = {
   eyebrow: 'Sob medida ou pronto?',
   title: 'Sistema sob medida ou aplicativo pronto: qual vale mais para o seu negócio?',
-  options: [
-    {
-      name: 'Aplicativo pronto',
-      text: 'É rápido de começar, mas foi feito para a média dos negócios. Você se adapta a ele e, no fim, continua usando planilha, papel e WhatsApp para o que ele não faz.',
-    },
-    {
-      name: 'Sistema sob medida',
-      text: 'Parte da sua rotina: atendimento, agenda, cobrança e finanças funcionam juntos, sem digitar a mesma informação duas vezes, e do jeito que o seu cliente já está acostumado.',
-    },
+  lead: 'Um aplicativo pronto serve quando a sua rotina é igual à da maioria. Um sistema sob medida vale quando você precisa juntar atendimento, agenda, cobrança e finanças sem planilha ou papel paralelo.',
+  columns: ['Aplicativo pronto', 'Sistema sob medida'],
+  rows: [
+    { label: 'Para começar', ready: 'Rápido: você assina e configura', custom: 'Começa com um levantamento da sua rotina' },
+    { label: 'Quem se adapta', ready: 'Você se adapta ao aplicativo', custom: 'O sistema se adapta ao seu jeito de trabalhar' },
+    { label: 'Partes do negócio', ready: 'Costuma cobrir uma parte; o resto fica em planilha, papel ou WhatsApp', custom: 'Atendimento, agenda, cobrança e finanças juntos, sem digitar duas vezes' },
+    { label: 'WhatsApp', ready: 'Depende do aplicativo e do plano', custom: 'Agente de IA que atende e agenda pelo WhatsApp, quando fizer sentido' },
+    { label: 'Ajustes', ready: 'Pelo suporte, quando o recurso existe', custom: 'Você fala direto com quem construiu o sistema' },
+    { label: 'Valor', ready: 'Mensalidade por plano', custom: 'Proposta com escopo, prazo e valor antes de começar' },
   ],
   closing: 'Não sabe qual é o seu caso? No levantamento, a gente entende a sua rotina e diz com honestidade se a tecnologia resolve o seu problema e por onde vale começar.',
   more: 'Descobrir o que funciona para o meu negócio',
@@ -316,7 +330,7 @@ export const faq = {
     },
     {
       question: 'Quanto custa um sistema sob medida para pequena empresa?',
-      answer: 'Depende do que o seu negócio precisa. Depois do levantamento, você recebe uma proposta com escopo, prazo e valor definidos, sem compromisso de contratar.',
+      answer: 'O valor depende do escopo: quantos serviços e canais o sistema atende, se integra com WhatsApp e pagamento por Pix, e quanto acompanhamento você quer depois da entrega. Ele sai na proposta, depois do levantamento, sem compromisso de contratar.',
     },
     {
       question: 'Quanto tempo leva para ficar pronto?',

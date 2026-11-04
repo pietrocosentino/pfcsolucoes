@@ -1,53 +1,103 @@
 ---
 // Ajuda quem pesquisa "sistema sob medida" a decidir contra um aplicativo pronto.
+// Em tabela: fácil de comparar para quem lê e de extrair para buscadores e IAs.
 import Section from './Section.astro';
 import { comparison, contact } from '../data/site';
 ---
 
-<Section id="sob-medida-ou-pronto" eyebrow={comparison.eyebrow} title={comparison.title}>
-  <div class="options">
-    {comparison.options.map((option, index) => (
-      <article class:list={['option', { highlight: index === 1 }]}>
-        <h3>{option.name}</h3>
-        <p>{option.text}</p>
-      </article>
-    ))}
+<Section id="sob-medida-ou-pronto" eyebrow={comparison.eyebrow} title={comparison.title} lead={comparison.lead}>
+  <div class="table-wrap">
+    <table>
+      <caption class="visually-hidden">Comparação entre aplicativo pronto e sistema sob medida</caption>
+      <thead>
+        <tr>
+          <td></td>
+          <th scope="col">{comparison.columns[0]}</th>
+          <th scope="col" class="custom">{comparison.columns[1]}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {comparison.rows.map((row) => (
+          <tr>
+            <th scope="row">{row.label}</th>
+            <td data-label={comparison.columns[0]}>{row.ready}</td>
+            <td data-label={comparison.columns[1]} class="custom">{row.custom}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
   <p class="closing">{comparison.closing}</p>
   <p class="next"><a href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{comparison.more}</a></p>
 </Section>
 
 <style>
-  .options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-  }
-  @media (max-width: 700px) {
-    .options {
-      grid-template-columns: 1fr;
-    }
-  }
-  .option {
-    display: grid;
-    align-content: start;
-    gap: 10px;
-    padding: 26px;
+  .table-wrap {
     border-radius: var(--radius-md);
-    background: var(--color-surface);
     border: 1px solid var(--color-line);
+    background: var(--color-surface);
+    overflow: hidden;
   }
-  .option p {
-    color: var(--color-muted);
+  table {
+    width: 100%;
+    border-collapse: collapse;
   }
-  .highlight {
-    border-color: var(--color-accent-text);
-    box-shadow: inset 0 3px 0 var(--color-accent-text);
+  th,
+  td {
+    padding: 14px 18px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid var(--color-line);
   }
-  h3 {
-    font-size: 1.25rem;
+  thead th,
+  thead td {
+    border-top: 0;
+    font-size: 1.0625rem;
     font-weight: 800;
     color: var(--color-ink);
+  }
+  tbody th {
+    width: 22%;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  td {
+    color: var(--color-muted);
+  }
+  .custom {
+    background: var(--color-chip);
+    color: var(--color-text);
+  }
+  thead .custom {
+    box-shadow: inset 0 3px 0 var(--color-accent-text);
+  }
+  /* No celular, cada linha vira um bloco com o nome da coluna antes do texto. */
+  @media (max-width: 640px) {
+    thead {
+      display: none;
+    }
+    tr,
+    tbody th,
+    td {
+      display: block;
+      width: auto;
+    }
+    tbody tr + tr {
+      border-top: 1px solid var(--color-line);
+    }
+    tbody th {
+      border-top: 0;
+      padding-bottom: 4px;
+    }
+    td {
+      border-top: 0;
+      padding-top: 6px;
+    }
+    td::before {
+      content: attr(data-label) ': ';
+      font-weight: 700;
+      color: var(--color-ink);
+    }
   }
   .closing {
     margin-top: 24px;
