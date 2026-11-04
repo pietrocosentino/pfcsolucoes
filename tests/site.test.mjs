@@ -286,11 +286,7 @@ test('topo mostra o print real da marcIA, com texto alternativo e prioridade', (
   assert.match(img, /fetchpriority="high"/);
 });
 
-test('soluções e fundador têm imagens reais', () => {
+test('soluções têm print real e o site não mostra foto do fundador', () => {
   assert.ok((html.match(/<figure class="shot/g) ?? []).length >= 2);
-  assert.match(html, /alt="Pietro Cosentino, fundador da PFC Soluções"/);
-  const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
-  assert.match(sobre, /alt="Pietro Cosentino, fundador da PFC Soluções"/);
-  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
-  assert.equal(graph.find((n) => n['@type'] === 'Person').image, 'https://pfcsolucoes.com.br/pietro-cosentino.jpg');
+  assert.doesNotMatch(html, /pietro-cosentino\./);
 });

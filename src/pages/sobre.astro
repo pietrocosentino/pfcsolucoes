@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
 import { breadcrumbSchema } from '../lib/schema';
-import photo from '../assets/pietro-cosentino.jpg';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import Section from '../components/Section.astro';
@@ -35,7 +33,6 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
   </Section>
 
   <Section id="fundador" title={about.name}>
-    <Image class="photo" src={photo} alt="Pietro Cosentino, fundador da PFC Soluções" widths={[160, 320]} sizes="160px" loading="lazy" />
     <div class="prose">
       <p>{about.bio}</p>
     </div>
@@ -65,13 +62,6 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
   .purpose {
     display: block;
     margin-bottom: 28px;
-  }
-  #fundador :global(.photo) {
-    width: 160px;
-    height: 160px;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    object-fit: cover;
   }
   .how {
     margin-top: 16px;
