@@ -11,6 +11,7 @@ Os botões "Falar com a marcIA" abrem um chat com a marcIA, atendente de primeir
 - Conhecimento: o mesmo `src/data/site.ts` do site, então o atendente nunca diz algo diferente do que está publicado.
 - Contexto da empresa, lógica de trabalho, detalhes de cada solução, regras de negócio e respostas a objeções: `src/lib/assistant/knowledge.ts`. Ao mudar uma regra comercial, atualize esse arquivo.
 - Montagem das instruções: `src/lib/assistant/prompt.ts`.
+- Encaminhamento para o Pietro: só quando o caso está pronto, depois de 3 tentativas (visitante que não consegue explicar, dúvida fora da base ou pedidos repetidos para falar com ele) ou em assuntos que não são venda. Regras em `knowledge.ts`; o código só libera a ferramenta a partir da 3ª mensagem do visitante (`MIN_TURNS_FOR_HANDOFF` em `prompt.ts`).
 - Ativação: crie a variável `ANTHROPIC_API_KEY` em Vercel → Settings → Environment Variables (Production e Preview) e faça um novo deploy. Sem a chave, o chat avisa que está fora do ar e oferece o WhatsApp.
 - Custo: defina um limite mensal de gastos no console da Anthropic. O endpoint também limita tamanho de mensagem, número de turnos e mensagens por aparelho.
 

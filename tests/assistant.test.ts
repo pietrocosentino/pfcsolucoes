@@ -6,6 +6,14 @@ import { buildHandoff } from '../src/lib/assistant/handoff.ts';
 import { systemPrompt } from '../src/lib/assistant/prompt.ts';
 import { allowRequest } from '../src/lib/assistant/rate-limit.ts';
 
+// Três mensagens do visitante: a partir daqui o encaminhamento pode ser liberado.
+const threeTurns = [
+  { role: 'user' as const, text: 'Tenho um salão' },
+  { role: 'assistant' as const, text: 'Que legal! O que mais te toma tempo hoje?' },
+  { role: 'user' as const, text: 'Minhas clientes faltam muito' },
+  { role: 'assistant' as const, text: 'Entendi. Quer que eu prepare isso para o Pietro?' },
+];
+
 const fakeClaude = (content: unknown[], status = 200) => {
   const calls: any[] = [];
   const fetchImpl = async (_url: string, init: RequestInit) => {
@@ -38,10 +46,11 @@ test('a saudação inicial do atendente não quebra a alternância exigida pela 
 
 test('responde com o texto do Claude e envia instruções e ferramenta', async () => {
   const { calls, fetchImpl } = fakeClaude([{ type: 'text', text: 'Legal! Quantos clientes por dia?' }]);
-  const out = await runTurn([{ role: 'user', text: 'Tenho uma barbearia' }], { apiKey: 'teste', fetchImpl });
+  const out = await runTurn([...threeTurns, { role: 'user', text: 'Tenho uma barbearia' }], { apiKey: 'teste', fetchImpl });
   assert.deepEqual(out, { reply: 'Legal! Quantos clientes por dia?' });
   assert.equal(calls[0].tools[0].name, 'encaminhar_para_whatsapp');
   assert.match(calls[0].system[0].text, /Nunca invente preço/);
+  assert.match(calls[0].system[1].text, /Mensagens do visitante até agora: 3/);
 });
 
 test('quando o Claude encaminha, devolve o link do WhatsApp com o resumo', async () => {
@@ -49,7 +58,7 @@ test('quando o Claude encaminha, devolve o link do WhatsApp com o resumo', async
     { type: 'text', text: 'Toque no botão abaixo.' },
     { type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { nome: 'Ana', negocio: 'Tenho um salão', necessidade: 'Minhas clientes faltam muito', contexto: 'Hoje anoto tudo num caderno' } },
   ]);
-  const out = await runTurn([{ role: 'user', text: 'Quero fechar' }], { apiKey: 'teste', fetchImpl });
+  const out = await runTurn([...threeTurns, { role: 'user', text: 'Quero fechar' }], { apiKey: 'teste', fetchImpl });
   assert.equal(out.reply, 'Toque no botão abaixo.');
   assert.ok(out.handoff?.url.startsWith('https://wa.me/5511984597523?text='));
   assert.match(decodeURIComponent(out.handoff!.url), /conversei com a marcIA\.\nMeu nome é Ana\.\nTenho um salão\.\nMinhas clientes faltam muito\.\nHoje anoto tudo num caderno\./);
@@ -95,7 +104,7 @@ test('encaminhamento sem texto da IA usa mensagem calorosa com o nome', async ()
   const { fetchImpl } = fakeClaude([
     { type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { nome: 'Roberto Silva', necessidade: 'Organizar a oficina' } },
   ]);
-  const out = await runTurn([{ role: 'user', text: 'Pode passar pro Pietro' }], { apiKey: 'teste', fetchImpl });
+  const out = await runTurn([...threeTurns, { role: 'user', text: 'Pode passar pro Pietro' }], { apiKey: 'teste', fetchImpl });
   assert.match(out.reply, /^Obrigada pela confiança, Roberto!/);
   assert.match(out.reply, /cuidar pessoalmente/);
 });
@@ -106,4 +115,31 @@ test('a marcIA conhece o piloto, mas não informa valores', () => {
   assert.match(text, /nunca informe números/);
   assert.doesNotMatch(text, /R\$\s?\d/);
   assert.match(text, /Nunca invente preço/);
+});
+
+test('nas duas primeiras mensagens não há como encaminhar, nem se a IA tentar', async () => {
+  const { calls, fetchImpl } = fakeClaude([
+    { type: 'text', text: 'Entendo! Me conta rapidinho qual é o seu negócio?' },
+    { type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { necessidade: 'Falar com o Pietro' } },
+  ]);
+  const out = await runTurn([{ role: 'user', text: 'Quero falar com uma pessoa' }], { apiKey: 'teste', fetchImpl });
+  assert.equal(calls[0].tools, undefined);
+  assert.match(calls[0].system[1].text, /ainda indisponível/);
+  assert.equal(out.handoff, undefined);
+  assert.equal(out.reply, 'Entendo! Me conta rapidinho qual é o seu negócio?');
+});
+
+test('regras de encaminhamento: só depois de 3 tentativas e sem oferecer o Pietro cedo', () => {
+  const prompt = systemPrompt();
+  for (const rule of [
+    'Encaminhamento para o Pietro',
+    'pelo menos 3 tentativas',
+    'pelo menos 3 vezes',
+    'Nunca ofereça falar com o Pietro por iniciativa sua',
+    'Perguntas que você não tem como responder',
+  ]) {
+    assert.ok(prompt.includes(rule), rule);
+  }
+  assert.doesNotMatch(prompt, /encaminhe na hora/);
+  assert.doesNotMatch(prompt, /quando o cliente quiser/);
 });
