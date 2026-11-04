@@ -72,10 +72,16 @@ test('rodapé leva ao Instagram e não mostra o WhatsApp', () => {
   assert.doesNotMatch(footer, /wa\.me/);
 });
 
-test('poucos botões de conversa: topo e contato, além do botão flutuante e do link no rodapé', () => {
+test('chamadas para a marcIA: topo, soluções, comparação e contato', () => {
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
   const ctas = main.match(/<a\b[^>]*data-chat-open[^>]*>/g) ?? [];
-  assert.equal(ctas.length, 2);
+  assert.equal(ctas.length, 4);
+  for (const tag of ctas) assert.match(tag, /href="https:\/\/wa\.me\//, 'sem JavaScript, o link leva ao WhatsApp');
+});
+
+test('home não promete prazo nem indicar solução pronta', () => {
+  assert.doesNotMatch(html, /7 dias/);
+  assert.doesNotMatch(html, /solução pronta já resolve/);
 });
 
 test('robots.txt libera o site e aponta o sitemap', () => {

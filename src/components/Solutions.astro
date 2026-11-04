@@ -1,7 +1,7 @@
 ---
 import Section from './Section.astro';
 import SolutionCard from './SolutionCard.astro';
-import { solutions } from '../data/site';
+import { contact, solutions } from '../data/site';
 ---
 
 <Section id="solucoes" tone="band" eyebrow={solutions.eyebrow} title={solutions.title} lead={solutions.lead}>
@@ -9,7 +9,7 @@ import { solutions } from '../data/site';
     {solutions.items.map((solution) => <SolutionCard solution={solution} />)}
   </div>
   <p class="more">{solutions.closing}</p>
-  <p class="next"><a href={solutions.more.href}>{solutions.more.label}</a></p>
+  <p class="next"><a href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{solutions.more}</a></p>
 </Section>
 
 <style>

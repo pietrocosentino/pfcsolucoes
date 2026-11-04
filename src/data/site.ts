@@ -176,7 +176,7 @@ export const solutions = {
   title: 'Sistemas sob medida que já construímos para pequenos negócios',
   lead: 'Estes projetos nasceram de problemas reais de quem trabalha sozinho ou com uma equipe pequena. O seu sistema personalizado será desenhado a partir da sua rotina, não escolhido de uma lista.',
   closing: 'Automações, sistemas, aplicativos, sites: o que o seu problema pedir.',
-  more: { href: '#contato', label: 'Não achou o seu caso? Conte o seu problema para a marcIA' },
+  more: 'Não achou o seu caso? Conte o seu problema para a marcIA',
   items: [
     {
       area: 'Atendimento',
@@ -298,8 +298,8 @@ export const comparison = {
       text: 'Parte da sua rotina: atendimento, agenda, cobrança e finanças funcionam juntos, sem digitar a mesma informação duas vezes, e do jeito que o seu cliente já está acostumado.',
     },
   ],
-  closing: 'Não sabe qual é o seu caso? No levantamento, a gente diz com honestidade se vale a pena um sistema sob medida ou se uma solução pronta já resolve.',
-  more: { href: '#contato', label: 'Descobrir o que funciona para o meu negócio' },
+  closing: 'Não sabe qual é o seu caso? No levantamento, a gente entende a sua rotina e diz com honestidade se a tecnologia resolve o seu problema e por onde vale começar.',
+  more: 'Descobrir o que funciona para o meu negócio',
 };
 
 export const faq = {
@@ -320,11 +320,11 @@ export const faq = {
     },
     {
       question: 'Quanto tempo leva para ficar pronto?',
-      answer: 'O prazo sai na proposta, conforme o escopo. Um agente de IA no WhatsApp para negócios de agendamento, por exemplo, entra no ar em até 7 dias depois do levantamento.',
+      answer: 'Depende do que o seu negócio precisa. O prazo sai na proposta, junto com o escopo e o valor, antes de começar.',
     },
     {
       question: 'Vale mais que um aplicativo pronto?',
-      answer: 'Vale quando o aplicativo pronto obriga você a usar planilha ou papel junto, ou quando não conversa com o seu WhatsApp. Se uma solução pronta já resolver, a gente diz isso no levantamento.',
+      answer: 'Vale quando o aplicativo pronto obriga você a usar planilha ou papel junto, ou quando não conversa com o seu WhatsApp. No levantamento, a gente entende a sua rotina antes de propor qualquer coisa.',
     },
     {
       question: 'Serve para MEI e autônomo?',

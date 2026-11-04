@@ -1,7 +1,7 @@
 ---
 // Ajuda quem pesquisa "sistema sob medida" a decidir contra um aplicativo pronto.
 import Section from './Section.astro';
-import { comparison } from '../data/site';
+import { comparison, contact } from '../data/site';
 ---
 
 <Section id="sob-medida-ou-pronto" eyebrow={comparison.eyebrow} title={comparison.title}>
@@ -14,7 +14,7 @@ import { comparison } from '../data/site';
     ))}
   </div>
   <p class="closing">{comparison.closing}</p>
-  <p class="next"><a href={comparison.more.href}>{comparison.more.label}</a></p>
+  <p class="next"><a href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{comparison.more}</a></p>
 </Section>
 
 <style>
