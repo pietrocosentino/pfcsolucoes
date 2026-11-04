@@ -11,20 +11,9 @@ import { process } from '../data/site';
           <span class="number" aria-hidden="true">{index + 1}</span>
           <h3>
             <span class="visually-hidden">Etapa {index + 1}: </span>{step.title}
-            <span class="summary">{step.summary}</span>
           </h3>
         </div>
         <p class="text">{step.text}</p>
-        <dl>
-          <div>
-            <dt>Você recebe</dt>
-            <dd>{step.deliverable}</dd>
-          </div>
-          <div>
-            <dt>Sua participação</dt>
-            <dd>{step.participation}</dd>
-          </div>
-        </dl>
       </li>
     ))}
   </ol>

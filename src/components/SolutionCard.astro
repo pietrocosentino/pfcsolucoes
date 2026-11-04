@@ -18,21 +18,22 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
 
 <article class:list={['card', { featured }]} id={id}>
   <div class="text">
-  <p class="area">{solution.area}</p>
   <h3>{solution.title}</h3>
   <p class="description">{solution.description}</p>
-  <ul class="features">
-    {solution.features.map((feature) => <li>{feature}</li>)}
-  </ul>
-  <p class="project"><strong>Projeto entregue:</strong> {solution.project}</p>
+  {solution.features.length > 0 && (
+    <ul class="features">
+      {solution.features.map((feature) => <li>{feature}</li>)}
+    </ul>
+  )}
+  {solution.project && <p class="project"><strong>Projeto entregue:</strong> {solution.project}</p>}
   </div>
   {solution.shot && (
     <figure class:list={['shot', solution.shot.file]}>
       <Image
         src={shots[solution.shot.file]}
         alt={solution.shot.alt}
-        widths={solution.shot.file === 'painel-hoje' ? [260, 520] : [400, 800]}
-        sizes={solution.shot.file === 'painel-hoje' ? '260px' : '(max-width: 900px) 90vw, 400px'}
+        widths={[220, 440]}
+        sizes="220px"
         loading="lazy"
       />
       <figcaption>{solution.shot.caption}</figcaption>
@@ -77,15 +78,6 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
   .featured h3 {
     font-size: clamp(1.25rem, 2.4vw, 1.5rem);
   }
-  .featured .features {
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 40px;
-  }
-  @media (max-width: 760px) {
-    .featured .features {
-      grid-template-columns: 1fr;
-    }
-  }
   .project {
     margin-top: auto;
     padding-top: 14px;
@@ -120,9 +112,9 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
   }
   .featured {
     display: grid;
-    grid-template-columns: 1fr 260px;
+    grid-template-columns: 1fr 220px;
     gap: 32px;
-    align-items: start;
+    align-items: center;
   }
   .featured .shot.painel-hoje :global(img) {
     border-radius: 18px;
@@ -133,7 +125,7 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
       grid-template-columns: 1fr;
     }
     .featured .shot.painel-hoje {
-      max-width: 260px;
+      max-width: 220px;
     }
   }
 </style>
