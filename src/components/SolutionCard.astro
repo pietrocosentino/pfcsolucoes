@@ -2,9 +2,8 @@
 import { Image } from 'astro:assets';
 import type { Solution } from '../data/site';
 import painelHoje from '../assets/prints/painel-hoje.png';
-import sitePersonal from '../assets/prints/site-personal.png';
 
-const shots = { 'painel-hoje': painelHoje, 'site-personal': sitePersonal };
+const shots = { 'painel-hoje': painelHoje };
 
 interface Props {
   solution: Solution;

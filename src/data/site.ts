@@ -132,7 +132,7 @@ export const warningSigns = {
 export type Solution = {
   area: string;
   // Print da solução (arquivo em src/assets/prints) e a legenda dele.
-  shot?: { file: 'painel-hoje' | 'site-personal'; alt: string; caption: string };
+  shot?: { file: 'painel-hoje'; alt: string; caption: string };
   title: string;
   description: string;
   features: string[];
@@ -191,11 +191,6 @@ export const solutions = {
       description: 'Este site, por exemplo, tira mais de 90 de 100 em velocidade no celular no teste do Google (Lighthouse).',
       features: ['Serviços, planos e depoimentos', 'Botão para o WhatsApp com mensagem pronta'],
       project: 'Site de consultoria para personal trainer',
-      shot: {
-        file: 'site-personal',
-        alt: 'Página inicial do site de um personal trainer, com título grande, botões de planos e resultados e foto do profissional',
-        caption: 'Site entregue para um personal trainer.',
-      },
     },
   ] satisfies Solution[],
 };
