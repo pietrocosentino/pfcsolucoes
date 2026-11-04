@@ -211,7 +211,7 @@ test('frase que define a empresa aparece na página inicial', () => {
 
 test('cada dado tem link para a fonte', () => {
   const sources = [...html.matchAll(/<p class="source"[^>]*>([\s\S]*?)<\/p>/g)].map((m) => m[1]);
-  assert.equal(sources.length, 6);
+  assert.equal(sources.length, 3);
   for (const s of sources) assert.match(s, /<a href="https:\/\/[^"]+" target="_blank" rel="noopener noreferrer"/);
 });
 
@@ -240,4 +240,32 @@ test('llms.txt e chave do IndexNow são publicados', () => {
   const wf = readFileSync(new URL('../.github/workflows/indexnow.yml', import.meta.url), 'utf8');
   const key = wf.match(/"key\\":\\"([0-9a-f]{32})/)?.[1] ?? wf.match(/public\/([0-9a-f]{32})\.txt/)[1];
   assert.equal(readFileSync(new URL(`../dist/client/${key}.txt`, import.meta.url), 'utf8'), key);
+});
+
+test('topo sem aspas de depoimento e sem pílulas', () => {
+  const hero = html.slice(html.indexOf('id="inicio"'), html.indexOf('id="solucoes"'));
+  assert.doesNotMatch(hero, /[“”]/);
+  assert.doesNotMatch(hero, /class="proof"/);
+});
+
+test('dados vêm depois das soluções', () => {
+  assert.ok(html.indexOf('id="solucoes"') < html.indexOf('id="sinais"'));
+});
+
+test('links de soluções do rodapé levam a cartões diferentes', () => {
+  const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
+  const targets = [...footer.matchAll(/href="\/#(solucao-[a-z-]+)"/g)].map((m) => m[1]);
+  assert.equal(new Set(targets).size, 4);
+  for (const id of targets) assert.match(html, new RegExp(`id="${id}"`));
+  assert.equal((footer.match(/Política de privacidade/g) ?? []).length, 1);
+});
+
+test('chat traz respostas prontas', () => {
+  const raw = html.match(/data-suggestions="([^"]*)"/)[1].replace(/&quot;|&#34;/g, '"');
+  assert.ok(JSON.parse(raw).length >= 3);
+});
+
+test('"escopo, prazo" aparece uma vez só na página inicial', () => {
+  const text = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, ' ').toLowerCase();
+  assert.equal(text.split('escopo, prazo').length - 1, 1);
 });
