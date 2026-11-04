@@ -91,7 +91,7 @@ export const privacyPage = {
     {
       title: 'Como falar com a gente',
       paragraphs: [
-        'Peça para a marcIA falar com o Pietro (é só abrir o chat) ou mande uma mensagem no direct do Instagram @pfc.solucoes.',
+        'Peça para a marcIA falar com o Pietro (é só abrir o chat), escreva para contato@pfcsolucoes.com.br ou mande uma mensagem no direct do Instagram @pfc.solucoes.',
       ],
     },
     {

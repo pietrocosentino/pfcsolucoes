@@ -28,13 +28,16 @@ const year = new Date().getFullYear();
       </nav>
     ))}
 
-    <div class="column">
+    <div class="column contact">
       <h2>Contato</h2>
       <ul>
         <li>
           <a href="/#contato" data-chat-open aria-haspopup="dialog">
             Fale com a {assistant.name}
           </a>
+        </li>
+        <li>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </li>
         <li>
           <a href={contact.instagramProfile} target="_blank" rel="noopener noreferrer">
@@ -129,7 +132,8 @@ const year = new Date().getFullYear();
     .grid {
       grid-template-columns: repeat(2, 1fr);
     }
-    .about {
+    .about,
+    .contact {
       grid-column: 1 / -1;
       max-width: none;
     }
