@@ -28,41 +28,49 @@ const { href, variant = 'primary', external = false, chat = false, class: classN
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    min-height: 48px; /* alvo de toque confortável */
-    padding: 12px 22px;
+    gap: var(--space-2);
+    min-height: var(--control-md); /* alvo de toque confortável */
+    padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-pill);
     border: 2px solid transparent;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.2;
+    font-weight: var(--weight-bold);
+    font-size: var(--text-md);
+    line-height: var(--leading-snug);
     text-decoration: none;
-    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    transition: background-color var(--duration) ease, color var(--duration) ease, border-color var(--duration) ease;
+  }
+  .btn[aria-disabled='true'] {
+    background: var(--color-disabled-bg);
+    border-color: transparent;
+    color: var(--color-disabled-text);
+    pointer-events: none;
   }
 
 
   .btn--primary {
-    background: var(--color-button);
-    color: var(--color-button-text);
+    background: var(--color-action);
+    color: var(--color-on-action);
   }
   .btn--primary:hover {
-    background: var(--color-button-hover);
+    background: var(--color-action-hover);
   }
 
   .btn--secondary {
-    border-color: var(--color-ink);
-    color: var(--color-ink);
+    border-color: var(--color-heading);
+    color: var(--color-heading);
   }
   .btn--secondary:hover {
-    background: var(--color-ink);
-    color: var(--color-bg);
+    background: var(--color-subtle);
   }
 
   .btn--inverse {
-    background: var(--color-dark-accent);
-    color: var(--brand-navy);
+    background: var(--dark-action);
+    color: var(--dark-bg);
   }
   .btn--inverse:hover {
-    background: #ffffff;
+    background: var(--dark-action-hover);
+  }
+  .btn--inverse:focus-visible {
+    outline-color: var(--dark-focus);
   }
 </style>

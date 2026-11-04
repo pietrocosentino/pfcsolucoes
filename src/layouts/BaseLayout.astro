@@ -2,12 +2,11 @@
 import '@fontsource/inter/latin-400.css';
 import '@fontsource/inter/latin-600.css';
 import '@fontsource/inter/latin-700.css';
-import '@fontsource/inter/latin-800.css';
 import '../styles/global.css';
 // Pesos do texto principal (400) e do título (800): pré-carregados para o
 // navegador não esperar o CSS para descobrir que precisa deles.
 import inter400 from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
-import inter800 from '@fontsource/inter/files/inter-latin-800-normal.woff2?url';
+import inter700 from '@fontsource/inter/files/inter-latin-700-normal.woff2?url';
 import { about, brand, contact } from '../data/site';
 import type { Schema } from '../lib/schema';
 
@@ -87,11 +86,11 @@ const structuredData = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
-    <meta name="theme-color" content="#E4EBE2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#E9EEE7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)" />
 
     <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={inter800} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={inter700} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
@@ -119,17 +118,17 @@ const structuredData = {
 <style>
   .skip-link {
     position: absolute;
-    left: 16px;
+    left: var(--space-4);
     top: -100px;
     z-index: 100;
-    padding: 12px 18px;
+    padding: var(--space-3) var(--space-4);
     border-radius: var(--radius-sm);
-    background: var(--brand-navy);
-    color: #ffffff;
-    font-weight: 700;
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    font-weight: var(--weight-bold);
     text-decoration: none;
   }
   .skip-link:focus {
-    top: 12px;
+    top: var(--space-3);
   }
 </style>

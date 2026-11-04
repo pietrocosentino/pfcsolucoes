@@ -9,7 +9,7 @@ const home = Astro.url.pathname === '/';
 <header class="site-header">
   <div class="wrap bar">
     <a class="brand" href={home ? '#inicio' : '/'}>
-      <Logo size={38} knockout="var(--color-band)" />
+      <Logo size={38} knockout="var(--color-subtle)" />
       <span class="brand-text">
         <strong>{brand.name}</strong>
         <span>{brand.tagline}</span>
@@ -32,44 +32,43 @@ const home = Astro.url.pathname === '/';
     position: sticky;
     top: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--color-band) 94%, transparent);
+    background: color-mix(in srgb, var(--color-subtle) 94%, transparent);
     backdrop-filter: saturate(140%) blur(8px);
-    border-bottom: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-border);
     padding-top: env(safe-area-inset-top, 0px);
   }
 
   .bar {
     display: flex;
     align-items: center;
-    gap: 24px;
-    min-height: 68px;
+    gap: var(--space-6);
+    min-height: var(--space-16);
   }
 
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    color: var(--color-ink);
+    gap: var(--space-3);
+    color: var(--color-heading);
     text-decoration: none;
     margin-right: auto;
   }
   .brand-text {
     display: grid;
-    line-height: 1.15;
+    line-height: var(--leading-snug);
   }
   .brand-text strong {
-    font-size: 1.0625rem;
-    font-weight: 800;
-    letter-spacing: -0.01em;
+    font-size: var(--text-md);
+    font-weight: var(--weight-bold);
   }
   .brand-text span {
-    font-size: 0.75rem;
-    color: var(--color-muted);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
   }
 
   .nav ul {
     display: flex;
-    gap: 4px;
+    gap: var(--space-1);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -77,24 +76,24 @@ const home = Astro.url.pathname === '/';
   .nav a {
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
-    padding: 0 12px;
+    min-height: var(--control-sm);
+    padding: 0 var(--space-3);
     border-radius: var(--radius-sm);
-    color: var(--color-ink);
-    font-weight: 600;
-    font-size: 0.9375rem;
+    color: var(--color-heading);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-sm);
     text-decoration: none;
   }
   .nav a:hover {
-    background: var(--color-chip);
+    background: var(--color-subtle);
   }
 
   /* Celular: a navegação desce para uma segunda linha, toda visível. */
   @media (max-width: 760px) {
     .bar {
       flex-wrap: wrap;
-      gap: 0 12px;
-      padding-top: 8px;
+      gap: 0 var(--space-3);
+      padding-top: var(--space-2);
     }
     .brand-text span {
       display: none;
@@ -102,14 +101,14 @@ const home = Astro.url.pathname === '/';
     .nav {
       order: 3;
       width: 100%;
-      border-top: 1px solid var(--color-line);
+      border-top: 1px solid var(--color-border);
     }
     .nav ul {
       justify-content: space-between;
     }
     .nav a {
-      padding: 0 2px;
-      font-size: clamp(0.75rem, 3.6vw, 0.875rem); /* cabe em telas de 320px */
+      padding: 0 var(--space-1);
+      font-size: clamp(var(--text-xs), 3.6vw, var(--text-sm)); /* cabe em telas de 320px */
       white-space: nowrap;
     }
   }

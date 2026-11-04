@@ -16,8 +16,8 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -31,32 +31,38 @@ p {
 h1,
 h2,
 h3 {
-  color: var(--color-ink);
-  line-height: 1.15;
+  color: var(--color-heading);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
   text-wrap: balance;
 }
 
+h1 {
+  font-size: var(--text-h1);
+  letter-spacing: var(--tracking-tight);
+}
+
 h2 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: var(--text-h2);
+  letter-spacing: var(--tracking-tight);
 }
 
 h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
 }
 
 a {
-  color: var(--color-accent-text);
+  color: var(--color-accent);
   text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration-thickness: 2px;
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 3px;
-  border-radius: 6px;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 img,
@@ -73,16 +79,17 @@ svg {
 }
 
 .eyebrow {
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  color: var(--color-accent-text);
+  color: var(--color-accent);
 }
 
 .lead {
-  font-size: 1.125rem;
-  color: var(--color-muted);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
   max-width: 62ch;
 }
 
