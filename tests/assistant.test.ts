@@ -172,11 +172,37 @@ test('duas respostas vazias seguidas viram erro amigável', async () => {
   await assert.rejects(runTurn([{ role: 'user', text: 'oi' }], { apiKey: 'teste', fetchImpl }), (e: ChatError) => e.status === 502);
 });
 
-test('encaminhamento sem pedido usa as palavras do visitante no resumo', async () => {
+test('encaminhamento sem pedido pede o resumo de novo, obrigando a ferramenta', async () => {
+  const replies = [
+    [{ type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { nome: 'Carla' } }],
+    [{ type: 'tool_use', id: 't2', name: 'encaminhar_para_whatsapp', input: { nome: 'Carla', necessidade: 'Preciso saber se vocês emitem nota fiscal' } }],
+  ];
+  const bodies: any[] = [];
+  const fetchImpl = async (_u: string, init: RequestInit) => {
+    bodies.push(JSON.parse(String(init.body)));
+    return new Response(JSON.stringify({ content: replies[bodies.length - 1], stop_reason: 'tool_use' }), { status: 200 });
+  };
+  const out = await runTurn([...threeTurns, { role: 'user', text: 'Sem nota não consigo contratar' }], { apiKey: 'teste', fetchImpl });
+  assert.deepEqual(bodies[1].tool_choice, { type: 'tool', name: 'encaminhar_para_whatsapp' });
+  assert.match(out.handoff!.summary, /Meu nome é Carla\.\nPreciso saber se vocês emitem nota fiscal\./);
+});
+
+test('se nem a segunda chamada preencher o pedido, usa as palavras do visitante', async () => {
   const { fetchImpl } = fakeClaude([{ type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { nome: 'Carla' } }]);
   const out = await runTurn([...threeTurns, { role: 'user', text: 'Sem nota fiscal não consigo contratar' }], { apiKey: 'teste', fetchImpl });
-  assert.match(out.handoff!.summary, /Sem nota fiscal não consigo contratar/);
+  assert.match(out.handoff!.summary, /Sem nota fiscal não consigo contratar\./);
   assert.doesNotMatch(out.handoff!.summary, /Quero saber mais sobre as soluções/);
+});
+
+test('resposta cortada no meio é tentada de novo', async () => {
+  let n = 0;
+  const fetchImpl = async () => {
+    n++;
+    const body = n === 1 ? { content: [{ type: 'text', text: 'Car' }], stop_reason: 'max_tokens' } : { content: [{ type: 'text', text: 'Carla, me conta mais?' }], stop_reason: 'end_turn' };
+    return new Response(JSON.stringify(body), { status: 200 });
+  };
+  const out = await runTurn([{ role: 'user', text: 'oi' }], { apiKey: 'teste', fetchImpl });
+  assert.equal(out.reply, 'Carla, me conta mais?');
 });
 
 test('resumo não repete o mesmo texto em dois campos', () => {
