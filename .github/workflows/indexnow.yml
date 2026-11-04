@@ -1,0 +1,20 @@
+# Avisa Bing e outros buscadores (IndexNow) que o site mudou, depois de cada
+# deploy de produção da Vercel. A chave é pública por definição: o arquivo
+# public/91f3ab7007e10a8ada61d73ffcf9fe12.txt prova que o site é nosso.
+name: IndexNow
+
+on: deployment_status
+
+jobs:
+  ping:
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Envia as URLs do sitemap
+        run: |
+          urls=$(curl -fsS https://pfcsolucoes.com.br/sitemap-0.xml | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | jq -R . | jq -sc .)
+          echo "URLs: $urls"
+          curl -fsS -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"pfcsolucoes.com.br\",\"key\":\"91f3ab7007e10a8ada61d73ffcf9fe12\",\"keyLocation\":\"https://pfcsolucoes.com.br/91f3ab7007e10a8ada61d73ffcf9fe12.txt\",\"urlList\":$urls}" \
+            -w '\nHTTP %{http_code}\n'

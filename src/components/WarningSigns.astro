@@ -9,7 +9,7 @@ import { warningSigns } from '../data/site';
       <li>
         <p class="fact"><strong class="stat">{item.stat}</strong> {item.fact}</p>
         <p class="cost">{item.cost}</p>
-        <p class="source">Fonte: {item.source}</p>
+        <p class="source">Fonte: <a href={item.url} target="_blank" rel="noopener noreferrer">{item.source}<span class="visually-hidden"> (abre em nova aba)</span></a></p>
       </li>
     ))}
   </ul>

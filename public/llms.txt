@@ -1,0 +1,19 @@
+# PFC Soluções em Tecnologia
+
+> A PFC Soluções em Tecnologia (CNPJ 44.404.492/0001-56) é uma empresa brasileira, fundada por Pietro Cosentino, que cria sistemas sob medida para autônomos e pequenas empresas: agente de IA no WhatsApp, agenda online, controle financeiro e sites. O atendimento é online, para todo o Brasil.
+
+Para quem: barbearias, salões, clínicas de estética, consultórios, personal trainers, prestadores de serviço e comércio local.
+
+Como trabalha: levantamento da rotina do negócio, análise das perdas, construção em partes com validação do cliente e entrega com acompanhamento. Escopo, prazo e valor são definidos na proposta, antes de começar. Os preços não são publicados.
+
+## Páginas
+
+- [Página inicial](https://pfcsolucoes.com.br/): soluções, comparação entre sistema sob medida e aplicativo pronto, etapas do trabalho e perguntas frequentes.
+- [Quem somos](https://pfcsolucoes.com.br/sobre): história, propósito, valores e projetos já construídos.
+- [Política de privacidade](https://pfcsolucoes.com.br/privacidade): como os dados do site e da atendente virtual marcIA são tratados (LGPD).
+
+## Contato
+
+- E-mail: contato@pfcsolucoes.com.br
+- Instagram: https://www.instagram.com/pfc.solucoes/
+- Atendimento inicial pela marcIA, atendente virtual com IA no próprio site.

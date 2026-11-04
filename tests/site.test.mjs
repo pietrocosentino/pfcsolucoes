@@ -204,3 +204,40 @@ test('Quem somos e rodapé linkam para a página inicial com a palavra-chave', (
   const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
   assert.match(footer, /<a class="summary-link" href="\/"[^>]*>Sistemas sob medida para autônomos e pequenas empresas<\/a>/);
 });
+
+test('frase que define a empresa aparece na página inicial', () => {
+  assert.match(html, /A PFC Soluções em Tecnologia é uma empresa brasileira, fundada por Pietro Cosentino/);
+});
+
+test('cada dado tem link para a fonte', () => {
+  const sources = [...html.matchAll(/<p class="source"[^>]*>([\s\S]*?)<\/p>/g)].map((m) => m[1]);
+  assert.equal(sources.length, 6);
+  for (const s of sources) assert.match(s, /<a href="https:\/\/[^"]+" target="_blank" rel="noopener noreferrer"/);
+});
+
+test('comparação em tabela com cabeçalhos de linha e coluna', () => {
+  const table = html.match(/<table[\s\S]*?<\/table>/)[0];
+  assert.equal((table.match(/<th scope="col"/g) ?? []).length, 2);
+  assert.ok((table.match(/<th scope="row"/g) ?? []).length >= 5);
+});
+
+test('dados estruturados trazem o fundador e a data da página', () => {
+  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+  const person = graph.find((n) => n['@type'] === 'Person');
+  assert.ok(person.sameAs.includes('https://www.linkedin.com/in/pietro-cosentino'));
+  const page = graph.find((n) => n['@type'] === 'WebPage');
+  assert.match(page.dateModified, /^\d{4}-\d{2}-\d{2}$/);
+  assert.equal(graph.find((n) => n['@type'] === 'Organization').founder['@id'], person['@id']);
+});
+
+test('rodapé mostra a data de atualização', () => {
+  assert.match(html, /Atualizado em <time datetime="\d{4}-\d{2}-\d{2}"/);
+});
+
+test('llms.txt e chave do IndexNow são publicados', () => {
+  const llms = readFileSync(new URL('../dist/client/llms.txt', import.meta.url), 'utf8');
+  assert.match(llms, /^# PFC Soluções em Tecnologia/);
+  const wf = readFileSync(new URL('../.github/workflows/indexnow.yml', import.meta.url), 'utf8');
+  const key = wf.match(/"key\\":\\"([0-9a-f]{32})/)?.[1] ?? wf.match(/public\/([0-9a-f]{32})\.txt/)[1];
+  assert.equal(readFileSync(new URL(`../dist/client/${key}.txt`, import.meta.url), 'utf8'), key);
+});
