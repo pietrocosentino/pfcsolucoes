@@ -113,7 +113,9 @@ test('a marcIA conhece o piloto, mas não informa valores', () => {
   const text = systemPrompt();
   assert.match(text, /Piloto para negócios de agendamento/);
   assert.match(text, /nunca informe números/);
-  assert.doesNotMatch(text, /R\$\s?\d/);
+  // O único valor público é o do site simples; nenhum outro preço aparece nas instruções.
+  const prices = text.match(/R\$\s?\d{1,3}(?:\.\d{3})*(?:,\d{2})?/g) ?? [];
+  assert.ok(prices.length > 0 && prices.every((p) => p === 'R$ 1.500'), prices.join(', '));
   assert.match(text, /Nunca invente preço/);
 });
 

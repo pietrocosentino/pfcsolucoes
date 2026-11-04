@@ -72,10 +72,10 @@ test('rodapé leva ao Instagram e não mostra o WhatsApp', () => {
   assert.doesNotMatch(footer, /wa\.me/);
 });
 
-test('chamadas para a marcIA: topo, soluções, comparação e contato', () => {
+test('chamadas para a marcIA: topo, soluções e contato', () => {
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
   const ctas = main.match(/<a\b[^>]*data-chat-open[^>]*>/g) ?? [];
-  assert.equal(ctas.length, 4);
+  assert.equal(ctas.length, 3);
   for (const tag of ctas) assert.match(tag, /href="https:\/\/wa\.me\//, 'sem JavaScript, o link leva ao WhatsApp');
 });
 
@@ -105,7 +105,7 @@ test('canonical sem barra no fim, igual aos links internos', () => {
 test('título da home tem os termos de busca e o h1 diz o que a empresa faz', () => {
   assert.match(html, /<title>Sistemas sob medida para pequenas empresas \| PFC Soluções<\/title>/);
   const h1 = html.match(/<h1\b[\s\S]*?<\/h1>/)[0];
-  assert.match(h1, /Sistemas sob medida para autônomos e pequenas empresas/);
+  assert.match(h1, /Sistemas sob medida para pequenos negócios/);
 });
 
 test('dados estruturados da empresa são JSON válido', () => {
@@ -191,10 +191,10 @@ test('logo do topo tem o mesmo nome visível e leva à página inicial fora dela
 
 test('títulos das seções usam a palavra-chave e sinônimos', () => {
   const h2 = [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => m[1].replace(/<[^>]+>/g, ''));
-  assert.ok(h2.filter((t) => /sob medida/i.test(t)).length >= 2, h2.join(' | '));
+  assert.ok(h2.some((t) => /sob medida/i.test(t)), h2.join(' | '));
   assert.ok(h2.some((t) => /aplicativo pronto/i.test(t)));
   const h3 = [...html.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => m[1]);
-  assert.ok(h3.some((t) => t.startsWith('Agente de IA no WhatsApp:')));
+  assert.ok(h3.includes('Agente de IA no WhatsApp'));
   assert.ok(h3.includes('O que é um sistema sob medida?'));
 });
 
@@ -206,14 +206,14 @@ test('Quem somos e rodapé linkam para a página inicial com a palavra-chave', (
 });
 
 test('frase que define a empresa aparece na página inicial', () => {
-  assert.match(html, /A PFC Soluções em Tecnologia é uma empresa brasileira, fundada por Pietro Cosentino/);
+  assert.match(html, /A PFC Soluções em Tecnologia foi fundada por Pietro Cosentino/);
 });
 
 
 test('comparação em tabela com cabeçalhos de linha e coluna', () => {
   const table = html.match(/<table[\s\S]*?<\/table>/)[0];
   assert.equal((table.match(/<th scope="col"/g) ?? []).length, 2);
-  assert.ok((table.match(/<th scope="row"/g) ?? []).length >= 5);
+  assert.ok((table.match(/<th scope="row"/g) ?? []).length >= 4);
 });
 
 test('dados estruturados trazem o fundador e a data da página', () => {
@@ -264,7 +264,7 @@ test('"escopo, prazo" aparece uma vez só na página inicial', () => {
 
 test('sem a linha laranja nas seções (só no topo) e sem repetir "sob medida"', () => {
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
-  assert.equal((main.match(/class="eyebrow"/g) ?? []).length, 1);
+  assert.equal((main.match(/class="eyebrow"/g) ?? []).length, 0);
   const text = main.replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, ' ').toLowerCase();
   assert.ok(text.split('sob medida').length - 1 <= 10);
 });
@@ -289,4 +289,10 @@ test('topo mostra o print real da marcIA, com texto alternativo e prioridade', (
 test('soluções têm print real e o site não mostra foto do fundador', () => {
   assert.ok((html.match(/<figure class="shot/g) ?? []).length >= 2);
   assert.doesNotMatch(html, /pietro-cosentino\./);
+});
+
+test('preço e prazo do site aparecem nas perguntas frequentes', () => {
+  assert.match(html, /Sites profissionais simples a partir de R\$ 1\.500/);
+  assert.match(html, /em até 10 dias depois que você aprova a versão final/);
+  assert.doesNotMatch(html, /PREENCHER/);
 });

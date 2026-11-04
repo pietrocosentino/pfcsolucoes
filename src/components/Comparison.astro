@@ -2,10 +2,10 @@
 // Ajuda quem pesquisa "sistema sob medida" a decidir contra um aplicativo pronto.
 // Em tabela: fácil de comparar para quem lê e de extrair para buscadores e IAs.
 import Section from './Section.astro';
-import { comparison, contact } from '../data/site';
+import { comparison } from '../data/site';
 ---
 
-<Section id="sob-medida-ou-pronto" title={comparison.title} lead={comparison.lead}>
+<Section id="sob-medida-ou-pronto" title={comparison.title}>
   <div class="table-wrap">
     <table>
       <caption class="visually-hidden">Comparação entre aplicativo pronto e sistema sob medida</caption>
@@ -27,8 +27,6 @@ import { comparison, contact } from '../data/site';
       </tbody>
     </table>
   </div>
-  <p class="closing">{comparison.closing}</p>
-  <p class="next"><a href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{comparison.more}</a></p>
 </Section>
 
 <style>
@@ -98,17 +96,5 @@ import { comparison, contact } from '../data/site';
       font-weight: 700;
       color: var(--color-ink);
     }
-  }
-  .closing {
-    margin-top: 24px;
-    max-width: 62ch;
-    color: var(--color-text);
-  }
-  .next {
-    margin-top: 8px;
-  }
-  .next a {
-    font-weight: 700;
-    color: var(--color-accent-text);
   }
 </style>
