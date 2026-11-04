@@ -13,7 +13,7 @@ interface Props {
   noindex?: boolean;
 }
 
-const { title = brand.seoTitle, description = brand.description, noindex = false } = Astro.props;
+const { title = brand.seoTitle, description = brand.seoDescription, noindex = false } = Astro.props;
 
 // Endereços absolutos: o WhatsApp e o Instagram só mostram a prévia com URL completa.
 // Sem barra no fim, igual aos links internos (/sobre).

@@ -8,6 +8,10 @@ export const brand = {
   // Título da página inicial no Google: o que fazemos, para quem, e a marca.
   seoTitle: 'Sistemas sob medida para pequenas empresas | PFC Soluções',
   cnpj: '44.404.492/0001-56',
+  // Texto do Google para a página inicial: benefício e chamada para ação (até 155 caracteres).
+  // A descrição neutra (description) segue nos dados estruturados.
+  seoDescription:
+    'Pare de perder clientes: IA no WhatsApp, agenda online e controle financeiro feitos para o seu negócio. Proposta clara e sem compromisso. Fale com a gente!',
   description:
     'Sistemas sob medida para autônomos e pequenas empresas: agente de IA no WhatsApp, agendamento online, controle financeiro e sites. Atendimento em todo o Brasil.',
   shareText: 'Seu negócio perde clientes e dinheiro onde você não vê. A gente encontra e resolve.',
