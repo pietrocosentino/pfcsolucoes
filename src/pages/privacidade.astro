@@ -1,4 +1,5 @@
 ---
+import { breadcrumbSchema } from '../lib/schema';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
 import { brand } from '../data/site';
@@ -6,6 +7,7 @@ import { privacyPage } from '../data/institutional';
 ---
 
 <SiteLayout
+  schema={[breadcrumbSchema(privacyPage.title, '/privacidade')]}
   title={`${privacyPage.title} | ${brand.name}`}
   description="Saiba quais dados a PFC Soluções trata no site e na conversa com a marcIA, por quanto tempo guarda e como exercer seus direitos pela LGPD."
 >

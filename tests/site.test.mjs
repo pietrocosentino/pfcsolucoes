@@ -138,3 +138,27 @@ test('títulos e descrições cabem no limite do Google', () => {
   }
   assert.match(html, /content="Pare de perder clientes/);
 });
+
+const ldBlocks = (doc) =>
+  [...doc.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+
+test('perguntas frequentes da home viram FAQPage igual ao texto da tela', () => {
+  const faqLd = ldBlocks(html).find((b) => b['@type'] === 'FAQPage');
+  assert.ok(faqLd, 'sem FAQPage');
+  assert.ok(faqLd.mainEntity.length >= 6);
+  for (const q of faqLd.mainEntity) {
+    assert.ok(html.includes(q.name), `pergunta fora da tela: ${q.name}`);
+    assert.ok(html.includes(q.acceptedAnswer.text), `resposta fora da tela: ${q.name}`);
+  }
+});
+
+test('páginas internas têm navegação estruturada (breadcrumb)', () => {
+  for (const [page, name, url] of [['sobre', 'Quem somos', 'https://pfcsolucoes.com.br/sobre'], ['privacidade', 'Política de privacidade', 'https://pfcsolucoes.com.br/privacidade']]) {
+    const doc = readFileSync(new URL(`../dist/client/${page}/index.html`, import.meta.url), 'utf8');
+    const crumb = ldBlocks(doc).find((b) => b['@type'] === 'BreadcrumbList');
+    assert.ok(crumb, page);
+    assert.deepEqual(crumb.itemListElement.map((i) => i.name), ['Início', name]);
+    assert.equal(crumb.itemListElement[1].item, url);
+  }
+  assert.ok(!ldBlocks(html).some((b) => b['@type'] === 'BreadcrumbList'), 'home não precisa de breadcrumb');
+});
