@@ -121,3 +121,9 @@ test('fonte servida pelo próprio site, sem Google Fonts', () => {
   assert.doesNotMatch(html, /fonts\.googleapis|fonts\.gstatic/);
   assert.match(html, /@font-face/);
 });
+
+test('CNPJ aparece no rodapé e nos dados estruturados', () => {
+  const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
+  assert.match(footer, /CNPJ 44\.404\.492\/0001-56/);
+  assert.match(html, /"taxID":"44\.404\.492\/0001-56"/);
+});
