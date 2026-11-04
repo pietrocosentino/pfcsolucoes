@@ -154,3 +154,35 @@ test('estado do turno avisa que a contagem é interna', async () => {
   await runTurn([{ role: 'user', text: 'oi' }], { apiKey: 'teste', fetchImpl });
   assert.match(calls[0].system[1].text, /nunca mencione/);
 });
+
+test('resposta vazia da IA é tentada de novo antes de virar erro', async () => {
+  let n = 0;
+  const fetchImpl = async () => {
+    n++;
+    const content = n === 1 ? [] : [{ type: 'text', text: 'Oi! Como posso te chamar?' }];
+    return new Response(JSON.stringify({ content, stop_reason: 'end_turn' }), { status: 200 });
+  };
+  const out = await runTurn([{ role: 'user', text: 'oi' }], { apiKey: 'teste', fetchImpl });
+  assert.equal(n, 2);
+  assert.equal(out.reply, 'Oi! Como posso te chamar?');
+});
+
+test('duas respostas vazias seguidas viram erro amigável', async () => {
+  const { fetchImpl } = fakeClaude([]);
+  await assert.rejects(runTurn([{ role: 'user', text: 'oi' }], { apiKey: 'teste', fetchImpl }), (e: ChatError) => e.status === 502);
+});
+
+test('encaminhamento sem pedido usa as palavras do visitante no resumo', async () => {
+  const { fetchImpl } = fakeClaude([{ type: 'tool_use', id: 't1', name: 'encaminhar_para_whatsapp', input: { nome: 'Carla' } }]);
+  const out = await runTurn([...threeTurns, { role: 'user', text: 'Sem nota fiscal não consigo contratar' }], { apiKey: 'teste', fetchImpl });
+  assert.match(out.handoff!.summary, /Sem nota fiscal não consigo contratar/);
+  assert.doesNotMatch(out.handoff!.summary, /Quero saber mais sobre as soluções/);
+});
+
+test('resumo não repete o mesmo texto em dois campos', () => {
+  const { summary } = buildHandoff({
+    necessidade: 'Preciso saber se vocês emitem nota fiscal antes de contratar',
+    motivo: 'Preciso saber se vocês emitem nota fiscal antes de contratar.',
+  });
+  assert.equal(summary.match(/nota fiscal/g)?.length, 1);
+});
