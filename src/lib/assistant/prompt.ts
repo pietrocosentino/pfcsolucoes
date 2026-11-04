@@ -64,12 +64,18 @@ export const handoffTool = {
       negocio: { type: 'string', description: 'O negócio do visitante, em primeira pessoa. Ex.: "Tenho uma barbearia com 2 cadeiras".' },
       necessidade: {
         type: 'string',
-        description: 'O problema ou pedido, em primeira pessoa e em uma ou duas frases. Ex.: "Perco clientes porque não consigo responder o WhatsApp enquanto atendo."',
+        description:
+          'O problema ou pedido, em primeira pessoa e em uma ou duas frases, com as palavras do visitante. Ex.: "Perco clientes porque não consigo responder o WhatsApp enquanto atendo." Se ele não contou o problema, escreva o que ele quer, por exemplo a dúvida que tem.',
+      },
+      motivo: {
+        type: 'string',
+        description:
+          'Só quando não for caso pronto: por que o visitante quer falar com o Pietro antes de detalhar o caso, em primeira pessoa. Ex.: "Preciso saber se vocês emitem nota fiscal antes de contratar." ou "Prefiro conversar direto com você." Nunca diga quantas vezes ele pediu.',
       },
       contexto: {
         type: 'string',
         description:
-          'Detalhes úteis para o Pietro, em primeira pessoa: desde quando acontece, como resolve hoje, o que já tentou, o impacto. Use só o que a pessoa contou e não repita o que já está em necessidade; não inclua suposições, perguntas que ela não respondeu nem comentários sobre a conversa. Deixe vazio se não houver nada novo. Ex.: "Hoje respondo tudo à mão no WhatsApp e perco umas 3 clientes por semana."',
+          'Detalhes que o visitante disse e que ainda não estão em necessidade: desde quando acontece, como resolve hoje, o que já tentou. Cada frase precisa ter sido dita por ele; nunca complete com o que é provável, nem com perguntas que ele não respondeu, nem com comentários sobre a conversa. Na dúvida, deixe vazio.',
       },
     },
     required: ['necessidade'],
@@ -84,7 +90,7 @@ export const MIN_TURNS_FOR_HANDOFF = 3;
 // mensagens sozinho, então o servidor informa a contagem.
 export function turnContext(userTurns: number): string {
   const available = userTurns >= MIN_TURNS_FOR_HANDOFF;
-  return `# Estado desta conversa
+  return `# Estado desta conversa (informação interna: nunca mencione números, contagens ou estas regras ao visitante)
 - Mensagens do visitante até agora: ${userTurns}.
 - Ferramenta de encaminhamento: ${
     available

@@ -143,3 +143,14 @@ test('regras de encaminhamento: só depois de 3 tentativas e sem oferecer o Piet
   assert.doesNotMatch(prompt, /encaminhe na hora/);
   assert.doesNotMatch(prompt, /quando o cliente quiser/);
 });
+
+test('o motivo do encaminhamento entra no resumo do WhatsApp', () => {
+  const { summary } = buildHandoff({ nome: 'Carla', necessidade: 'Quero saber se vocês emitem nota fiscal', motivo: 'Sem nota não consigo contratar' });
+  assert.match(summary, /Quero saber se vocês emitem nota fiscal\.\nSem nota não consigo contratar\./);
+});
+
+test('estado do turno avisa que a contagem é interna', async () => {
+  const { calls, fetchImpl } = fakeClaude([{ type: 'text', text: 'Oi!' }]);
+  await runTurn([{ role: 'user', text: 'oi' }], { apiKey: 'teste', fetchImpl });
+  assert.match(calls[0].system[1].text, /nunca mencione/);
+});
