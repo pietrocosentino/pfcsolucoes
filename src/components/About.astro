@@ -1,11 +1,14 @@
 ---
 import Section from './Section.astro';
 import Button from './Button.astro';
+import { Image } from 'astro:assets';
 import { about, brand } from '../data/site';
+import photo from '../assets/pietro-cosentino.jpg';
 ---
 
 <Section id="sobre" tone="band" title={`Quem desenvolve o seu sistema: ${about.name}`}>
   <div class="about">
+    <Image class="photo" src={photo} alt="Pietro Cosentino, fundador da PFC Soluções" widths={[160, 320]} sizes="160px" loading="lazy" />
     <div class="bio">
       <p class="lead">{brand.definition}</p>
       <p>{about.bio}</p>
@@ -20,7 +23,27 @@ import { about, brand } from '../data/site';
 
 <style>
   .about {
-    max-width: 760px;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    align-items: start;
+    max-width: 960px;
+  }
+  .about :global(.photo) {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  @media (max-width: 640px) {
+    .about {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .about :global(.photo) {
+      width: 120px;
+      height: 120px;
+    }
   }
   .links {
     display: flex;

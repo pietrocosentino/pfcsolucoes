@@ -209,11 +209,6 @@ test('frase que define a empresa aparece na página inicial', () => {
   assert.match(html, /A PFC Soluções em Tecnologia é uma empresa brasileira, fundada por Pietro Cosentino/);
 });
 
-test('cada dado tem link para a fonte', () => {
-  const sources = [...html.matchAll(/<p class="source"[^>]*>([\s\S]*?)<\/p>/g)].map((m) => m[1]);
-  assert.equal(sources.length, 3);
-  for (const s of sources) assert.match(s, /<a href="https:\/\/[^"]+" target="_blank" rel="noopener noreferrer"/);
-});
 
 test('comparação em tabela com cabeçalhos de linha e coluna', () => {
   const table = html.match(/<table[\s\S]*?<\/table>/)[0];
@@ -248,9 +243,6 @@ test('topo sem aspas de depoimento e sem pílulas', () => {
   assert.doesNotMatch(hero, /class="proof"/);
 });
 
-test('dados vêm depois das soluções', () => {
-  assert.ok(html.indexOf('id="solucoes"') < html.indexOf('id="sinais"'));
-});
 
 test('links de soluções do rodapé levam a cartões diferentes', () => {
   const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
@@ -280,4 +272,25 @@ test('sem a linha laranja nas seções (só no topo) e sem repetir "sob medida"'
 test('agente de IA em destaque e listas sem ícone repetido', () => {
   assert.match(html, /class="card featured"/);
   assert.doesNotMatch(html, /class="principles"/);
+});
+
+test('página inicial sem dados de terceiros e com faixa dos tipos de negócio', () => {
+  assert.doesNotMatch(html, /id="sinais"/);
+  assert.match(html, /aria-label="Tipos de negócio atendidos"/);
+});
+
+test('topo mostra o print real da marcIA, com texto alternativo e prioridade', () => {
+  const hero = html.slice(html.indexOf('id="inicio"'), html.indexOf('</section>', html.indexOf('id="inicio"')));
+  const img = hero.match(/<img\b[^>]*>/)[0];
+  assert.match(img, /alt="Conversa no chat/);
+  assert.match(img, /fetchpriority="high"/);
+});
+
+test('soluções e fundador têm imagens reais', () => {
+  assert.ok((html.match(/<figure class="shot/g) ?? []).length >= 2);
+  assert.match(html, /alt="Pietro Cosentino, fundador da PFC Soluções"/);
+  const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
+  assert.match(sobre, /alt="Pietro Cosentino, fundador da PFC Soluções"/);
+  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+  assert.equal(graph.find((n) => n['@type'] === 'Person').image, 'https://pfcsolucoes.com.br/pietro-cosentino.jpg');
 });
