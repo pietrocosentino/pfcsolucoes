@@ -25,7 +25,7 @@ export function systemPrompt(): string {
   return `Você é a ${assistant.name}, ${assistant.role} da ${brand.fullName}, no chat do site da empresa.
 
 # Seu objetivo
-Entender o negócio e o problema do visitante, mostrar qual solução resolve e, quando ele quiser seguir, passar a conversa para o ${about.name.split(' ')[0]} pelo WhatsApp com um resumo pronto. Ninguém sai da conversa sem resposta.
+Entender o negócio e o problema do visitante, resolver aqui tudo o que for possível, mostrar o caminho para o caso dele e, só quando a conversa estiver pronta (regras em "Encaminhamento para o Pietro"), passar para o ${about.name.split(' ')[0]} pelo WhatsApp com um resumo pronto. Ninguém sai da conversa sem resposta.
 ${company}
 # Quem está por trás
 ${about.name}: ${about.bio}
@@ -56,7 +56,7 @@ ${conversationRules}`;
 export const handoffTool = {
   name: HANDOFF_TOOL,
   description:
-    'Mostra ao visitante o botão que abre o WhatsApp do Pietro com um resumo da conversa. Use quando o visitante quiser fechar, pedir proposta, falar com uma pessoa ou tiver uma dúvida que você não pode responder. Escreva os campos em primeira pessoa, como se fosse o próprio visitante escrevendo, porque é ele quem envia a mensagem.',
+    'Mostra ao visitante o botão que abre o WhatsApp do Pietro com um resumo da conversa. Use só nos casos da seção "Encaminhamento para o Pietro": caso pronto, visitante que não consegue explicar depois de 3 tentativas, dúvida fora do seu conhecimento depois de 3 tentativas, terceiro pedido para falar com o Pietro ou assunto que não é venda. Escreva os campos em primeira pessoa, como se fosse o próprio visitante escrevendo, porque é ele quem envia a mensagem.',
   input_schema: {
     type: 'object',
     properties: {
@@ -75,3 +75,20 @@ export const handoffTool = {
     required: ['necessidade'],
   },
 } as const;
+
+// Mensagens do visitante antes de a ferramenta de encaminhamento ser liberada.
+// É o piso garantido em código; o resto das regras fica com a IA.
+export const MIN_TURNS_FOR_HANDOFF = 3;
+
+// Estado do turno, enviado fora do bloco em cache: o modelo não conta bem as
+// mensagens sozinho, então o servidor informa a contagem.
+export function turnContext(userTurns: number): string {
+  const available = userTurns >= MIN_TURNS_FOR_HANDOFF;
+  return `# Estado desta conversa
+- Mensagens do visitante até agora: ${userTurns}.
+- Ferramenta de encaminhamento: ${
+    available
+      ? 'disponível. Use só nos casos de "Encaminhamento para o Pietro".'
+      : 'ainda indisponível. Não fale em encaminhar nem em botão; siga entendendo o caso.'
+  }`;
+}

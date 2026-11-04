@@ -3,7 +3,7 @@
 // Não há banco: o histórico vive no navegador e só texto é aceito, então o
 // visitante não consegue forjar chamadas de ferramenta.
 import { buildHandoff, type Handoff, type HandoffInput } from './handoff.ts';
-import { HANDOFF_TOOL, handoffTool, systemPrompt } from './prompt.ts';
+import { HANDOFF_TOOL, MIN_TURNS_FOR_HANDOFF, handoffTool, systemPrompt, turnContext } from './prompt.ts';
 
 const MODEL = 'claude-haiku-5-5';
 const LIMITS = { messageChars: 1000, turns: 20, totalChars: 16000 };
@@ -84,14 +84,20 @@ export async function runTurn(
   messages: ChatMessage[],
   { apiKey, fetchImpl = fetch }: { apiKey: string; fetchImpl?: FetchLike },
 ): Promise<ChatReply> {
+  const userTurns = messages.filter((m) => m.role === 'user').length;
+  const canHandoff = userTurns >= MIN_TURNS_FOR_HANDOFF;
   const response = await fetchImpl('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
     body: JSON.stringify({
       model: MODEL,
       max_tokens: 600,
-      system: [{ type: 'text', text: systemPrompt(), cache_control: { type: 'ephemeral' } }],
-      tools: [handoffTool],
+      system: [
+        { type: 'text', text: systemPrompt(), cache_control: { type: 'ephemeral' } },
+        { type: 'text', text: turnContext(userTurns) },
+      ],
+      // Sem a ferramenta, a IA não tem como encaminhar cedo demais.
+      ...(canHandoff ? { tools: [handoffTool] } : {}),
       messages: toApiMessages(messages),
     }),
     signal: AbortSignal.timeout(30_000),
@@ -110,7 +116,7 @@ export async function runTurn(
     .filter((b) => b.type === 'text' && b.text?.trim())
     .map((b) => b.text!.trim())
     .join('\n\n');
-  const call = content.find((b) => b.type === 'tool_use' && b.name === HANDOFF_TOOL);
+  const call = canHandoff ? content.find((b) => b.type === 'tool_use' && b.name === HANDOFF_TOOL) : undefined;
 
   if (call) {
     const input = call.input ?? {};

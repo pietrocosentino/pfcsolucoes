@@ -296,7 +296,7 @@ export const faq = {
     },
     {
       question: 'Quem é a marcIA?',
-      answer: 'É a nossa atendente virtual, com inteligência artificial. Ela tira as suas dúvidas na hora e, quando você quiser, passa a conversa para o Pietro pelo WhatsApp com um resumo pronto.',
+      answer: 'É a nossa atendente virtual, com inteligência artificial. Ela tira as suas dúvidas na hora, entende o seu caso e, quando ele estiver claro, o Pietro recebe tudo resumido para cuidar pessoalmente.',
     },
     {
       question: 'E se eu precisar de algo que não está na lista?',
@@ -308,5 +308,5 @@ export const faq = {
 export const contactSection = {
   eyebrow: 'Contato',
   title: 'Vamos simplificar o seu negócio?',
-  lead: 'Conte para a marcIA, nossa atendente, o que mais toma o seu tempo hoje. Ela entende o seu caso na hora e, quando você quiser, já te passa para o Pietro com tudo resumido.',
+  lead: 'Conte para a marcIA, nossa atendente, o que mais toma o seu tempo hoje. Ela entende o seu caso na hora e prepara tudo para o Pietro chegar já sabendo do que você precisa.',
 };
