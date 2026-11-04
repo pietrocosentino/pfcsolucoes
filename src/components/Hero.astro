@@ -1,10 +1,9 @@
 ---
-// Primeira dobra: problema, resultado e próximo passo. O visual usa antes,
-// depois e ponte: a dor na voz do cliente, o resultado e o que a PFC entrega.
+// Primeira dobra: o que é, para quem e o produto funcionando (print real da marcIA).
+import { Image } from 'astro:assets';
 import Button from './Button.astro';
 import { contact, hero } from '../data/site';
-
-const { transformation } = hero;
+import shot from '../assets/prints/marcia-conversa.png';
 ---
 
 <section id="inicio" class="hero" aria-labelledby="inicio-titulo">
@@ -22,20 +21,18 @@ const { transformation } = hero;
       <p class="note">{hero.note}</p>
     </div>
 
-    <figure class="change">
-      <figcaption>
-        <span class="title">{transformation.title}</span>
-        <span class="subtitle">{transformation.subtitle}</span>
-      </figcaption>
-      <ul>
-        {transformation.items.map((item) => (
-          <li>
-            <p class="pain"><span class="label">Hoje</span> {item.pain}</p>
-            <p class="gain"><span class="label">Com a PFC</span> {item.gain}</p>
-            <p class="solution">{item.solution}</p>
-          </li>
-        ))}
-      </ul>
+    <figure class="shot">
+      <div class="phone">
+        <Image
+          src={shot}
+          alt="Conversa no chat: a marcIA pergunta o que dá trabalho no negócio, o visitante conta que perde clientes no WhatsApp porque não consegue responder enquanto corta cabelo, e ela pergunta o que acontece com essas mensagens depois"
+          widths={[300, 600]}
+          sizes="300px"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <figcaption>{hero.shotCaption}</figcaption>
     </figure>
   </div>
 </section>
@@ -83,71 +80,29 @@ const { transformation } = hero;
     max-width: 52ch;
   }
 
-  .change {
+  .shot {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
     margin: 0;
-    padding: 24px;
-    border-radius: var(--radius-lg);
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-    box-shadow: 0 24px 48px -24px rgb(27 42 74 / 0.35);
   }
-  figcaption {
-    display: grid;
-    gap: 2px;
-    margin-bottom: 6px;
+  .phone {
+    width: min(300px, 80vw);
+    padding: 8px;
+    border-radius: 34px;
+    background: var(--brand-navy);
+    box-shadow: 0 30px 60px -30px rgb(27 42 74 / 0.6);
   }
-  .title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--color-ink);
+  .phone :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 26px;
   }
-  .subtitle {
-    font-size: 0.875rem;
-    color: var(--color-muted);
-  }
-  .change ul {
-    display: grid;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .change li {
-    display: grid;
-    gap: 6px;
-    padding: 14px 0;
-    border-top: 1px solid var(--color-line);
-  }
-  .change li:first-child {
-    border-top: 0;
-  }
-  .pain {
-    font-size: 0.9375rem;
-    line-height: 1.4;
-    color: var(--color-muted);
-  }
-  .pain .label {
-    margin-right: 4px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-ink);
-  }
-  .gain {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    line-height: 1.4;
-    color: var(--color-ink);
-  }
-  .gain .label {
-    margin-right: 4px;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-accent-text);
-  }
-  .solution {
+  .shot figcaption {
+    max-width: 300px;
     font-size: 0.8125rem;
+    text-align: center;
     color: var(--color-muted);
   }
 
@@ -159,9 +114,6 @@ const { transformation } = hero;
   @media (max-width: 420px) {
     .actions :global(.btn) {
       width: 100%;
-    }
-    .change {
-      padding: 18px;
     }
   }
 </style>

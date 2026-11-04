@@ -1,7 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import Hero from '../components/Hero.astro';
-import WarningSigns from '../components/WarningSigns.astro';
+import Segments from '../components/Segments.astro';
 import Solutions from '../components/Solutions.astro';
 import Comparison from '../components/Comparison.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
@@ -13,8 +13,8 @@ import { faqSchema } from '../lib/schema';
 
 <SiteLayout schema={[faqSchema]}>
   <Hero />
+  <Segments />
   <Solutions />
-  <WarningSigns />
   <Comparison />
   <ProcessSteps />
   <About />

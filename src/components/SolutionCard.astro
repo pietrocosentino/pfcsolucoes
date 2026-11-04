@@ -1,5 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import type { Solution } from '../data/site';
+import painelHoje from '../assets/prints/painel-hoje.png';
+import sitePersonal from '../assets/prints/site-personal.png';
+
+const shots = { 'painel-hoje': painelHoje, 'site-personal': sitePersonal };
 
 interface Props {
   solution: Solution;
@@ -13,6 +18,7 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
 ---
 
 <article class:list={['card', { featured }]} id={id}>
+  <div class="text">
   <p class="area">{solution.area}</p>
   <h3>{solution.title}</h3>
   <p class="description">{solution.description}</p>
@@ -20,6 +26,19 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     {solution.features.map((feature) => <li>{feature}</li>)}
   </ul>
   <p class="project"><strong>Projeto entregue:</strong> {solution.project}</p>
+  </div>
+  {solution.shot && (
+    <figure class:list={['shot', solution.shot.file]}>
+      <Image
+        src={shots[solution.shot.file]}
+        alt={solution.shot.alt}
+        widths={solution.shot.file === 'painel-hoje' ? [260, 520] : [400, 800]}
+        sizes={solution.shot.file === 'painel-hoje' ? '260px' : '(max-width: 900px) 90vw, 400px'}
+        loading="lazy"
+      />
+      <figcaption>{solution.shot.caption}</figcaption>
+    </figure>
+  )}
 </article>
 
 <style>
@@ -77,5 +96,45 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
   }
   .project strong {
     color: var(--color-ink);
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+  .shot {
+    display: grid;
+    gap: 8px;
+    margin: 4px 0 0;
+  }
+  .shot :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+  }
+  .shot figcaption {
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+  }
+  .featured {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 32px;
+    align-items: start;
+  }
+  .featured .shot.painel-hoje :global(img) {
+    border-radius: 18px;
+    border: 6px solid var(--brand-navy);
+  }
+  @media (max-width: 760px) {
+    .featured {
+      grid-template-columns: 1fr;
+    }
+    .featured .shot.painel-hoje {
+      max-width: 260px;
+    }
   }
 </style>

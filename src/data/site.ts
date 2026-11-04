@@ -81,43 +81,23 @@ export const footer = {
 
 // Primeira dobra: o visitante decide aqui se continua. Segue o teste de clareza
 // (o que oferecemos, como melhora a vida dele, o que fazer agora).
-// Antes, depois e ponte: a dor na voz do cliente, como fica a vida dele e o que a PFC entrega.
-type Transformation = { pain: string; gain: string; solution: string };
 
 export const hero = {
   eyebrow: 'Sistemas sob medida para autônomos e pequenas empresas',
-  title: 'Atendimento no WhatsApp, agenda e financeiro do seu negócio,',
-  highlight: 'num sistema feito para a sua rotina.',
+  title: 'Atendimento por IA no WhatsApp',
+  highlight: 'e agenda online para pequenos negócios.',
   lead: 'Primeiro entendemos como o seu negócio funciona hoje. Depois construímos só o que resolve o seu maior problema, e você usa pelo celular.',
   primaryCta: 'Conversar com a marcIA',
-  secondaryCta: { href: '#como-funciona', label: 'Ver como funciona' },
+  secondaryCta: { href: '#solucoes', label: 'Ver o que já entregamos' },
+  // Print real da marcIA (conversa de teste no site em produção).
+  shotCaption: 'A marcIA, atendente com IA deste site, numa conversa de teste.',
   note: 'A marcIA é a nossa atendente virtual. A conversa é sem compromisso.',
-  transformation: {
-    title: 'Você se reconhece?',
-    subtitle: 'O que donos de pequenos negócios vivem hoje, e como fica depois.',
-    items: [
-      {
-        pain: 'Você vê a mensagem do cliente só no fim do dia. Quando responde, ele já marcou em outro lugar.',
-        gain: 'Cada cliente é respondido na hora, até de madrugada, e sai com o horário marcado.',
-        solution: 'Agente de IA no WhatsApp',
-      },
-      {
-        pain: 'O cliente marca, esquece e não aparece. O horário fica vazio e o dinheiro não volta.',
-        gain: 'O cliente recebe lembrete e confirma. Se alguém desmarca, a vaga é oferecida para outro.',
-        solution: 'Agenda online com lembretes',
-      },
-      {
-        pain: 'Você trabalha o mês inteiro e não sabe dizer quanto sobrou.',
-        gain: 'Você abre o celular e vê quanto entrou, quanto saiu e quanto sobra.',
-        solution: 'App de finanças',
-      },
-      {
-        pain: 'Quem te procura acha só um perfil no Instagram e fica na dúvida se o negócio é sério.',
-        gain: 'Quem procura encontra um site profissional e fala com você em um toque.',
-        solution: 'Site profissional',
-      },
-    ] satisfies Transformation[],
-  },
+};
+
+// Tipos de negócio atendidos: faixa logo abaixo do topo.
+export const segments = {
+  label: 'Para',
+  items: ['barbearias', 'salões de beleza', 'clínicas de estética', 'personal trainers', 'prestadores de serviço'],
 };
 
 type WarningSign = { stat: string; fact: string; source: string; url: string };
@@ -151,6 +131,8 @@ export const warningSigns = {
 
 export type Solution = {
   area: string;
+  // Print da solução (arquivo em src/assets/prints) e a legenda dele.
+  shot?: { file: 'painel-hoje' | 'site-personal'; alt: string; caption: string };
   title: string;
   description: string;
   features: string[];
@@ -175,6 +157,11 @@ export const solutions = {
         'Você acompanha agenda e conversas por um painel no celular',
       ],
       project: 'Agente de IA no WhatsApp com painel para o dono',
+      shot: {
+        file: 'painel-hoje',
+        alt: 'Tela Hoje do painel no celular: três atendimentos do dia com horário, cliente, serviço e botões Concluído, Faltou e Cancelar',
+        caption: 'Painel do dono no celular, com dados de demonstração.',
+      },
     },
     {
       area: 'Agenda',
@@ -201,9 +188,14 @@ export const solutions = {
     {
       area: 'Presença online',
       title: 'Site profissional: abre rápido e leva direto para o seu WhatsApp',
-      description: 'Este site, por exemplo, abre em 1,5 s no celular no teste de velocidade do Google (Lighthouse).',
+      description: 'Este site, por exemplo, tira mais de 90 de 100 em velocidade no celular no teste do Google (Lighthouse).',
       features: ['Serviços, planos e depoimentos', 'Botão para o WhatsApp com mensagem pronta'],
       project: 'Site de consultoria para personal trainer',
+      shot: {
+        file: 'site-personal',
+        alt: 'Página inicial do site de um personal trainer, com título grande, botões de planos e resultados e foto do profissional',
+        caption: 'Site entregue para um personal trainer.',
+      },
     },
   ] satisfies Solution[],
 };
