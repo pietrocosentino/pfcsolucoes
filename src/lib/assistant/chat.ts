@@ -80,17 +80,20 @@ type FetchLike = (url: string, init: RequestInit) => Promise<Response>;
 const fallbackHandoffText = (name: string) =>
   `${name ? `Obrigada pela confiança, ${name}!` : 'Obrigada pela confiança!'} O Pietro vai cuidar pessoalmente do seu caso. É só tocar no botão abaixo para abrir o WhatsApp dele com o resumo da nossa conversa.`;
 
-// As palavras do próprio visitante, usadas quando a IA encaminha sem preencher o
+// As palavras do próprio visitante, último recurso quando a IA não preenche o
 // pedido: é melhor o Pietro ler o que a pessoa escreveu do que um texto genérico.
 function visitorWords(messages: ChatMessage[]): string {
   return messages
     .filter((m) => m.role === 'user')
     .slice(-3)
-    .map((m) => m.text.replace(/\s+/g, ' ').trim())
+    .map((m) => m.text.replace(/\s+/g, ' ').trim().replace(/([^.!?])$/, '$1.'))
     .join(' ');
 }
 
 const blank = (value: unknown) => typeof value !== 'string' || !value.trim();
+const sparse = (input: HandoffInput) => blank(input.necessidade) && blank(input.motivo);
+
+type ApiReply = { content?: ContentBlock[]; stop_reason?: string };
 
 export async function runTurn(
   messages: ChatMessage[],
@@ -98,7 +101,7 @@ export async function runTurn(
 ): Promise<ChatReply> {
   const userTurns = messages.filter((m) => m.role === 'user').length;
   const canHandoff = userTurns >= MIN_TURNS_FOR_HANDOFF;
-  const body = JSON.stringify({
+  const request = {
     model: MODEL,
     max_tokens: 600,
     system: [
@@ -108,40 +111,54 @@ export async function runTurn(
     // Sem a ferramenta, a IA não tem como encaminhar cedo demais.
     ...(canHandoff ? { tools: [handoffTool] } : {}),
     messages: toApiMessages(messages),
-  });
+  };
 
-  // De vez em quando o modelo encerra o turno sem escrever nada; uma segunda
-  // tentativa costuma resolver sem o visitante perceber.
-  for (let attempt = 1; attempt <= 2; attempt++) {
+  const call = async (extra: Record<string, unknown> = {}): Promise<ApiReply> => {
     const response = await fetchImpl('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body,
+      body: JSON.stringify({ ...request, ...extra }),
       signal: AbortSignal.timeout(30_000),
     });
-
     if (!response.ok) {
       // Registra só o status e o tipo do erro, nunca a conversa nem a chave.
       const detail = (await response.json().catch(() => ({}))) as { error?: { type?: string } };
       console.error('claude_failed', response.status, detail.error?.type ?? '');
       throw new ChatError('O atendente está indisponível agora.', 502);
     }
+    return (await response.json()) as ApiReply;
+  };
 
-    const data = (await response.json()) as { content?: ContentBlock[]; stop_reason?: string };
-    const content = data.content ?? [];
-    const text = content
+  const textOf = (data: ApiReply) =>
+    (data.content ?? [])
       .filter((b) => b.type === 'text' && b.text?.trim())
       .map((b) => b.text!.trim())
       .join('\n\n');
-    const call = canHandoff ? content.find((b) => b.type === 'tool_use' && b.name === HANDOFF_TOOL) : undefined;
+  const handoffOf = (data: ApiReply) =>
+    canHandoff ? (data.content ?? []).find((b) => b.type === 'tool_use' && b.name === HANDOFF_TOOL) : undefined;
 
-    if (call) {
-      const input: HandoffInput = { ...(call.input ?? {}) };
-      if (blank(input.necessidade) && blank(input.motivo)) input.necessidade = visitorWords(messages);
+  // De vez em quando o modelo encerra o turno sem escrever nada ou para no meio;
+  // uma segunda tentativa costuma resolver sem o visitante perceber.
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const data = await call();
+    const text = textOf(data);
+    const tool = handoffOf(data);
+
+    if (tool) {
+      let input: HandoffInput = { ...(tool.input ?? {}) };
+      if (sparse(input)) {
+        // Encaminhou com pressa e sem o pedido: pede só o resumo, obrigando o uso da ferramenta.
+        console.error('handoff_sparse');
+        const retry = handoffOf(await call({ tool_choice: { type: 'tool', name: HANDOFF_TOOL } }).catch(() => ({})));
+        if (retry && !sparse(retry.input ?? {})) input = { ...input, ...retry.input };
+        else input.necessidade = visitorWords(messages);
+      }
       const name = typeof input.nome === 'string' ? input.nome.trim().split(/\s+/)[0] : '';
       return { reply: text || fallbackHandoffText(name), handoff: buildHandoff(input) };
     }
-    if (text) return { reply: text };
+
+    const cut = data.stop_reason !== undefined && data.stop_reason !== 'end_turn' && data.stop_reason !== 'stop_sequence';
+    if (text && !cut) return { reply: text };
     console.error('claude_empty', attempt, data.stop_reason ?? '');
   }
   throw new ChatError('O atendente não conseguiu responder. Tente de novo.', 502);
