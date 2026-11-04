@@ -77,3 +77,47 @@ test('poucos botões de conversa: topo e contato, além do botão flutuante e do
   const ctas = main.match(/<a\b[^>]*data-chat-open[^>]*>/g) ?? [];
   assert.equal(ctas.length, 2);
 });
+
+test('robots.txt libera o site e aponta o sitemap', () => {
+  const robots = readFileSync(new URL('../dist/client/robots.txt', import.meta.url), 'utf8');
+  assert.match(robots, /Allow: \//);
+  assert.match(robots, /Sitemap: https:\/\/pfcsolucoes\.com\.br\/sitemap-index\.xml/);
+});
+
+test('sitemap lista as páginas sem barra no fim e sem a 404', () => {
+  const sitemap = readFileSync(new URL('../dist/client/sitemap-0.xml', import.meta.url), 'utf8');
+  for (const url of ['https://pfcsolucoes.com.br/</loc>', '/sobre</loc>', '/privacidade</loc>']) assert.ok(sitemap.includes(url), url);
+  assert.doesNotMatch(sitemap, /404/);
+  assert.doesNotMatch(sitemap, /\/sobre\/</);
+});
+
+test('canonical sem barra no fim, igual aos links internos', () => {
+  const doc = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
+  assert.match(doc, /<link rel="canonical" href="https:\/\/pfcsolucoes\.com\.br\/sobre">/);
+});
+
+test('título da home tem os termos de busca e o h1 diz o que a empresa faz', () => {
+  assert.match(html, /<title>Sistemas sob medida para pequenas empresas \| PFC Soluções<\/title>/);
+  const h1 = html.match(/<h1\b[\s\S]*?<\/h1>/)[0];
+  assert.match(h1, /Sistemas sob medida para autônomos e pequenas empresas/);
+});
+
+test('dados estruturados da empresa são JSON válido', () => {
+  const raw = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
+  const data = JSON.parse(raw);
+  const org = data['@graph'].find((n) => n['@type'] === 'Organization');
+  assert.equal(org.email, 'contato@pfcsolucoes.com.br');
+  assert.equal(org.url, 'https://pfcsolucoes.com.br/');
+});
+
+test('página 404 existe, tem um h1 e não é indexada', () => {
+  const doc = readFileSync(new URL('../dist/client/404.html', import.meta.url), 'utf8');
+  assert.equal((doc.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(doc, /<meta name="robots" content="noindex">/);
+  assert.doesNotMatch(doc, /rel="canonical"/);
+});
+
+test('fonte servida pelo próprio site, sem Google Fonts', () => {
+  assert.doesNotMatch(html, /fonts\.googleapis|fonts\.gstatic/);
+  assert.match(html, /@font-face/);
+});

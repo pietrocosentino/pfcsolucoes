@@ -35,7 +35,7 @@ export const aboutPage = {
 
 export const privacyPage = {
   title: 'Política de privacidade',
-  updatedAt: '28 de outubro de 2026',
+  updatedAt: '4 de novembro de 2026',
   lead: 'Explicamos aqui, de forma direta, quais dados pessoais este site trata, para quê e quais são os seus direitos, de acordo com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).',
   sections: [
     {
@@ -57,7 +57,6 @@ export const privacyPage = {
       items: [
         'Anthropic, empresa que fornece a inteligência artificial da marcIA: recebe o texto da conversa para gerar as respostas. O processamento acontece em servidores fora do Brasil.',
         'Vercel, empresa que hospeda o site: processa os dados técnicos de acesso. Também fica fora do Brasil.',
-        'Google Fonts: o site carrega a fonte de texto a partir dos servidores do Google, que recebem o endereço IP do seu acesso.',
         'Meta (WhatsApp e Instagram): somente quando você escolhe falar com a gente por esses aplicativos.',
         'Não vendemos nem cedemos seus dados para publicidade.',
       ],
