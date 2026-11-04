@@ -1,39 +1,41 @@
 ---
+// O agente de IA, produto principal, aparece em destaque; os outros em grade menor.
 import Section from './Section.astro';
 import SolutionCard from './SolutionCard.astro';
 import { contact, solutions } from '../data/site';
+
+const [main, ...others] = solutions.items;
 ---
 
-<Section id="solucoes" tone="band" eyebrow={solutions.eyebrow} title={solutions.title} lead={solutions.lead}>
+<Section id="solucoes" tone="band" title={solutions.title} lead={solutions.lead}>
+  <SolutionCard solution={main} featured />
   <div class="cards">
-    {solutions.items.map((solution) => <SolutionCard solution={solution} />)}
+    {others.map((solution) => <SolutionCard solution={solution} />)}
   </div>
-  <p class="more">{solutions.closing}</p>
-  <p class="next"><a href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{solutions.more}</a></p>
+  <p class="more">
+    {solutions.closing} <a href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{solutions.more}</a>
+  </p>
 </Section>
 
 <style>
   .cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
+    margin-top: 18px;
   }
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     .cards {
       grid-template-columns: 1fr;
     }
   }
-  .next {
-    margin-top: 8px;
-  }
-  .next a {
-    font-weight: 700;
-    color: var(--color-accent-text);
-  }
   .more {
     margin-top: 28px;
-    font-size: 1.125rem;
-    font-weight: 700;
+    font-size: 1.0625rem;
     color: var(--color-ink);
+  }
+  .more a {
+    font-weight: 700;
+    color: var(--color-accent-text);
   }
 </style>

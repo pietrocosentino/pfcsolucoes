@@ -15,7 +15,6 @@ export function systemPrompt(): string {
       (step, i) =>
         `${i + 1}. ${step.title} (${step.summary}): ${step.text} O cliente recebe: ${step.deliverable} Participação do cliente: ${step.participation}`,
     ),
-    `Compromissos: ${process.principles.map((p) => `${p.title}: ${p.text}`).join(' ')}`,
   ].join('\n');
   const dataText = warningSigns.items.map((d) => `- ${d.stat} ${d.fact} (Fonte: ${d.source})`).join('\n');
   const p = oferta.piloto;

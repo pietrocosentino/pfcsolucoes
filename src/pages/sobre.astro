@@ -29,17 +29,10 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
 
   <Section id="proposito" tone="band" title={aboutPage.purpose.title}>
     <p class="prose purpose">{aboutPage.purpose.text}</p>
-    <ul class="values" aria-label="Nossos valores">
-      {aboutPage.values.map((value) => (
-        <li>
-          <strong>{value.title}</strong>
-          <span>{value.text}</span>
-        </li>
-      ))}
-    </ul>
+    <p class="prose how">{aboutPage.howWeWork}</p>
   </Section>
 
-  <Section id="fundador" eyebrow="Quem está por trás" title={about.name}>
+  <Section id="fundador" title={about.name}>
     <div class="prose">
       <p>{about.bio}</p>
     </div>
@@ -70,52 +63,21 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
     display: block;
     margin-bottom: 28px;
   }
-  .values {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .values li {
-    display: grid;
-    align-content: start;
-    gap: 4px;
-    padding: 20px;
-    border-radius: var(--radius-md);
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-  }
-  .values strong {
-    color: var(--color-ink);
-  }
-  .values span {
-    color: var(--color-muted);
-  }
-  .built {
-    display: grid;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .built li {
-    position: relative;
-    padding-left: 28px;
+  .how {
+    margin-top: 16px;
     font-weight: 600;
     color: var(--color-ink);
   }
-  .built li::before {
-    content: '';
-    position: absolute;
-    left: 2px;
-    top: 0.45em;
-    width: 12px;
-    height: 7px;
-    border-left: 2.5px solid var(--color-accent-text);
-    border-bottom: 2.5px solid var(--color-accent-text);
-    transform: rotate(-45deg);
+  .built {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding-left: 1.1em;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .built li::marker {
+    color: var(--color-muted);
   }
   .actions {
     display: flex;

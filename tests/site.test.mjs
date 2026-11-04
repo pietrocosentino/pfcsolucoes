@@ -191,7 +191,7 @@ test('logo do topo tem o mesmo nome visível e leva à página inicial fora dela
 
 test('títulos das seções usam a palavra-chave e sinônimos', () => {
   const h2 = [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => m[1].replace(/<[^>]+>/g, ''));
-  assert.ok(h2.filter((t) => /sob medida/i.test(t)).length >= 4, h2.join(' | '));
+  assert.ok(h2.filter((t) => /sob medida/i.test(t)).length >= 2, h2.join(' | '));
   assert.ok(h2.some((t) => /aplicativo pronto/i.test(t)));
   const h3 = [...html.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => m[1]);
   assert.ok(h3.some((t) => t.startsWith('Agente de IA no WhatsApp:')));
@@ -268,4 +268,16 @@ test('chat traz respostas prontas', () => {
 test('"escopo, prazo" aparece uma vez só na página inicial', () => {
   const text = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, ' ').toLowerCase();
   assert.equal(text.split('escopo, prazo').length - 1, 1);
+});
+
+test('sem a linha laranja nas seções (só no topo) e sem repetir "sob medida"', () => {
+  const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+  assert.equal((main.match(/class="eyebrow"/g) ?? []).length, 1);
+  const text = main.replace(/<(script|style)[\s\S]*?<\/\1>/g, '').replace(/<[^>]+>/g, ' ').toLowerCase();
+  assert.ok(text.split('sob medida').length - 1 <= 10);
+});
+
+test('agente de IA em destaque e listas sem ícone repetido', () => {
+  assert.match(html, /class="card featured"/);
+  assert.doesNotMatch(html, /class="principles"/);
 });

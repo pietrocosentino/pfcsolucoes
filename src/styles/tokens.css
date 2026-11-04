@@ -27,8 +27,8 @@
 
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
   --radius-pill: 999px;
   --content-width: 1080px;
   --section-space: clamp(56px, 8vw, 88px);

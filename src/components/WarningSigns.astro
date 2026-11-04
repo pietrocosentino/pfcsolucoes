@@ -3,19 +3,15 @@ import Section from './Section.astro';
 import { warningSigns } from '../data/site';
 ---
 
-<Section id="sinais" eyebrow={warningSigns.eyebrow} title={warningSigns.title} lead={warningSigns.lead}>
+<Section id="sinais" title={warningSigns.title} lead={warningSigns.lead}>
   <ul class="signs">
     {warningSigns.items.map((item) => (
       <li>
         <p class="fact"><strong class="stat">{item.stat}</strong> {item.fact}</p>
-        <p class="cost">{item.cost}</p>
         <p class="source">Fonte: <a href={item.url} target="_blank" rel="noopener noreferrer">{item.source}<span class="visually-hidden"> (abre em nova aba)</span></a></p>
       </li>
     ))}
   </ul>
-  <p class="closing">
-    {warningSigns.closing} <a href="#como-funciona">Veja como trabalhamos</a>
-  </p>
 </Section>
 
 <style>
@@ -49,9 +45,6 @@ import { warningSigns } from '../data/site';
     line-height: 1;
     letter-spacing: -0.03em;
     color: var(--color-accent-text);
-  }
-  .cost {
-    color: var(--color-muted);
   }
   .source {
     margin-top: auto;

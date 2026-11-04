@@ -13,8 +13,11 @@ export const aboutPage = {
   },
   purpose: {
     title: 'O que nos move',
-    text: 'Quem trabalha sozinho ou com uma equipe pequena perde cliente por não conseguir responder a tempo, perde horário por esquecimento e perde dinheiro por não saber quanto sobra no mês. A tecnologia que resolve isso existe, mas costuma ser cara, genérica ou complicada. Nosso trabalho é torná-la sob medida, simples e acessível.',
+    text: 'Quem trabalha sozinho ou com uma equipe pequena perde cliente por não conseguir responder a tempo, perde horário por esquecimento e perde dinheiro por não saber quanto sobra no mês. A tecnologia que resolve isso existe, mas costuma ser cara, genérica ou complicada. Nosso trabalho é fazer essa tecnologia caber no tamanho de um negócio pequeno.',
   },
+  // Como o trabalho funciona na prática (no lugar dos cartões de valores).
+  howWeWork:
+    'Quem levanta a sua rotina é quem constrói o seu sistema: você fala direto com o Pietro do começo ao fim, sem repasse para outra equipe.',
   values: [
     { title: 'Problema primeiro', text: 'Entendemos a sua rotina antes de propor qualquer sistema.' },
     { title: 'Sem surpresas', text: 'Escopo, prazo e investimento combinados antes de começar.' },
