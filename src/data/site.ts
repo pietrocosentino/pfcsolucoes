@@ -5,8 +5,10 @@ export const brand = {
   name: 'PFC Soluções',
   fullName: 'PFC Soluções em Tecnologia',
   tagline: 'Soluções em Tecnologia',
+  // Título da página inicial no Google: o que fazemos, para quem, e a marca.
+  seoTitle: 'Sistemas sob medida para pequenas empresas | PFC Soluções',
   description:
-    'Sistemas sob medida para autônomos e pequenas empresas: agente de IA no WhatsApp, agendamento online, controle financeiro e sites profissionais.',
+    'Sistemas sob medida para autônomos e pequenas empresas: agente de IA no WhatsApp, agendamento online, controle financeiro e sites. Atendimento em todo o Brasil.',
   shareText: 'Seu negócio perde clientes e dinheiro onde você não vê. A gente encontra e resolve.',
 };
 

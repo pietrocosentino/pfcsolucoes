@@ -19,7 +19,7 @@ const year = new Date().getFullYear();
 
     {footer.columns.map((column) => (
       <nav class="column" aria-label={column.title}>
-        <h2>{column.title}</h2>
+        <p class="heading">{column.title}</p>
         <ul>
           {column.links.map((link) => (
             <li><a href={link.href}>{link.label}</a></li>
@@ -29,7 +29,7 @@ const year = new Date().getFullYear();
     ))}
 
     <div class="column contact">
-      <h2>Contato</h2>
+      <p class="heading">Contato</p>
       <ul>
         <li>
           <a href="/#contato" data-chat-open aria-haspopup="dialog">
@@ -87,7 +87,7 @@ const year = new Date().getFullYear();
     justify-content: flex-start;
     margin-left: -10px;
   }
-  .column h2 {
+  .column .heading {
     margin-bottom: 10px;
     font-size: 0.8125rem;
     font-weight: 700;

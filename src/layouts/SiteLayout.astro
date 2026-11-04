@@ -8,12 +8,13 @@ import ChatWidget from '../components/ChatWidget.astro';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noindex } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} noindex={noindex}>
   <SiteHeader />
   <main id="conteudo" tabindex="-1">
     <slot />

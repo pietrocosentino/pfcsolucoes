@@ -1,0 +1,30 @@
+---
+// Página para endereços que não existem: mantém o visitante no site.
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Button from '../components/Button.astro';
+import { brand, contact } from '../data/site';
+---
+
+<SiteLayout title={`Página não encontrada | ${brand.name}`} description="Esta página não existe ou mudou de endereço." noindex>
+  <PageIntro
+    eyebrow="Erro 404"
+    title="Não encontramos esta página"
+    lead="O endereço pode ter mudado ou estar escrito de outro jeito. Veja por onde continuar:"
+  >
+    <div class="actions">
+      <Button href="/">Ir para a página inicial</Button>
+      <Button href="/#solucoes" variant="secondary">Ver as soluções</Button>
+      <Button href={contact.whatsapp} variant="secondary" external chat>{contact.ctaLabel}</Button>
+    </div>
+  </PageIntro>
+</SiteLayout>
+
+<style>
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+</style>

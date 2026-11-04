@@ -1,5 +1,19 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "pfcsolucoes.vercel.app"
+        }
+      ],
+      "destination": "https://pfcsolucoes.com.br/:path*",
+      "permanent": true
+    }
+  ]
 }

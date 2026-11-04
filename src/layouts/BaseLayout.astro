@@ -1,17 +1,54 @@
 ---
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import '@fontsource/inter/latin-700.css';
+import '@fontsource/inter/latin-800.css';
 import '../styles/global.css';
-import { brand } from '../data/site';
+import { about, brand, contact } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title = `${brand.name} | ${brand.tagline}`, description = brand.description } = Astro.props;
+const { title = brand.seoTitle, description = brand.description, noindex = false } = Astro.props;
 
 // Endereços absolutos: o WhatsApp e o Instagram só mostram a prévia com URL completa.
-const canonical = new URL(Astro.url.pathname, Astro.site);
+// Sem barra no fim, igual aos links internos (/sobre).
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const canonical = new URL(path, Astro.site);
 const ogImage = new URL('/og-image.png', Astro.site);
+
+// Dados estruturados: ajudam o Google a entender quem é a empresa e o que ela faz.
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': new URL('/#empresa', Astro.site).href,
+      name: brand.fullName,
+      alternateName: brand.name,
+      url: Astro.site!.href,
+      logo: new URL('/apple-touch-icon.png', Astro.site).href,
+      description: brand.description,
+      email: contact.email,
+      areaServed: { '@type': 'Country', name: 'Brasil' },
+      founder: { '@type': 'Person', name: about.name, url: about.portfolio.href },
+      sameAs: [contact.instagramProfile],
+      knowsAbout: ['Agente de IA no WhatsApp', 'Agendamento online', 'Controle financeiro', 'Sites profissionais', 'Sistemas sob medida'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': new URL('/#site', Astro.site).href,
+      name: brand.name,
+      url: Astro.site!.href,
+      inLanguage: 'pt-BR',
+      publisher: { '@id': new URL('/#empresa', Astro.site).href },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -21,7 +58,7 @@ const ogImage = new URL('/og-image.png', Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="theme-color" content="#E4EBE2" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)" />
 
@@ -32,7 +69,7 @@ const ogImage = new URL('/og-image.png', Astro.site);
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content={brand.name} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={brand.shareText} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
@@ -40,12 +77,7 @@ const ogImage = new URL('/og-image.png', Astro.site);
     <meta property="og:image:alt" content={`Logo da ${brand.fullName}`} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
