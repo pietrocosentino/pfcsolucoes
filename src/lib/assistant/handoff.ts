@@ -6,6 +6,7 @@ export type HandoffInput = {
   negocio?: unknown;
   necessidade?: unknown;
   contexto?: unknown;
+  motivo?: unknown;
 };
 
 export type Handoff = { url: string; summary: string };
@@ -21,6 +22,7 @@ export function buildHandoff(input: HandoffInput): Handoff {
   const negocio = clean(input.negocio, 120);
   const necessidade = clean(input.necessidade, 400) || 'Quero saber mais sobre as soluções.';
   const contexto = clean(input.contexto, 400);
+  const motivo = clean(input.motivo, 200);
 
   const lines = [
     'Olá, Pietro! Vim pelo site da PFC Soluções e conversei com a marcIA.',
@@ -28,6 +30,7 @@ export function buildHandoff(input: HandoffInput): Handoff {
     negocio && sentence(negocio),
     sentence(necessidade),
     contexto && sentence(contexto),
+    motivo && sentence(motivo),
   ].filter(Boolean);
 
   const summary = lines.join('\n');
