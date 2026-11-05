@@ -140,7 +140,6 @@ export type Solution = {
   title: string;
   description: string;
   features: string[];
-  project?: string;
 };
 
 export const solutions = {
