@@ -8,18 +8,21 @@ interface Props {
   lead?: string;
   tone?: 'default' | 'band' | 'dark';
   align?: 'start' | 'center';
+  // Título e apoio à esquerda, conteúdo à direita (computador).
+  split?: boolean;
 }
 
-const { id, eyebrow, title, lead, tone = 'default', align = 'start' } = Astro.props;
+const { id, eyebrow, title, lead, tone = 'default', align = 'start', split = false } = Astro.props;
 const headingId = `${id}-titulo`;
 ---
 
 <section id={id} class:list={['section', `section--${tone}`]} aria-labelledby={headingId}>
-  <div class="wrap">
+  <div class:list={['wrap', { split }]}>
     <header class:list={['section-head', `section-head--${align}`]}>
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h2 id={headingId}>{title}</h2>
       {lead && <p class="lead">{lead}</p>}
+      <slot name="head" />
     </header>
     <slot />
   </div>
@@ -56,6 +59,23 @@ const headingId = `${id}-titulo`;
     display: grid;
     gap: var(--space-3);
     margin-bottom: var(--space-12);
+  }
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+  .split .section-head {
+    margin-bottom: 0;
+  }
+  @media (max-width: 900px) {
+    .split {
+      display: block;
+    }
+    .split .section-head {
+      margin-bottom: var(--space-8);
+    }
   }
   .section-head--center {
     justify-items: center;

@@ -90,6 +90,10 @@ const home = Astro.url.pathname === '/';
     padding-block: var(--space-2);
     font-size: var(--text-sm);
   }
+  /* Enquanto o topo da página inicial está na tela, o botão do topo é a ação; aqui fica só o texto. */
+  :global(body.hero-visible) .site-header :global(.header-cta) {
+    border-color: transparent;
+  }
 
   /* Celular: a navegação desce para uma segunda linha, toda visível. */
   @media (max-width: 760px) {

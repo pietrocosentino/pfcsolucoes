@@ -1,7 +1,6 @@
 ---
 // Quem está por trás: texto à esquerda e fatos verificáveis (registro público) à direita.
 import Section from './Section.astro';
-import Button from './Button.astro';
 import { about, brand } from '../data/site';
 
 const facts = [
@@ -12,14 +11,14 @@ const facts = [
 ];
 ---
 
-<Section id="sobre" title="Você fala com quem constrói">
+<Section id="sobre" tone="band" title="Você fala com quem constrói">
   <div class="about">
     <div class="bio">
       <p class="lead">{about.short}</p>
-      <div class="actions">
-        <Button href="/sobre" variant="secondary">Conheça a PFC</Button>
-        <Button href={about.linkedin} variant="secondary" external>Pietro no LinkedIn</Button>
-      </div>
+      <p class="links">
+        <a href="/sobre">Conhecer a PFC</a>
+        <a href={about.linkedin} target="_blank" rel="noopener noreferrer">Pietro no LinkedIn<span class="visually-hidden"> (abre em nova aba)</span></a>
+      </p>
     </div>
     <dl class="facts">
       {facts.map((fact) => (
@@ -43,6 +42,12 @@ const facts = [
     display: grid;
     gap: var(--space-6);
     justify-items: start;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    font-weight: var(--weight-bold);
   }
   .facts {
     display: grid;

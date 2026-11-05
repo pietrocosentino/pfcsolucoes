@@ -267,7 +267,10 @@ const greeting = assistant.greeting;
   // alta que a tela por causa do print).
   const heroActions = document.querySelector('#inicio .actions');
   if (heroActions && 'IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => launcher.classList.toggle('is-away', entry.isIntersecting)).observe(heroActions);
+    new IntersectionObserver(([entry]) => {
+      launcher.classList.toggle('is-away', entry.isIntersecting);
+      document.body.classList.toggle('hero-visible', entry.isIntersecting);
+    }).observe(heroActions);
   }
 
   document.addEventListener('click', (event) => {

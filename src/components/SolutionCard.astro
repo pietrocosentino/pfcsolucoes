@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import SolutionIcon from './SolutionIcon.astro';
-import type { Solution } from '../data/site';
+import { contact, type Solution } from '../data/site';
 import painelHoje from '../assets/prints/painel-hoje.png';
 
 const shots = { 'painel-hoje': painelHoje };
@@ -28,6 +28,11 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     <ul class="features">
       {solution.features.map((feature) => <li>{feature}</li>)}
     </ul>
+  )}
+  {solution.link?.href ? (
+    <a class="card-link" href={solution.link.href}>{solution.link.label}</a>
+  ) : (
+    <a class="card-link" href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{solution.link?.label ?? 'Conversar sobre isto'}</a>
   )}
   </div>
   {solution.shot && (
@@ -70,8 +75,12 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     color: var(--color-text-muted);
   }
   .featured {
-    padding: var(--space-6) var(--space-8);
     border-top: 3px solid var(--color-action);
+  }
+  .card-link {
+    margin-top: auto;
+    padding-top: var(--space-2);
+    font-weight: var(--weight-bold);
   }
   .featured h3 {
     font-size: var(--text-h2);
@@ -102,7 +111,7 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     display: grid;
     grid-template-columns: 1fr var(--shot-width);
     gap: var(--space-8);
-    align-items: center;
+    align-items: stretch;
   }
   .featured .shot.painel-hoje :global(img) {
     border-radius: var(--radius-device-screen);

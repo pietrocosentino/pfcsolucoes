@@ -3,7 +3,7 @@ import Section from './Section.astro';
 import { process } from '../data/site';
 ---
 
-<Section id="como-funciona" tone="band" title={process.title} lead={process.lead}>
+<Section id="como-funciona" title={process.title} lead={process.lead}>
   <ol class="steps">
     {process.steps.map((step, index) => (
       <li class="step">
