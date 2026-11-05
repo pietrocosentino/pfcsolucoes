@@ -43,7 +43,7 @@ import shot from '../assets/prints/marcia-conversa.png';
   }
   .grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr var(--device-width);
     gap: clamp(var(--space-8), 5vw, var(--space-16));
     align-items: center;
   }
@@ -51,25 +51,17 @@ import shot from '../assets/prints/marcia-conversa.png';
     display: grid;
     gap: var(--space-4);
   }
-  /* A sobrancelha faz parte do h1 (diz ao Google o que a empresa faz), com o visual de sempre. */
-  h1 .eyebrow {
-    display: block;
-    margin-bottom: var(--space-4);
-  }
   .highlight {
     display: block;
     color: var(--color-accent);
   }
   .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
     margin-top: var(--space-2);
   }
   .note {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
-    max-width: 52ch;
+    max-width: var(--measure-short);
   }
 
   .shot {
@@ -79,7 +71,7 @@ import shot from '../assets/prints/marcia-conversa.png';
     margin: 0;
   }
   .phone {
-    width: min(300px, 80vw);
+    width: min(var(--device-width), 80vw);
     padding: var(--space-2);
     border-radius: var(--radius-device);
     background: var(--dark-bg);
@@ -92,7 +84,7 @@ import shot from '../assets/prints/marcia-conversa.png';
     border-radius: var(--radius-device-screen);
   }
   .shot figcaption {
-    max-width: 300px;
+    max-width: var(--device-width);
     font-size: var(--text-sm);
     text-align: center;
     color: var(--color-text-muted);
@@ -103,7 +95,7 @@ import shot from '../assets/prints/marcia-conversa.png';
       grid-template-columns: 1fr;
     }
   }
-  @media (max-width: 420px) {
+  @media (max-width: 560px) {
     .actions :global(.btn) {
       width: 100%;
       padding-inline: var(--space-4);
