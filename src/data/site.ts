@@ -93,7 +93,7 @@ export const footer = {
 
 export const hero = {
   title: 'Sistemas sob medida para pequenos negócios',
-  lead: 'Atendimento no WhatsApp, agenda e finanças para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. Cada sistema segue a rotina do seu negócio, e você usa tudo pelo celular.',
+  lead: 'Atendimento no WhatsApp, agenda e finanças para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. Você conta como o seu negócio funciona hoje e recebe um sistema que faz o mesmo trabalho, sem planilha nem papel, pelo celular.',
   primaryCta: 'Falar com a atendente virtual',
   // Print real da marcIA (conversa de teste no site em produção).
   shotCaption: 'Conversa de teste com a marcIA.',
@@ -139,10 +139,8 @@ export type Solution = {
 };
 
 export const solutions = {
-  title: 'Exemplos do que já construímos',
-  lead: 'Projetos de demonstração construídos pela PFC, para mostrar como cada solução funciona.',
-  closing: 'Precisa de outra coisa?',
-  more: 'Fale com a atendente virtual',
+  title: 'Veja funcionando',
+  lead: 'Projetos de demonstração construídos pela PFC, com dados fictícios, para você ver cada solução antes de contratar.',
   items: [
     {
       area: 'Atendimento',
@@ -152,7 +150,7 @@ export const solutions = {
       shot: {
         file: 'painel-hoje',
         alt: 'Tela Hoje do painel no celular: três atendimentos do dia com horário, cliente, serviço e botões Concluído, Faltou e Cancelar',
-        caption: 'Painel do dono, com dados de demonstração.',
+        caption: 'Painel do dono do negócio.',
       },
     },
     {
@@ -237,9 +235,9 @@ export const comparison = {
   title: 'Sob medida ou aplicativo pronto?',
   columns: ['Aplicativo pronto', 'Sistema sob medida'],
   rows: [
-    { label: 'Para começar', ready: 'Você assina e configura', custom: 'Começa com um levantamento da sua rotina' },
+    { label: 'Para começar', ready: 'Você assina e configura sozinho', custom: 'Uma conversa de 1 hora sobre como o seu negócio funciona' },
     { label: 'Partes do negócio', ready: 'Costuma cobrir uma; o resto fica em planilha', custom: 'Atendimento, agenda, cobrança e finanças juntos' },
-    { label: 'Ajustes', ready: 'Pelo suporte, quando o recurso existe', custom: 'Direto com quem construiu' },
+    { label: 'Pedido de mudança', ready: 'Entra na fila do suporte e pode não ser atendido', custom: 'Você pede ao Pietro e combina o prazo' },
     { label: 'Valor', ready: 'Mensalidade por plano', custom: 'Definido na proposta' },
   ],
 };

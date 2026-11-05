@@ -1,7 +1,7 @@
 ---
 import Section from './Section.astro';
 import Button from './Button.astro';
-import { about, contact } from '../data/site';
+import { about } from '../data/site';
 ---
 
 <Section id="sobre" tone="band" title="Quem faz">
@@ -10,7 +10,7 @@ import { about, contact } from '../data/site';
       <p class="lead">{about.short}</p>
       <div class="actions">
         <Button href="/sobre">Conheça a PFC</Button>
-        <Button href={contact.linkedinCompany} variant="secondary" external>LinkedIn da PFC</Button>
+        <Button href={about.linkedin} variant="secondary" external>Pietro no LinkedIn</Button>
       </div>
     </div>
   </div>

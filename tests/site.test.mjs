@@ -72,10 +72,10 @@ test('rodapé leva ao Instagram e não mostra o WhatsApp', () => {
   assert.doesNotMatch(footer, /wa\.me/);
 });
 
-test('chamadas para a marcIA: topo, soluções e contato', () => {
+test('chamadas para a marcIA: topo e contato', () => {
   const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
   const ctas = main.match(/<a\b[^>]*data-chat-open[^>]*>/g) ?? [];
-  assert.equal(ctas.length, 3);
+  assert.equal(ctas.length, 2);
   for (const tag of ctas) assert.match(tag, /href="https:\/\/wa\.me\//, 'sem JavaScript, o link leva ao WhatsApp');
 });
 

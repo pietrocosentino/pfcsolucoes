@@ -4,7 +4,7 @@
 // clique abre o atendente de IA (o href fica como alternativa sem JavaScript).
 interface Props {
   href: string;
-  variant?: 'primary' | 'secondary' | 'inverse';
+  variant?: 'primary' | 'secondary' | 'inverse' | 'inverse-outline';
   external?: boolean;
   chat?: boolean;
   class?: string;
@@ -70,7 +70,15 @@ const { href, variant = 'primary', external = false, chat = false, class: classN
   .btn--inverse:hover {
     background: var(--dark-action-hover);
   }
-  .btn--inverse:focus-visible {
+  .btn--inverse-outline {
+    border-color: var(--dark-text);
+    color: var(--dark-text);
+  }
+  .btn--inverse-outline:hover {
+    background: var(--overlay-on-dark);
+  }
+  .btn--inverse:focus-visible,
+  .btn--inverse-outline:focus-visible {
     outline-color: var(--dark-focus);
   }
 </style>
