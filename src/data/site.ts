@@ -36,7 +36,7 @@ const whatsappMessage = 'Olá! Vim pelo site da PFC Soluções e quero saber mai
 export const contact = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
-  linkedinCompany: 'https://www.linkedin.com/company/pfc-solu%C3%A7%C3%B5es/',
+  linkedinCompany: 'https://www.linkedin.com/company/pfc-solucoes/',
   email: 'contato@pfcsolucoes.com.br',
   ctaLabel: 'Falar com a atendente virtual',
 };
