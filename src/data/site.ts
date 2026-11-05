@@ -273,7 +273,7 @@ export const faq = {
     },
     {
       question: 'Quanto tempo leva?',
-      answer: 'Um site simples entra no ar em até 10 dias depois que você aprova a versão final. Para os outros sistemas, o prazo depende do escopo e está na proposta.',
+      answer: 'Um site simples entra no ar em até 10 dias depois que você aprova a versão final. Um agente de IA entra no ar a partir de 15 dias depois que você valida o que ele vai fazer. Para os outros sistemas, o prazo depende do escopo e está na proposta.',
     },
     {
       question: 'Preciso entender de tecnologia?',

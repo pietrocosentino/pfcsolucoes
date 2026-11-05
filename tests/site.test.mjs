@@ -296,6 +296,7 @@ test('preço e prazo do site aparecem nas perguntas frequentes', () => {
   assert.doesNotMatch(html, /R\$ 150/);
   assert.doesNotMatch(html, /R\$ 1\.500/);
   assert.match(html, /em até 10 dias depois que você aprova a versão final/);
+  assert.match(html, /a partir de 15 dias depois que você valida/);
   assert.doesNotMatch(html, /PREENCHER/);
 });
 

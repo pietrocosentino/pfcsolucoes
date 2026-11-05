@@ -10,7 +10,8 @@ export const oferta = {
     contrapartida:
       'autorizar o uso dos números do relatório de 30 dias e, se estiver satisfeito, dar um depoimento',
   },
-  prazoDias: 7,
+  // Prazo mínimo: o agente entra no ar a partir deste número de dias depois que o cliente valida o que ele vai fazer.
+  prazoDias: 15,
   inclui: [
     'Atendimento por IA no WhatsApp, com o nome e o tom que você escolher',
     'Agenda online que só mostra horários em que o serviço inteiro cabe',

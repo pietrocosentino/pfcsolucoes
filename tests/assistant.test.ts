@@ -214,3 +214,10 @@ test('resumo não repete o mesmo texto em dois campos', () => {
   });
   assert.equal(summary.match(/nota fiscal/g)?.length, 1);
 });
+
+test('marcIA não promete o agente em 7 dias', async () => {
+  const { systemPrompt } = await import('../src/lib/assistant/prompt.ts');
+  const text = systemPrompt();
+  assert.doesNotMatch(text, /7 dias/);
+  assert.match(text, /a partir de 15 dias/);
+});
