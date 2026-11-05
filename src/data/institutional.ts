@@ -134,8 +134,8 @@ export const conditionsPage = {
   lead: 'O que está incluído no site, como funciona a manutenção e o que acontece se você cancelar. Agentes de IA, agendas e outros sistemas têm condições próprias, descritas na proposta.',
   sections: [
     {
-      title: 'Preço e prazo',
-      paragraphs: ['A partir de R$ 700. O site entra no ar em até 10 dias depois que você aprova a versão final.'],
+      title: 'Valor e prazo',
+      paragraphs: ['O valor é fechado na proposta, depois da primeira conversa. O site entra no ar em até 10 dias depois que você aprova a versão final.'],
     },
     {
       title: 'O que está incluído',
@@ -144,7 +144,7 @@ export const conditionsPage = {
     {
       title: 'Manutenção',
       items: [
-        'R$ 200 por mês, em assinatura anual.',
+        'Mensalidade em assinatura anual, com o valor informado na proposta.',
         'Inclui a hospedagem que mantém o site no ar e a correção de qualquer erro.',
         'Melhorias, páginas novas e mudanças de conteúdo ou de visual são orçadas à parte.',
       ],

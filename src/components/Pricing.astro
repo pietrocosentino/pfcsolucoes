@@ -1,13 +1,13 @@
 ---
-// Preço e prazo em tabela: os números que a PFC já publica, sem comparação genérica.
+// Como cobramos e prazo, em tabela. Sem valores: o valor fechado sai na proposta.
 import Section from './Section.astro';
 import { pricing } from '../data/site';
 ---
 
-<Section id="precos" tone="band" title={pricing.title}>
+<Section id="precos" tone="band" title={pricing.title} lead={pricing.lead}>
   <div class="card table-wrap">
     <table>
-      <caption class="visually-hidden">Preço inicial e prazo de cada serviço</caption>
+      <caption class="visually-hidden">Como cada serviço é cobrado e o prazo</caption>
       <thead>
         <tr>
           <td></td>

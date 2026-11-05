@@ -192,7 +192,7 @@ test('logo do topo tem o mesmo nome visível e leva à página inicial fora dela
 test('títulos das seções usam a palavra-chave e sinônimos', () => {
   const h2 = [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => m[1].replace(/<[^>]+>/g, ''));
   assert.ok(h2.some((t) => /sob medida/i.test(t)), h2.join(' | '));
-  assert.ok(h2.some((t) => /quanto custa/i.test(t)));
+  assert.ok(h2.some((t) => /como cobramos/i.test(t)));
   const h3 = [...html.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => m[1]);
   assert.ok(h3.includes('Agente de IA no WhatsApp'));
   assert.ok(h3.includes('O que é um sistema sob medida?'));
@@ -281,9 +281,9 @@ test('soluções têm print real e o site não mostra foto do fundador', () => {
   assert.doesNotMatch(html, /pietro-cosentino\./);
 });
 
-test('preço e prazo do site aparecem nas perguntas frequentes', () => {
-  assert.match(html, /Site profissional a partir de R\$ 700/);
-  assert.match(html, /R\$ 200 por mês/);
+test('o site não publica valores, só prazos e como cobramos', () => {
+  assert.doesNotMatch(html, /R\$ ?(700|200)/);
+  assert.match(html, /valor fechado/i);
   assert.doesNotMatch(html, /R\$ 150/);
   assert.doesNotMatch(html, /R\$ 1\.500/);
   assert.match(html, /em até 10 dias depois que você aprova a versão final/);
@@ -324,7 +324,8 @@ test('Quem somos traz a trajetória no próprio site, sem mandar para o site pes
 
 test('condições do site ficam em página própria, fora do FAQ de venda', () => {
   const cond = readFileSync(new URL('../dist/client/condicoes/index.html', import.meta.url), 'utf8');
-  for (const t of [/R\$ 700/, /R\$ 200 por mês/, /CPF ou CNPJ/, /de autoria da PFC/, /o site sai do ar/]) assert.match(cond, t);
+  assert.doesNotMatch(cond, /R\$ ?\d/);
+  for (const t of [/assinatura anual/, /CPF ou CNPJ/, /de autoria da PFC/, /o site sai do ar/]) assert.match(cond, t);
   assert.doesNotMatch(html, /Recebo o código do site\?/);
   assert.match(html, /href="\/condicoes"/);
 });
