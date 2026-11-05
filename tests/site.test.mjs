@@ -245,14 +245,6 @@ test('topo sem aspas de depoimento e sem pílulas', () => {
 });
 
 
-test('links de soluções do rodapé levam a cartões diferentes', () => {
-  const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
-  const targets = [...footer.matchAll(/href="\/#(solucao-[a-z-]+)"/g)].map((m) => m[1]);
-  assert.equal(new Set(targets).size, 4);
-  for (const id of targets) assert.match(html, new RegExp(`id="${id}"`));
-  assert.equal((footer.match(/Política de privacidade/g) ?? []).length, 1);
-});
-
 test('chat começa com pergunta aberta, sem respostas prontas', () => {
   assert.doesNotMatch(html, /data-suggestions|class="suggestion"/);
 });
@@ -276,8 +268,7 @@ test('agente de IA em destaque e listas sem ícone repetido', () => {
 
 test('página inicial sem dados de terceiros e com faixa dos tipos de negócio', () => {
   assert.doesNotMatch(html, /id="sinais"/);
-  const hero = html.slice(html.indexOf('id="inicio"'), html.indexOf('</section>', html.indexOf('id="inicio"')));
-  assert.match(hero, /barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço/);
+  assert.match(html, /barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço/);
 });
 
 test('topo mostra o print real da marcIA, com texto alternativo e prioridade', () => {
@@ -343,7 +334,7 @@ test('condições do site ficam em página própria, fora do FAQ de venda', () =
 test('logo usa só cores da paleta e soluções se apresentam como demonstração', () => {
   const favicon = readFileSync(new URL('../public/favicon.svg', import.meta.url), 'utf8');
   assert.doesNotMatch(favicon + html, /#5674AE|#F2542D/i);
-  assert.match(html, /Projetos de demonstração construídos pela PFC/);
+  assert.match(html, /projetos de demonstração construídos pela PFC/i);
 });
 
 test('rodapé e dados estruturados levam à página da empresa no LinkedIn', () => {
@@ -355,4 +346,10 @@ test('agendar conversa no topo, no contato e no rodapé, abrindo em nova aba', (
   const links = tags('a').filter((t) => /calendar\.google\.com\/calendar\/appointments\/schedules\//.test(t));
   assert.ok(links.length >= 3, `só ${links.length} links de agenda`);
   for (const t of links) assert.match(t, /rel="noopener noreferrer"/);
+});
+
+test('rodapé sem coluna repetida de soluções e sem redes duplicadas em texto', () => {
+  const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
+  assert.doesNotMatch(footer, /href="\/#solucao-/);
+  assert.equal((footer.match(/instagram\.com\/pfc\.solucoes/g) ?? []).length, 1);
 });

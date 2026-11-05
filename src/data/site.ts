@@ -76,15 +76,6 @@ export const footer = {
         { href: '/condicoes', label: 'Condições do site' },
       ],
     },
-    {
-      title: 'Soluções',
-      links: [
-        { href: '/#solucao-atendimento', label: 'Atendimento com IA' },
-        { href: '/#solucao-agenda', label: 'Agenda online' },
-        { href: '/#solucao-financas', label: 'Finanças' },
-        { href: '/#solucao-presenca-online', label: 'Sites profissionais' },
-      ],
-    },
   ],
 };
 
@@ -93,7 +84,7 @@ export const footer = {
 
 export const hero = {
   title: 'Sistemas sob medida para pequenos negócios',
-  lead: 'Atendimento no WhatsApp, agenda e finanças para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. Você conta como o seu negócio funciona hoje e recebe um sistema que faz o mesmo trabalho, sem planilha nem papel, pelo celular.',
+  lead: 'Atendimento no WhatsApp, agenda e finanças que seguem o jeito como o seu negócio já trabalha. Sem planilha nem papel, tudo pelo celular.',
   primaryCta: 'Falar com a atendente virtual',
   // Print real da marcIA (conversa de teste no site em produção).
   shotCaption: 'Conversa de teste com a marcIA.',
@@ -140,7 +131,7 @@ export type Solution = {
 
 export const solutions = {
   title: 'Veja funcionando',
-  lead: 'Projetos de demonstração construídos pela PFC, com dados fictícios, para você ver cada solução antes de contratar.',
+  lead: 'Para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. São projetos de demonstração construídos pela PFC, com dados fictícios, para você ver cada solução antes de contratar.',
   items: [
     {
       area: 'Atendimento',
@@ -169,7 +160,7 @@ export const solutions = {
       area: 'Presença online',
       title: 'Site profissional',
       description: 'Feito para o celular, com botão direto para o seu WhatsApp.',
-      features: ['Domínio próprio configurado', 'No ar em até 10 dias depois da sua aprovação'],
+      features: ['A partir de R$ 700', 'Domínio próprio configurado', 'No ar em até 10 dias depois da sua aprovação'],
     },
   ] satisfies Solution[],
 };
@@ -185,34 +176,34 @@ type ProcessStep = {
 // Método de trabalho. A marcIA também usa este texto, então ele precisa
 // refletir o que a PFC realmente faz em cada etapa.
 export const process = {
-  title: 'Como funciona',
-  lead: 'A decisão de contratar vem depois da proposta escrita.',
+  title: 'Do primeiro contato ao sistema no ar',
+  lead: 'Você só decide contratar depois de ler a proposta.',
   steps: [
     {
-      title: 'Levantamento',
+      title: 'Uma conversa de 1 hora',
       summary: 'Entendemos a sua rotina',
-      text: 'Conversa online sobre a sua rotina e onde você perde clientes.',
+      text: 'Online, sobre a sua rotina e onde você perde clientes ou tempo.',
       deliverable: 'O que vale resolver primeiro, e se um sistema resolve mesmo o seu problema.',
       participation: 'Uma conversa online, sem compromisso.',
     },
     {
-      title: 'Proposta',
+      title: 'Proposta por escrito',
       summary: 'Encontramos as perdas e definimos o escopo',
-      text: 'Escopo, prazo e valor por escrito. Você aprova, ajusta ou desiste.',
+      text: 'Escopo, prazo e valor. Você aprova, pede ajustes ou desiste.',
       deliverable: 'Uma proposta escrita com escopo, prazo e valor, antes de começar.',
       participation: 'Você aprova, pede ajustes ou decide não seguir.',
     },
     {
-      title: 'Construção',
+      title: 'Você testa antes',
       summary: 'Desenhamos e construímos em partes',
-      text: 'Construímos em partes. Você testa as telas com os seus serviços e preços.',
+      text: 'Construímos em partes, e você testa as telas com os seus serviços e preços.',
       deliverable: 'Telas para testar antes da versão final, já com os seus serviços e preços.',
       participation: 'Você testa durante a construção e diz o que ajustar.',
     },
     {
-      title: 'Entrega',
+      title: 'No ar com os seus dados',
       summary: 'Entregamos funcionando e acompanhamos',
-      text: 'Sistema no ar com os dados do seu negócio e acompanhamento depois da entrega.',
+      text: 'Sistema funcionando com os dados do seu negócio, e acompanhamento depois da entrega.',
       deliverable: 'O sistema funcionando e acompanhamento para ajustar o que aparecer no uso.',
       participation: 'Você usa na rotina e conta o que pode melhorar.',
     },
@@ -238,7 +229,7 @@ export const comparison = {
     { label: 'Para começar', ready: 'Você assina e configura sozinho', custom: 'Uma conversa de 1 hora sobre como o seu negócio funciona' },
     { label: 'Partes do negócio', ready: 'Costuma cobrir uma; o resto fica em planilha', custom: 'Atendimento, agenda, cobrança e finanças juntos' },
     { label: 'Pedido de mudança', ready: 'Entra na fila do suporte e pode não ser atendido', custom: 'Você pede ao Pietro e combina o prazo' },
-    { label: 'Valor', ready: 'Mensalidade por plano', custom: 'Definido na proposta' },
+    { label: 'Valor', ready: 'Mensalidade por plano', custom: 'Site a partir de R$ 700; sistemas, na proposta' },
   ],
 };
 
@@ -274,6 +265,6 @@ export const faq = {
 };
 
 export const contactSection = {
-  title: 'Fale com a PFC',
-  lead: 'A marcIA faz as primeiras perguntas e o Pietro recebe o resumo.',
+  title: 'Comece com uma conversa de 1 hora',
+  lead: 'Escolha um horário com o Pietro, ou adiante as primeiras perguntas com a marcIA, a nossa atendente virtual.',
 };

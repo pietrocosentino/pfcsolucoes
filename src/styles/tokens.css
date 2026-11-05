@@ -111,8 +111,8 @@
   --measure-short: 52ch; /* notas curtas */
   --measure-title: 22ch; /* títulos de página */
   --header-offset: 88px; /* âncoras não ficam escondidas atrás do cabeçalho fixo */
-  --device-width: 300px; /* moldura de celular no topo */
-  --shot-width: 220px; /* print ao lado do texto no cartão em destaque */
+  --device-width: 340px; /* moldura de celular no topo */
+  --shot-width: 260px; /* print ao lado do texto no cartão em destaque */
   --chat-width: 400px;
   --chat-height: 620px;
   /* Larguras de tela (media queries não leem variáveis; use só estas três):

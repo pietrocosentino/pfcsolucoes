@@ -20,8 +20,8 @@ import { comparison } from '../data/site';
         {comparison.rows.map((row) => (
           <tr>
             <th scope="row">{row.label}</th>
-            <td data-label={comparison.columns[0]}>{row.ready}</td>
-            <td data-label={comparison.columns[1]} class="custom">{row.custom}</td>
+            <td data-label="Pronto">{row.ready}</td>
+            <td data-label="Sob medida" class="custom">{row.custom}</td>
           </tr>
         ))}
       </tbody>
