@@ -258,11 +258,15 @@ export const faq = {
     },
     {
       question: 'Quanto custa?',
-      answer: 'Site profissional a partir de R$ 700, entregue com o seu domínio configurado. A manutenção custa R$ 150 por mês, em assinatura anual. Agentes de IA, agendas e outros sistemas dependem do que você precisa, e o valor fechado está na proposta.',
+      answer: 'Site profissional a partir de R$ 700, entregue com o seu domínio configurado. A manutenção custa R$ 200 por mês, em assinatura anual, com a hospedagem incluída. Agentes de IA, agendas e outros sistemas dependem do que você precisa, e o valor fechado está na proposta.',
     },
     {
       question: 'O que a manutenção do site cobre?',
-      answer: 'A correção de qualquer erro no site. Melhorias, páginas novas e mudanças de conteúdo ou de visual são orçadas à parte.',
+      answer: 'A hospedagem que mantém o site no ar e a correção de qualquer erro. Melhorias, páginas novas e mudanças de conteúdo ou de visual são orçadas à parte. Se você cancelar, o site sai do ar; para levá-lo a outra hospedagem, dá para negociar a compra do código.',
+    },
+    {
+      question: 'O domínio fica no nome de quem?',
+      answer: 'No seu. O endereço do site (por exemplo, seunegocio.com.br) é registrado no CPF ou CNPJ do seu negócio, e a renovação é paga por você direto ao Registro.br. A PFC faz a configuração para o site funcionar nele.',
     },
     {
       question: 'Recebo o código do site?',
