@@ -25,19 +25,24 @@ const paths = {
   focusable="false"
 >
   <g fill="none" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d={paths.c} stroke="#5674AE" />
+    <path d={paths.c} class="logo-c" />
     <path d={paths.f} stroke={knockout} stroke-width="10.5" />
-    <path d={paths.f} stroke="#F2542D" />
+    <path d={paths.f} class="logo-f" />
     <path d={paths.p} stroke={knockout} stroke-width="10.5" />
-    <path d={paths.p} stroke="#1B2A4A" class="logo-p" />
+    <path d={paths.p} class="logo-p" />
   </g>
 </svg>
 
 <style>
-  /* No tema escuro o P navy some no fundo; clareia só a letra. */
-  @media (prefers-color-scheme: dark) {
-    .logo-p {
-      stroke: var(--dark-text);
-    }
+  /* Cores do monograma vêm da paleta: P no neutro mais escuro, F na cor de ação,
+     C no neutro médio. No tema escuro os três tokens já trocam sozinhos. */
+  .logo-p {
+    stroke: var(--n-900);
+  }
+  .logo-f {
+    stroke: var(--color-action);
+  }
+  .logo-c {
+    stroke: var(--n-500);
   }
 </style>

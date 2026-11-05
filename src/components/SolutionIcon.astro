@@ -1,0 +1,43 @@
+---
+// Ícones das soluções, no traço arredondado do monograma da PFC.
+// Decorativos: o título do cartão já diz o que é.
+interface Props {
+  area: string;
+}
+const { area } = Astro.props;
+
+const icons: Record<string, string[]> = {
+  Atendimento: ['M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-8l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z', 'M8 9h8', 'M8 12.5h5'],
+  Agenda: ['M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z', 'M3 10h18', 'M8 3v4', 'M16 3v4', 'M8 14.5h3'],
+  Finanças: ['M4 20.5h16', 'M6 17v-5', 'M12 17V7', 'M18 17v-8'],
+  'Presença online': ['M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z', 'M3 9h18', 'M7 14h6'],
+};
+const paths = icons[area] ?? [];
+---
+
+{paths.length > 0 && (
+  <span class="icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="24" height="24" focusable="false">
+      {paths.map((d) => <path d={d} />)}
+    </svg>
+  </span>
+)}
+
+<style>
+  .icon {
+    display: inline-grid;
+    place-items: center;
+    width: var(--control-sm);
+    height: var(--control-sm);
+    border-radius: var(--radius-sm);
+    background: var(--color-subtle);
+    color: var(--color-accent);
+  }
+  svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

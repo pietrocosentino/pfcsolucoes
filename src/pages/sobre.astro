@@ -61,7 +61,7 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
     </dl>
   </Section>
 
-  <Section id="projetos" tone="band" title={aboutPage.built.title}>
+  <Section id="projetos" tone="band" title={aboutPage.built.title} lead={aboutPage.built.lead}>
     <ul class="built">
       {aboutPage.built.items.map((item) => <li>{item}</li>)}
     </ul>

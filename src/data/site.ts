@@ -137,7 +137,7 @@ export type Solution = {
 
 export const solutions = {
   title: 'Exemplos do que já construímos',
-  lead: 'Cada projeto parte da necessidade de quem contrata. Estes são exemplos, não pacotes prontos.',
+  lead: 'Projetos de demonstração construídos pela PFC, para mostrar como cada solução funciona. O seu sistema parte da necessidade do seu negócio, não de um pacote pronto.',
   closing: 'Precisa de outra coisa?',
   more: 'Fale com a atendente virtual',
   items: [
