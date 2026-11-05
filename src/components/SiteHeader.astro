@@ -12,7 +12,6 @@ const home = Astro.url.pathname === '/';
       <Logo size={38} knockout="var(--color-subtle)" />
       <span class="brand-text">
         <strong>{brand.name}</strong>
-        <span>{brand.tagline}</span>
       </span>
       <span class="visually-hidden">, {home ? 'voltar ao início' : 'página inicial'}</span>
     </a>
@@ -61,10 +60,6 @@ const home = Astro.url.pathname === '/';
     font-size: var(--text-md);
     font-weight: var(--weight-bold);
   }
-  .brand-text span {
-    font-size: var(--text-xs);
-    color: var(--color-text-muted);
-  }
 
   .nav ul {
     display: flex;
@@ -94,9 +89,6 @@ const home = Astro.url.pathname === '/';
       flex-wrap: wrap;
       gap: 0 var(--space-3);
       padding-top: var(--space-2);
-    }
-    .brand-text span {
-      display: none;
     }
     .nav {
       order: 3;

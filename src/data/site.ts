@@ -90,11 +90,11 @@ export const footer = {
 
 export const hero = {
   title: 'Sistemas sob medida para pequenos negócios',
-  lead: 'Atendimento no WhatsApp, agenda e finanças para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. Cada sistema parte da rotina do seu negócio, não de um modelo pronto, e você usa tudo pelo celular.',
+  lead: 'Atendimento no WhatsApp, agenda e finanças para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. Cada sistema segue a rotina do seu negócio, e você usa tudo pelo celular.',
   primaryCta: 'Falar com a atendente virtual',
   secondaryCta: { href: '#solucoes', label: 'Ver exemplos' },
   // Print real da marcIA (conversa de teste no site em produção).
-  shotCaption: 'Conversa de teste com a marcIA, o agente de IA que a PFC criou para atender neste site.',
+  shotCaption: 'Conversa de teste com a marcIA.',
   note: 'A marcIA é a nossa atendente com inteligência artificial e responde na hora.',
 };
 
@@ -138,7 +138,7 @@ export type Solution = {
 
 export const solutions = {
   title: 'Exemplos do que já construímos',
-  lead: 'Projetos de demonstração construídos pela PFC, para mostrar como cada solução funciona. O seu sistema parte da necessidade do seu negócio, não de um pacote pronto.',
+  lead: 'Projetos de demonstração construídos pela PFC, para mostrar como cada solução funciona.',
   closing: 'Precisa de outra coisa?',
   more: 'Fale com a atendente virtual',
   items: [
@@ -150,7 +150,7 @@ export const solutions = {
       shot: {
         file: 'painel-hoje',
         alt: 'Tela Hoje do painel no celular: três atendimentos do dia com horário, cliente, serviço e botões Concluído, Faltou e Cancelar',
-        caption: 'Painel do dono no celular, com dados de demonstração.',
+        caption: 'Painel do dono, com dados de demonstração.',
       },
     },
     {
@@ -186,7 +186,7 @@ type ProcessStep = {
 // refletir o que a PFC realmente faz em cada etapa.
 export const process = {
   title: 'Como funciona',
-  lead: 'Você decide se contrata na etapa 2, com a proposta em mãos.',
+  lead: 'A decisão de contratar vem depois da proposta escrita.',
   steps: [
     {
       title: 'Levantamento',
@@ -274,6 +274,6 @@ export const faq = {
 };
 
 export const contactSection = {
-  title: 'Conte o que está dando trabalho',
+  title: 'Fale com a PFC',
   lead: 'A marcIA faz as primeiras perguntas e o Pietro recebe o resumo.',
 };
