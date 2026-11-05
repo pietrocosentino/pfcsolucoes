@@ -6,11 +6,11 @@ import { contact, contactSection } from '../data/site';
 
 <Section id="contato" tone="dark" align="center" title={contactSection.title} lead={contactSection.lead}>
   <div class="cta">
-    <Button href={contact.whatsapp} variant="inverse" external chat>{contact.ctaLabel}</Button>
-    <p class="email">
-      Prefere falar com uma pessoa? <a href={contact.schedule} target="_blank" rel="noopener noreferrer">Agende uma conversa de 1 hora<span class="visually-hidden"> (abre em nova aba)</span></a>
-    </p>
-    <p class="email">Ou escreva para <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+    <div class="actions">
+      <Button href={contact.whatsapp} variant="inverse" external chat>{contact.ctaLabel}</Button>
+      <Button href={contact.schedule} variant="inverse-outline" external>{contact.scheduleLabel}</Button>
+    </div>
+    <p class="email">E-mail: <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
   </div>
 </Section>
 
@@ -20,6 +20,9 @@ import { contact, contactSection } from '../data/site';
     justify-items: center;
     gap: var(--space-4);
     margin-top: calc(-1 * var(--space-6));
+  }
+  .actions {
+    justify-content: center;
   }
   .email {
     margin: 0;
