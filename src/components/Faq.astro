@@ -6,7 +6,7 @@ import { faq } from '../data/site';
 <Section id="duvidas" title={faq.title}>
   <div class="faq">
     {faq.items.map((item) => (
-      <details>
+      <details class="card">
         <summary><h3>{item.question}</h3></summary>
         <p>{item.answer}</p>
       </details>
@@ -18,12 +18,7 @@ import { faq } from '../data/site';
   .faq {
     display: grid;
     gap: var(--space-3);
-    max-width: 760px;
-  }
-  details {
-    border-radius: var(--radius-md);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    max-width: var(--width-narrow);
   }
   summary {
     display: flex;
