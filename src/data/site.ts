@@ -37,6 +37,9 @@ export const contact = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
   linkedinCompany: 'https://www.linkedin.com/company/pfc-solucoes/',
+  // Página de agendamento do Google Agenda: conversa de levantamento de 1 hora, seg a sex, 8h às 20h.
+  schedule: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3QxRr55_ULAWxZNynfOyGj1spTCvqFb8l15fNcPJko-4JQhzx3ZJTq2grs4_dz0eWZm7nRmaYK',
+  scheduleLabel: 'Agendar conversa',
   email: 'contato@pfcsolucoes.com.br',
   ctaLabel: 'Falar com a atendente virtual',
 };
@@ -92,7 +95,6 @@ export const hero = {
   title: 'Sistemas sob medida para pequenos negócios',
   lead: 'Atendimento no WhatsApp, agenda e finanças para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. Cada sistema segue a rotina do seu negócio, e você usa tudo pelo celular.',
   primaryCta: 'Falar com a atendente virtual',
-  secondaryCta: { href: '#solucoes', label: 'Ver exemplos' },
   // Print real da marcIA (conversa de teste no site em produção).
   shotCaption: 'Conversa de teste com a marcIA.',
   note: 'A marcIA é a nossa atendente com inteligência artificial e responde na hora.',
