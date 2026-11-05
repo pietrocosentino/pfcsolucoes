@@ -50,7 +50,7 @@ const summaryRest = footer.summary.slice(footer.summaryLink.length);
   </div>
 
   <div class="wrap legal">
-    <p>© {year} {brand.fullName}. CNPJ {brand.cnpj}. Todos os direitos reservados.</p>
+    <p>© {year} {brand.fullName}, nome comercial de {brand.legalName}. CNPJ {brand.cnpj}. {brand.city}, {brand.state}.</p>
     <p>Atualizado em <time datetime={brand.updatedAt}>{brand.updatedLabel}</time></p>
     <a href="/privacidade">Política de privacidade</a>
   </div>

@@ -304,3 +304,18 @@ test('site do personal trainer não aparece enquanto o cliente não autorizar', 
 test('botão principal diz que é atendimento virtual', () => {
   assert.match(html, />\s*Falar com a atendente virtual\s*</);
 });
+
+test('razão social e CNPJ aparecem no rodapé e em Quem somos', () => {
+  const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
+  for (const page of [html, sobre]) {
+    assert.match(page, /Pietro F\. Cosentino Desenvolvimento de Software Ltda/);
+    assert.match(page, /44\.404\.492\/0001-56/);
+  }
+  assert.match(html, /"legalName":"Pietro F\. Cosentino Desenvolvimento de Software Ltda"/);
+});
+
+test('cabeçalhos de segurança configurados', () => {
+  const vercel = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+  const keys = vercel.headers.flatMap((h) => h.headers.map((x) => x.key));
+  for (const k of ['Content-Security-Policy', 'X-Content-Type-Options', 'Referrer-Policy', 'X-Frame-Options']) assert.ok(keys.includes(k), k);
+});
