@@ -295,3 +295,12 @@ test('preço e prazo do site aparecem nas perguntas frequentes', () => {
   assert.match(html, /em até 10 dias depois que você aprova a versão final/);
   assert.doesNotMatch(html, /PREENCHER/);
 });
+
+test('site do personal trainer não aparece enquanto o cliente não autorizar', () => {
+  const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
+  for (const page of [html, sobre]) assert.doesNotMatch(page, /consultoria para personal trainer/i);
+});
+
+test('botão principal diz que é atendimento virtual', () => {
+  assert.match(html, />\s*Falar com a atendente virtual\s*</);
+});
