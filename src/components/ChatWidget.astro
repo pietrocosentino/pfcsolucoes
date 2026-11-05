@@ -313,7 +313,7 @@ const greeting = assistant.greeting;
     position: fixed;
     right: max(16px, env(safe-area-inset-right, 0px));
     bottom: max(16px, env(safe-area-inset-bottom, 0px));
-    z-index: 60;
+    z-index: var(--z-launcher);
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
@@ -335,7 +335,7 @@ const greeting = assistant.greeting;
     display: none;
   }
   .launcher {
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    transition: opacity var(--duration-slow) ease, transform var(--duration-slow) ease, visibility var(--duration-slow);
   }
   .launcher.is-away {
     opacity: 0;
@@ -353,11 +353,11 @@ const greeting = assistant.greeting;
     position: fixed;
     right: max(16px, env(safe-area-inset-right, 0px));
     bottom: max(16px, env(safe-area-inset-bottom, 0px));
-    z-index: 70;
+    z-index: var(--z-chat);
     display: flex;
     flex-direction: column;
-    width: min(400px, calc(100vw - 32px));
-    height: min(620px, calc(100dvh - 32px));
+    width: min(var(--chat-width), calc(100vw - 2 * var(--space-4)));
+    height: min(var(--chat-height), calc(100dvh - 2 * var(--space-4)));
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     background: var(--color-surface);
@@ -413,11 +413,11 @@ const greeting = assistant.greeting;
     cursor: pointer;
   }
   .close:hover {
-    background: rgb(255 255 255 / 0.12);
+    background: var(--overlay-on-dark);
   }
   .close:focus-visible {
     outline-color: var(--dark-focus);
-    outline-offset: -3px;
+    outline-offset: calc(-1 * var(--focus-offset));
   }
 
   .log {
