@@ -21,7 +21,6 @@ const greeting = assistant.greeting;
   aria-labelledby="chat-title"
   hidden
   data-greeting={greeting}
-  data-suggestions={JSON.stringify(assistant.suggestions)}
   data-name={assistant.name}
   data-whatsapp={contact.whatsapp}
 >
@@ -148,29 +147,9 @@ const greeting = assistant.greeting;
     log.scrollTop = log.scrollHeight;
   };
 
-  // Antes da primeira mensagem, respostas prontas para tocar (o visitante não
-  // precisa saber como começar). Somem assim que a conversa começa.
-  const suggestions: string[] = JSON.parse(panel.dataset.suggestions || '[]');
-  const addSuggestions = () => {
-    if (hasConversation() || !suggestions.length) return;
-    const li = document.createElement('li');
-    li.className = 'msg msg--suggestions';
-    li.setAttribute('aria-label', 'Respostas prontas');
-    for (const text of suggestions) {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'suggestion';
-      button.textContent = text;
-      button.addEventListener('click', () => ask(text));
-      li.append(button);
-    }
-    log.append(li);
-  };
-
   const render = () => {
     log.replaceChildren();
     messages.forEach(addBubble);
-    addSuggestions();
   };
 
   const addInfo = (text: string) => {
@@ -352,29 +331,6 @@ const greeting = assistant.greeting;
     }
   }
 
-  .log :global(.msg--suggestions) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    align-self: stretch;
-    max-width: none;
-    padding: 0;
-    background: none;
-  }
-  .log :global(.suggestion) {
-    min-height: var(--control-sm);
-    padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-accent);
-    border-radius: var(--radius-pill);
-    background: var(--color-surface);
-    color: var(--color-accent);
-    font: var(--weight-semibold) var(--text-sm) / var(--leading-snug) var(--font-sans);
-    text-align: left;
-    cursor: pointer;
-  }
-  .log :global(.suggestion:hover) {
-    background: var(--color-subtle);
-  }
 
   .panel {
     position: fixed;

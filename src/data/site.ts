@@ -41,8 +41,6 @@ export const assistant = {
   status: 'Atendente da PFC Soluções',
   greeting:
     'Oi, que bom ter você por aqui! Eu sou a marcIA, da PFC Soluções. Me conta: o que mais está te dando trabalho no seu negócio hoje?',
-  // Respostas prontas mostradas antes da primeira mensagem do visitante.
-  suggestions: ['Perco clientes no WhatsApp', 'Meus clientes faltam ou desmarcam', 'Não sei quanto sobra no mês', 'Quero um site profissional'],
   launcher: 'Fale com a marcIA',
 };
 
