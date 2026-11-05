@@ -3,7 +3,7 @@ import Section from './Section.astro';
 import { process } from '../data/site';
 ---
 
-<Section id="como-funciona" title={process.title} lead={process.lead}>
+<Section id="como-funciona" tone="band" title={process.title} lead={process.lead}>
   <ol class="steps">
     {process.steps.map((step, index) => (
       <li class="step">
@@ -34,14 +34,11 @@ import { process } from '../data/site';
     padding-top: var(--space-4);
     border-top: 2px solid var(--color-border);
   }
-  .step:first-child {
-    border-top-color: var(--color-action);
-  }
   .number {
     font-size: var(--text-h2);
     font-weight: var(--weight-bold);
     line-height: 1;
-    color: var(--color-heading);
+    color: var(--color-accent);
   }
   h3 {
     font-size: var(--text-lg);

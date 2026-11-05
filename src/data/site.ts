@@ -58,7 +58,7 @@ export const assistant = {
 export const navigation = [
   { href: '/#solucoes', label: 'Soluções' },
   { href: '/#como-funciona', label: 'Como funciona' },
-  { href: '/sobre', label: 'Quem somos' },
+  { href: '/#sobre', label: 'Quem somos' },
   { href: '/#duvidas', label: 'Dúvidas' },
 ];
 
@@ -84,11 +84,10 @@ export const footer = {
 
 export const hero = {
   title: 'Sistemas sob medida para pequenos negócios',
-  lead: 'Atendimento no WhatsApp, agenda e finanças que seguem o jeito como o seu negócio já trabalha. Sem planilha nem papel, tudo pelo celular.',
+  lead: 'O WhatsApp responde e marca horários enquanto você atende, o cliente recebe o lembrete na véspera e o caixa do mês fica no seu celular.',
   primaryCta: 'Falar com a atendente virtual',
   // Print real da marcIA (conversa de teste no site em produção).
   shotCaption: 'Conversa de teste com a marcIA.',
-  note: 'A marcIA é a nossa atendente com inteligência artificial e responde na hora.',
 };
 
 type WarningSign = { stat: string; fact: string; source: string; url: string };
@@ -130,7 +129,7 @@ export type Solution = {
 };
 
 export const solutions = {
-  title: 'Veja funcionando',
+  title: 'Demonstrações',
   lead: 'Para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. São projetos de demonstração construídos pela PFC, com dados fictícios, para você ver cada solução antes de contratar.',
   items: [
     {
@@ -140,21 +139,21 @@ export const solutions = {
       features: ['Envia o Pix do sinal na conversa', 'Lembra o cliente na véspera', 'Oferece o horário vago para a fila de espera'],
       shot: {
         file: 'painel-hoje',
-        alt: 'Tela Hoje do painel no celular: três atendimentos do dia com horário, cliente, serviço e botões Concluído, Faltou e Cancelar',
+        alt: 'Tela Hoje do painel da Barbearia do Marcos no celular: atendimentos do dia com horário, cliente, serviço, preço e situação',
         caption: 'Painel do dono do negócio.',
       },
     },
     {
       area: 'Agenda',
       title: 'Agenda online',
-      description: 'O cliente marca pelo celular, sem precisar te chamar.',
-      features: ['Escolhe o serviço e o horário', 'Só aparecem horários em que o atendimento inteiro cabe'],
+      description: 'O cliente escolhe o serviço e o horário pelo celular, sem precisar te chamar, e só vê horários em que o atendimento inteiro cabe.',
+      features: [],
     },
     {
       area: 'Finanças',
       title: 'App de finanças',
-      description: 'O que entra e o que sai do negócio, no Android e no iPhone.',
-      features: ['Entradas, saídas e contas fixas', 'Importa planilhas do Excel'],
+      description: 'Entradas, saídas e contas fixas do negócio no Android e no iPhone. As planilhas do Excel que você já usa entram direto.',
+      features: [],
     },
     {
       area: 'Presença online',

@@ -1,10 +1,18 @@
 ---
+// Quem está por trás: texto à esquerda e fatos verificáveis (registro público) à direita.
 import Section from './Section.astro';
 import Button from './Button.astro';
-import { about } from '../data/site';
+import { about, brand } from '../data/site';
+
+const facts = [
+  { label: 'Experiência', value: '9 anos em tecnologia' },
+  { label: 'Empresa aberta em', value: brand.foundingLabel },
+  { label: 'Sede', value: `${brand.city}, ${brand.state} · atendimento em todo o Brasil` },
+  { label: 'CNPJ', value: brand.cnpj },
+];
 ---
 
-<Section id="sobre" tone="band" title="Você fala com quem constrói">
+<Section id="sobre" title="Você fala com quem constrói">
   <div class="about">
     <div class="bio">
       <p class="lead">{about.short}</p>
@@ -13,16 +21,53 @@ import { about } from '../data/site';
         <Button href={about.linkedin} variant="secondary" external>Pietro no LinkedIn</Button>
       </div>
     </div>
+    <dl class="facts">
+      {facts.map((fact) => (
+        <div>
+          <dt>{fact.label}</dt>
+          <dd>{fact.value}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </Section>
 
 <style>
   .about {
-    max-width: var(--width-narrow);
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-12);
+    align-items: start;
   }
   .bio {
     display: grid;
     gap: var(--space-6);
     justify-items: start;
+  }
+  .facts {
+    display: grid;
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .facts div {
+    display: grid;
+    gap: var(--space-1);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+  dt {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+  dd {
+    margin: 0;
+    font-weight: var(--weight-semibold);
+    color: var(--color-heading);
+  }
+  @media (max-width: 760px) {
+    .about {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
   }
 </style>

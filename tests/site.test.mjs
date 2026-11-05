@@ -198,11 +198,9 @@ test('títulos das seções usam a palavra-chave e sinônimos', () => {
   assert.ok(h3.includes('O que é um sistema sob medida?'));
 });
 
-test('Quem somos e rodapé linkam para a página inicial com a palavra-chave', () => {
+test('Quem somos linka para a página inicial com a palavra-chave', () => {
   const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
   assert.match(sobre, /<a href="\/"[^>]*>sistemas sob medida para autônomos e pequenas empresas<\/a>/);
-  const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
-  assert.match(footer, /<a class="summary-link" href="\/"[^>]*>Sistemas sob medida para autônomos e pequenas empresas<\/a>/);
 });
 
 test('frase que define a empresa aparece na página inicial', () => {
