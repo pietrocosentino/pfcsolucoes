@@ -93,10 +93,30 @@
   /* Controles: duas alturas */
   --control-sm: 44px;
   --control-md: 48px;
-  --duration: 150ms;
+  --duration: 150ms; /* troca de cor (hover) */
+  --duration-slow: 200ms; /* aparecer e sumir (botão flutuante) */
+  --overlay-on-dark: rgb(255 255 255 / 0.12); /* hover sobre a superfície escura */
+  --underline-offset: 3px;
+
+  /* Camadas (z-index) */
+  --z-header: 50;
+  --z-launcher: 60;
+  --z-chat: 70;
+  --z-skip: 100;
 
   /* Layout */
   --content-width: 1080px;
+  --width-narrow: 760px; /* blocos de leitura: FAQ, Quem faz */
+  --measure: 68ch; /* linha de texto corrido */
+  --measure-short: 52ch; /* notas curtas */
+  --measure-title: 22ch; /* títulos de página */
+  --header-offset: 88px; /* âncoras não ficam escondidas atrás do cabeçalho fixo */
+  --device-width: 300px; /* moldura de celular no topo */
+  --shot-width: 220px; /* print ao lado do texto no cartão em destaque */
+  --chat-width: 400px;
+  --chat-height: 620px;
+  /* Larguras de tela (media queries não leem variáveis; use só estas três):
+     560px celular · 760px tablet · 900px computador pequeno */
   --section-space: clamp(var(--space-12), 8vw, var(--space-24));
   --gutter-left: max(16px, env(safe-area-inset-left, 0px));
   --gutter-right: max(16px, env(safe-area-inset-right, 0px));
