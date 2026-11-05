@@ -31,7 +31,7 @@ export const contact = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   instagramProfile: 'https://www.instagram.com/pfc.solucoes/',
   email: 'contato@pfcsolucoes.com.br',
-  ctaLabel: 'Conversar com a marcIA',
+  ctaLabel: 'Falar com a atendente virtual',
 };
 
 // Atendente de IA do site (primeiro contato). Instruções em src/lib/assistant/.
@@ -84,11 +84,11 @@ export const hero = {
   title: 'Sistemas sob medida para pequenos negócios:',
   highlight: 'atendimento, agenda e finanças',
   lead: 'Cada sistema é feito de acordo com a necessidade do seu negócio, nada genérico. Você usa tudo pelo celular.',
-  primaryCta: 'Conversar com a marcIA',
+  primaryCta: 'Falar com a atendente virtual',
   secondaryCta: { href: '#solucoes', label: 'Ver exemplos' },
   // Print real da marcIA (conversa de teste no site em produção).
   shotCaption: 'A marcIA, atendente com IA deste site, numa conversa de teste.',
-  note: 'Conversa sem compromisso com a nossa atendente virtual.',
+  note: 'A marcIA é a nossa atendente com inteligência artificial. Responde na hora, sem compromisso.',
 };
 
 // Tipos de negócio atendidos: faixa logo abaixo do topo.

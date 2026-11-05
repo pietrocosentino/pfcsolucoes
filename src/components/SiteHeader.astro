@@ -105,9 +105,10 @@ const home = Astro.url.pathname === '/';
     }
     .nav ul {
       justify-content: space-between;
+      gap: 0;
     }
     .nav a {
-      padding: 0 var(--space-1);
+      padding: 0;
       font-size: clamp(var(--text-xs), 3.6vw, var(--text-sm)); /* cabe em telas de 320px */
       white-space: nowrap;
     }

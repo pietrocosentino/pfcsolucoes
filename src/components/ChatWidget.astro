@@ -62,8 +62,9 @@ const greeting = assistant.greeting;
   const launcher = document.querySelector('.launcher') as HTMLButtonElement;
   const whatsapp = panel.dataset.whatsapp!;
   const STORAGE_KEY = 'pfc-chat';
-  // Depois de 5 minutos sem atividade, a conversa é apagada e a marcIA recomeça.
-  const IDLE_MS = 5 * 60 * 1000;
+  // Depois de 60 minutos sem atividade, a conversa é apagada e a marcIA recomeça.
+  // (Quem é interrompido no trabalho volta e encontra a conversa onde parou.)
+  const IDLE_MS = 60 * 60 * 1000;
 
   const greetingOnly = (): Message[] => [{ role: 'assistant', text: panel.dataset.greeting! }];
 
@@ -74,7 +75,7 @@ const greeting = assistant.greeting;
   let opener: HTMLElement | null = null;
 
   // Formato salvo: { messages, at }. Conversa antiga, sem data, ou parada há
-  // mais de 5 minutos não é restaurada.
+  // mais de 60 minutos não é restaurada.
   try {
     const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
     if (saved && Array.isArray(saved.messages) && saved.messages.length && Date.now() - saved.at < IDLE_MS) {
@@ -180,7 +181,7 @@ const greeting = assistant.greeting;
       /* nada a apagar */
     }
     render();
-    addInfo('A conversa anterior foi encerrada depois de 5 minutos sem resposta.');
+    addInfo('A conversa anterior foi encerrada depois de 1 hora sem resposta.');
   }
 
   const setBusy = (value: boolean) => {
@@ -225,6 +226,19 @@ const greeting = assistant.greeting;
     }
   };
 
+  // No celular o chat cobre a tela inteira: vira modal, e o resto da página fica
+  // inerte (o Tab e o leitor de tela não saem para conteúdo escondido atrás).
+  // No computador ele é uma janela lateral e a página continua navegável.
+  const fullScreen = window.matchMedia('(max-width: 560px)');
+  const background = () =>
+    [...document.body.children].filter((el) => el !== panel && !el.contains(panel)) as HTMLElement[];
+  const syncModal = () => {
+    const modal = !panel.hidden && fullScreen.matches;
+    panel.setAttribute('aria-modal', String(modal));
+    for (const el of background()) el.inert = modal;
+  };
+  fullScreen.addEventListener('change', syncModal);
+
   const open = (from?: HTMLElement) => {
     opener = from ?? null;
     render();
@@ -232,6 +246,7 @@ const greeting = assistant.greeting;
     panel.hidden = false;
     launcher.setAttribute('aria-expanded', 'true');
     document.body.classList.add('chat-open');
+    syncModal();
     input.focus();
   };
 
@@ -239,6 +254,7 @@ const greeting = assistant.greeting;
     panel.hidden = true;
     launcher.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('chat-open');
+    syncModal();
     (opener ?? launcher).focus();
   };
 
@@ -247,11 +263,11 @@ const greeting = assistant.greeting;
 
   // Na página inicial, o topo já tem o botão principal: o flutuante só aparece
   // depois que ele sai da tela, para não cobrir o conteúdo.
-  const hero = document.getElementById('inicio');
-  if (hero && 'IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => launcher.classList.toggle('is-away', entry.isIntersecting), {
-      threshold: 0.15,
-    }).observe(hero);
+  // Observa os botões do topo (e não a seção inteira, que no celular é bem mais
+  // alta que a tela por causa do print).
+  const heroActions = document.querySelector('#inicio .actions');
+  if (heroActions && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => launcher.classList.toggle('is-away', entry.isIntersecting)).observe(heroActions);
   }
 
   document.addEventListener('click', (event) => {
@@ -262,8 +278,9 @@ const greeting = assistant.greeting;
     else input.focus();
   });
   panel.querySelector('[data-chat-close]')!.addEventListener('click', close);
-  panel.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') close();
+  // Esc fecha o chat mesmo com o foco na página (no computador ele não é modal).
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !panel.hidden) close();
   });
   form.addEventListener('submit', (event) => {
     event.preventDefault();
