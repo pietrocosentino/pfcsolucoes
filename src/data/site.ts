@@ -16,8 +16,7 @@ export const brand = {
   city: 'São Paulo',
   state: 'SP',
   // Data da última revisão do conteúdo. Atualize ao mudar textos importantes.
-  updatedAt: '2026-11-04',
-  updatedLabel: '4 de novembro de 2026',
+  updatedAt: '2026-11-05',
   // Frase que define a empresa: é o trecho que buscadores e IAs citam sobre a PFC.
   definition:
     'A PFC Soluções em Tecnologia é uma empresa brasileira, fundada por Pietro Cosentino, que cria sistemas sob medida para autônomos e pequenas empresas: agente de IA no WhatsApp, agenda online, controle financeiro e sites. O atendimento é online, para todo o Brasil.',
@@ -47,8 +46,8 @@ export const assistant = {
   role: 'atendente de primeiro contato',
   status: 'Atendente da PFC Soluções',
   greeting:
-    'Oi, que bom ter você por aqui! Eu sou a marcIA, da PFC Soluções. Me conta: o que mais está te dando trabalho no seu negócio hoje?',
-  launcher: 'Fale com a marcIA',
+    'Olá! Eu sou a marcIA, atendente virtual da PFC Soluções. O que mais está dando trabalho no seu negócio hoje?',
+  launcher: 'Falar com a atendente virtual',
 };
 
 // Links com "/" na frente funcionam em qualquer página do site.
@@ -70,6 +69,7 @@ export const footer = {
         { href: '/sobre', label: 'Quem somos' },
         { href: '/#como-funciona', label: 'Como funciona' },
         { href: '/#duvidas', label: 'Perguntas frequentes' },
+        { href: '/condicoes', label: 'Condições do site' },
       ],
     },
     {
@@ -88,20 +88,13 @@ export const footer = {
 // (o que oferecemos, como melhora a vida dele, o que fazer agora).
 
 export const hero = {
-  title: 'Sistemas sob medida para pequenos negócios:',
-  highlight: 'atendimento, agenda e finanças',
-  lead: 'Cada sistema é feito de acordo com a necessidade do seu negócio, nada genérico. Você usa tudo pelo celular.',
+  title: 'Sistemas sob medida para pequenos negócios',
+  lead: 'Atendimento no WhatsApp, agenda e finanças para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. Cada sistema parte da rotina do seu negócio, não de um modelo pronto, e você usa tudo pelo celular.',
   primaryCta: 'Falar com a atendente virtual',
   secondaryCta: { href: '#solucoes', label: 'Ver exemplos' },
   // Print real da marcIA (conversa de teste no site em produção).
-  shotCaption: 'A marcIA, atendente com IA deste site, numa conversa de teste.',
-  note: 'A marcIA é a nossa atendente com inteligência artificial. Responde na hora, sem compromisso.',
-};
-
-// Tipos de negócio atendidos: faixa logo abaixo do topo.
-export const segments = {
-  label: 'Para',
-  items: ['barbearias', 'salões de beleza', 'clínicas de estética', 'personal trainers', 'prestadores de serviço'],
+  shotCaption: 'Conversa de teste com a marcIA, o agente de IA que a PFC criou para atender neste site.',
+  note: 'A marcIA é a nossa atendente com inteligência artificial e responde na hora.',
 };
 
 type WarningSign = { stat: string; fact: string; source: string; url: string };
@@ -146,7 +139,7 @@ export const solutions = {
   title: 'Exemplos do que já construímos',
   lead: 'Cada projeto parte da necessidade de quem contrata. Estes são exemplos, não pacotes prontos.',
   closing: 'Precisa de outra coisa?',
-  more: 'Conte para a marcIA',
+  more: 'Fale com a atendente virtual',
   items: [
     {
       area: 'Atendimento',
@@ -162,20 +155,20 @@ export const solutions = {
     {
       area: 'Agenda',
       title: 'Agenda online',
-      description: 'O cliente escolhe serviço e horário pelo celular. Só aparecem horários em que o atendimento inteiro cabe.',
-      features: [],
+      description: 'O cliente marca pelo celular, sem precisar te chamar.',
+      features: ['Escolhe o serviço e o horário', 'Só aparecem horários em que o atendimento inteiro cabe'],
     },
     {
       area: 'Finanças',
       title: 'App de finanças',
-      description: 'Entradas, saídas e contas fixas no Android e no iPhone. Importa planilhas do Excel.',
-      features: [],
+      description: 'O que entra e o que sai do negócio, no Android e no iPhone.',
+      features: ['Entradas, saídas e contas fixas', 'Importa planilhas do Excel'],
     },
     {
       area: 'Presença online',
       title: 'Site profissional',
-      description: 'Feito para o celular, com botão direto para o seu WhatsApp. Este site tira mais de 90 de 100 no teste de velocidade do Google.',
-      features: [],
+      description: 'Feito para o celular, com botão direto para o seu WhatsApp.',
+      features: ['Domínio próprio configurado', 'No ar em até 10 dias depois da sua aprovação'],
     },
   ] satisfies Solution[],
 };
@@ -258,18 +251,7 @@ export const faq = {
     {
       question: 'Quanto custa?',
       answer: 'Site profissional a partir de R$ 700, entregue com o seu domínio configurado. A manutenção custa R$ 200 por mês, em assinatura anual, com a hospedagem incluída. Agentes de IA, agendas e outros sistemas dependem do que você precisa, e o valor fechado está na proposta.',
-    },
-    {
-      question: 'O que a manutenção do site cobre?',
-      answer: 'A hospedagem que mantém o site no ar e a correção de qualquer erro. Melhorias, páginas novas e mudanças de conteúdo ou de visual são orçadas à parte. Se você cancelar, o site sai do ar; para levá-lo a outra hospedagem, dá para negociar a compra do código.',
-    },
-    {
-      question: 'O domínio fica no nome de quem?',
-      answer: 'No seu. O endereço do site (por exemplo, seunegocio.com.br) é registrado no CPF ou CNPJ do seu negócio, e a renovação é paga por você direto ao Registro.br. A PFC faz a configuração para o site funcionar nele.',
-    },
-    {
-      question: 'Recebo o código do site?',
-      answer: 'Não. O código é de autoria da PFC e não é entregue junto com o site. Se você quiser comprá-lo, a compra pode ser negociada à parte.',
+      link: { href: '/condicoes', label: 'Ver as condições do site profissional' },
     },
     {
       question: 'Quanto tempo leva?',
@@ -286,10 +268,6 @@ export const faq = {
     {
       question: 'Vocês atendem a minha cidade?',
       answer: 'O atendimento é online, para todo o Brasil.',
-    },
-    {
-      question: 'Quem é a marcIA?',
-      answer: 'Nossa atendente virtual com inteligência artificial, disponível a qualquer hora.',
     },
   ],
 };

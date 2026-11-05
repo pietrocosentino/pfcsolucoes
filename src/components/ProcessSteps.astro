@@ -7,12 +7,10 @@ import { process } from '../data/site';
   <ol class="steps">
     {process.steps.map((step, index) => (
       <li class="card step">
-        <div class="head">
-          <span class="number" aria-hidden="true">{index + 1}</span>
-          <h3>
-            <span class="visually-hidden">Etapa {index + 1}: </span>{step.title}
-          </h3>
-        </div>
+        <p class="label-caps number" aria-hidden="true">Etapa {index + 1}</p>
+        <h3>
+          <span class="visually-hidden">Etapa {index + 1}: </span>{step.title}
+        </h3>
         <p class="text">{step.text}</p>
       </li>
     ))}
@@ -35,22 +33,8 @@ import { process } from '../data/site';
     gap: var(--space-3);
     padding: var(--space-6);
   }
-  .head {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-  }
   .number {
-    display: grid;
-    place-items: center;
-    flex: none;
-    width: var(--control-sm);
-    height: var(--control-sm);
-    border-radius: var(--radius-pill);
-    background: var(--dark-bg);
-    color: var(--dark-text);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-lg);
+    color: var(--color-accent);
   }
   h3 {
     display: grid;
@@ -58,12 +42,6 @@ import { process } from '../data/site';
   }
   .text {
     color: var(--color-text);
-  }
-  @media (prefers-color-scheme: dark) {
-    .number {
-      background: var(--color-action);
-      color: var(--color-on-action);
-    }
   }
   @media (max-width: 760px) {
     .steps {

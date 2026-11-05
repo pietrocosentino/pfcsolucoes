@@ -23,7 +23,7 @@ test('toda âncora interna aponta para um id existente', () => {
 });
 
 test('links para páginas internas levam a páginas que existem', () => {
-  const pages = tags('a').map((t) => attr(t, 'href')).filter((h) => /^\/[a-z]/.test(h ?? ''));
+  const pages = tags('a').map((t) => attr(t, 'href')?.split('#')[0]).filter((h) => /^\/[a-z]/.test(h ?? ''));
   assert.ok(pages.includes('/sobre') && pages.includes('/privacidade'));
   for (const href of new Set(pages)) {
     assert.ok(existsSync(new URL(`../dist/client${href}/index.html`, import.meta.url)), `página inexistente: ${href}`);
@@ -31,7 +31,7 @@ test('links para páginas internas levam a páginas que existem', () => {
 });
 
 test('páginas institucionais têm um h1 e o rodapé completo', () => {
-  for (const page of ['sobre', 'privacidade']) {
+  for (const page of ['sobre', 'privacidade', 'condicoes']) {
     const doc = readFileSync(new URL(`../dist/client/${page}/index.html`, import.meta.url), 'utf8');
     assert.equal((doc.match(/<h1\b/g) ?? []).length, 1, page);
     assert.match(doc, /Política de privacidade/);
@@ -225,8 +225,9 @@ test('dados estruturados trazem o fundador e a data da página', () => {
   assert.equal(graph.find((n) => n['@type'] === 'Organization').founder['@id'], person['@id']);
 });
 
-test('rodapé mostra a data de atualização', () => {
-  assert.match(html, /Atualizado em <time datetime="\d{4}-\d{2}-\d{2}"/);
+test('rodapé sem data de atualização visível (a data fica nos dados estruturados)', () => {
+  assert.doesNotMatch(html, /Atualizado em/);
+  assert.match(html, /"dateModified":"\d{4}-\d{2}-\d{2}"/);
 });
 
 test('llms.txt e chave do IndexNow são publicados', () => {
@@ -275,7 +276,8 @@ test('agente de IA em destaque e listas sem ícone repetido', () => {
 
 test('página inicial sem dados de terceiros e com faixa dos tipos de negócio', () => {
   assert.doesNotMatch(html, /id="sinais"/);
-  assert.match(html, /aria-label="Tipos de negócio atendidos"/);
+  const hero = html.slice(html.indexOf('id="inicio"'), html.indexOf('</section>', html.indexOf('id="inicio"')));
+  assert.match(hero, /barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço/);
 });
 
 test('topo mostra o print real da marcIA, com texto alternativo e prioridade', () => {
@@ -309,7 +311,8 @@ test('botão principal diz que é atendimento virtual', () => {
   assert.match(html, />\s*Falar com a atendente virtual\s*</);
 });
 
-test('razão social e CNPJ aparecem no rodapé e em Quem somos', () => {
+test('razão social e CNPJ em Quem somos; rodapé com CNPJ e link para os dados da empresa', () => {
+  assert.match(html, /href="\/sobre#empresa"/);
   const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
   for (const page of [html, sobre]) {
     assert.match(page, /Pietro F\. Cosentino Desenvolvimento de Software Ltda/);
@@ -328,4 +331,11 @@ test('Quem somos traz a trajetória no próprio site, sem mandar para o site pes
   const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
   assert.match(sobre, /class="trajectory"/);
   assert.doesNotMatch(sobre, /<a[^>]+href="https:\/\/www\.pietrocosentino\.com\.br\/"/);
+});
+
+test('condições do site ficam em página própria, fora do FAQ de venda', () => {
+  const cond = readFileSync(new URL('../dist/client/condicoes/index.html', import.meta.url), 'utf8');
+  for (const t of [/R\$ 700/, /R\$ 200 por mês/, /CPF ou CNPJ/, /de autoria da PFC/, /o site sai do ar/]) assert.match(cond, t);
+  assert.doesNotMatch(html, /Recebo o código do site\?/);
+  assert.match(html, /href="\/condicoes"/);
 });

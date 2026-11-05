@@ -1,12 +1,13 @@
 ---
-// Abertura das páginas internas (Quem somos, Privacidade): sobrancelha, h1 e texto.
+// Abertura das páginas internas (Quem somos, Privacidade, Condições): sobrancelha, h1, texto e data.
 interface Props {
   eyebrow: string;
   title: string;
   lead?: string;
+  updatedAt?: string;
 }
 
-const { eyebrow, title, lead } = Astro.props;
+const { eyebrow, title, lead, updatedAt } = Astro.props;
 ---
 
 <section class="intro" aria-labelledby="pagina-titulo">
@@ -14,6 +15,7 @@ const { eyebrow, title, lead } = Astro.props;
     <p class="eyebrow">{eyebrow}</p>
     <h1 id="pagina-titulo">{title}</h1>
     {lead && <p class="lead">{lead}</p>}
+    {updatedAt && <p class="updated">Última atualização: {updatedAt}</p>}
     <slot />
   </div>
 </section>
@@ -29,5 +31,9 @@ const { eyebrow, title, lead } = Astro.props;
   }
   h1 {
     max-width: var(--measure-title);
+  }
+  .updated {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
   }
 </style>

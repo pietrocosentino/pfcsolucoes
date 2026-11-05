@@ -11,6 +11,7 @@ Como trabalha: levantamento da rotina do negócio, análise das perdas, constru�
 - [Página inicial](https://pfcsolucoes.com.br/): soluções, comparação entre sistema sob medida e aplicativo pronto, etapas do trabalho e perguntas frequentes.
 - [Quem somos](https://pfcsolucoes.com.br/sobre): história, propósito, valores e projetos já construídos.
 - [Política de privacidade](https://pfcsolucoes.com.br/privacidade): como os dados do site e da atendente virtual marcIA são tratados (LGPD).
+- [Condições do site profissional](https://pfcsolucoes.com.br/condicoes): preço (a partir de R$ 700), prazo, manutenção (R$ 200 por mês com hospedagem), domínio, código e cancelamento.
 
 ## Contato
 
