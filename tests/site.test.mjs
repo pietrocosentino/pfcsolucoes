@@ -319,3 +319,9 @@ test('cabeçalhos de segurança configurados', () => {
   const keys = vercel.headers.flatMap((h) => h.headers.map((x) => x.key));
   for (const k of ['Content-Security-Policy', 'X-Content-Type-Options', 'Referrer-Policy', 'X-Frame-Options']) assert.ok(keys.includes(k), k);
 });
+
+test('Quem somos traz a trajetória no próprio site, sem mandar para o site pessoal', () => {
+  const sobre = readFileSync(new URL('../dist/client/sobre/index.html', import.meta.url), 'utf8');
+  assert.match(sobre, /class="trajectory"/);
+  assert.doesNotMatch(sobre, /<a[^>]+href="https:\/\/www\.pietrocosentino\.com\.br\/"/);
+});

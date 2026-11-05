@@ -24,6 +24,17 @@ export const aboutPage = {
     { title: 'Simples de usar', text: 'Tudo pensado para quem não é da área de tecnologia.' },
     { title: 'Perto de você', text: 'Você fala direto com quem constrói o seu sistema.' },
   ],
+  // Trajetória do fundador (resumo dentro do site, no lugar do link para o site pessoal).
+  // Sem nomes de empregadores nem dos clientes deles: só o tipo de projeto.
+  trajectory: {
+    title: 'Trajetória',
+    items: [
+      { when: 'Desde 2024', text: 'Analista de requisitos de um ERP educacional que unificou processos antes feitos em planilhas e documentos, com integração ao Moodle.' },
+      { when: '2022 a 2024', text: 'Product Owner de três produtos: um banco digital para empresas (adiantamento salarial, empréstimos, cartão e Pix), um app de saúde pet com coleira GPS e um ERP de estoque para obras.' },
+      { when: 'Antes', text: 'Desenvolvedor de APIs e integrações (telecom e CRM) e analista de produto no setor de turismo.' },
+      { when: 'Formação', text: 'MBA em Inteligência Artificial para Negócios, em andamento.' },
+    ],
+  },
   // Dados públicos do cartão CNPJ, para quem quer conferir a empresa.
   company: {
     title: 'Dados da empresa',
