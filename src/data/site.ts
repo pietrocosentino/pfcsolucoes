@@ -258,7 +258,15 @@ export const faq = {
     },
     {
       question: 'Quanto custa?',
-      answer: 'Sites profissionais simples a partir de R$ 1.500. Agentes de IA, agendas e outros sistemas dependem do que você precisa: quantos serviços e canais, se integra com WhatsApp e Pix, e quanto acompanhamento quer depois da entrega. O valor fechado está na proposta.',
+      answer: 'Site profissional a partir de R$ 700, entregue com o seu domínio configurado. A manutenção custa R$ 150 por mês, em assinatura anual. Agentes de IA, agendas e outros sistemas dependem do que você precisa, e o valor fechado está na proposta.',
+    },
+    {
+      question: 'O que a manutenção do site cobre?',
+      answer: 'A correção de qualquer erro no site. Melhorias, páginas novas e mudanças de conteúdo ou de visual são orçadas à parte.',
+    },
+    {
+      question: 'Recebo o código do site?',
+      answer: 'Não. O código é de autoria da PFC e não é entregue junto com o site. Se você quiser comprá-lo, a compra pode ser negociada à parte.',
     },
     {
       question: 'Quanto tempo leva?',
