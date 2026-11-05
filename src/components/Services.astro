@@ -1,0 +1,27 @@
+---
+// Os outros serviços, depois da prova, em cartões de mesma altura.
+import Section from './Section.astro';
+import SolutionCard from './SolutionCard.astro';
+import { solutions } from '../data/site';
+
+const [, ...others] = solutions.items;
+---
+
+<Section id="servicos" tone="band" title={solutions.servicesTitle} lead={solutions.servicesLead}>
+  <div class="cards">
+    {others.map((solution) => <SolutionCard solution={solution} />)}
+  </div>
+</Section>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+  @media (max-width: 900px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

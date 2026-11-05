@@ -1,29 +1,12 @@
 ---
-// O agente de IA, produto principal, aparece em destaque; os outros em grade menor.
+// Prova primeiro: a demonstração do agente de IA, produto principal.
 import Section from './Section.astro';
 import SolutionCard from './SolutionCard.astro';
 import { solutions } from '../data/site';
 
-const [main, ...others] = solutions.items;
+const [main] = solutions.items;
 ---
 
 <Section id="solucoes" title={solutions.title} lead={solutions.lead}>
   <SolutionCard solution={main} featured />
-  <div class="cards">
-    {others.map((solution) => <SolutionCard solution={solution} />)}
-  </div>
 </Section>
-
-<style>
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-4);
-    margin-top: var(--space-4);
-  }
-  @media (max-width: 900px) {
-    .cards {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
