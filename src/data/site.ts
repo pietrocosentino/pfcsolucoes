@@ -58,7 +58,7 @@ export const assistant = {
 export const navigation = [
   { href: '/#solucoes', label: 'Soluções' },
   { href: '/#como-funciona', label: 'Como funciona' },
-  { href: '/#sobre', label: 'Quem somos' },
+  { href: '/sobre', label: 'Quem somos' },
   { href: '/#duvidas', label: 'Dúvidas' },
 ];
 
@@ -72,7 +72,7 @@ export const footer = {
       links: [
         { href: '/sobre', label: 'Quem somos' },
         { href: '/#como-funciona', label: 'Como funciona' },
-        { href: '/#duvidas', label: 'Perguntas frequentes' },
+        { href: '/#duvidas', label: 'Dúvidas' },
         { href: '/condicoes', label: 'Condições do site' },
       ],
     },
@@ -86,6 +86,7 @@ export const hero = {
   title: 'Sistemas sob medida para pequenos negócios',
   lead: 'O WhatsApp responde e marca horários enquanto você atende, o cliente recebe o lembrete na véspera e o caixa do mês fica no seu celular.',
   primaryCta: 'Falar com a atendente virtual',
+  secondaryLink: { href: '#solucoes', label: 'Ver demonstrações' },
   // Print real da marcIA (conversa de teste no site em produção).
   shotCaption: 'Conversa de teste com a marcIA.',
 };
@@ -123,6 +124,8 @@ export type Solution = {
   area: string;
   // Print da solução (arquivo em src/assets/prints) e a legenda dele.
   shot?: { file: 'painel-hoje'; alt: string; caption: string };
+  // Link na base do cartão. Sem href, abre a atendente virtual.
+  link?: { label: string; href?: string };
   title: string;
   description: string;
   features: string[];
@@ -136,6 +139,7 @@ export const solutions = {
       area: 'Atendimento',
       title: 'Agente de IA no WhatsApp',
       description: 'Responde, marca, remarca e cancela na agenda real, a qualquer hora.',
+      link: { label: 'Conversar sobre o agente' },
       features: ['Envia o Pix do sinal na conversa', 'Lembra o cliente na véspera', 'Oferece o horário vago para a fila de espera'],
       shot: {
         file: 'painel-hoje',
@@ -146,19 +150,22 @@ export const solutions = {
     {
       area: 'Agenda',
       title: 'Agenda online',
-      description: 'O cliente escolhe o serviço e o horário pelo celular, sem precisar te chamar, e só vê horários em que o atendimento inteiro cabe.',
-      features: [],
+      description: 'O cliente marca pelo celular, sem precisar te chamar.',
+      link: { label: 'Conversar sobre a agenda' },
+      features: ['Só mostra horários em que o atendimento inteiro cabe', 'Reconhece quem já agendou no celular', 'Impede dois agendamentos no mesmo horário'],
     },
     {
       area: 'Finanças',
       title: 'App de finanças',
-      description: 'Entradas, saídas e contas fixas do negócio no Android e no iPhone. As planilhas do Excel que você já usa entram direto.',
-      features: [],
+      description: 'Quanto entra, quanto sai e quanto sobra, no Android e no iPhone.',
+      link: { label: 'Conversar sobre o app' },
+      features: ['Entradas e saídas por categoria', 'Contas fixas com lembrete todo mês', 'Importa planilhas do Excel'],
     },
     {
       area: 'Presença online',
       title: 'Site profissional',
       description: 'Feito para o celular, com botão direto para o seu WhatsApp.',
+      link: { label: 'Ver as condições', href: '/condicoes' },
       features: ['A partir de R$ 700', 'Domínio próprio configurado', 'No ar em até 10 dias depois da sua aprovação'],
     },
   ] satisfies Solution[],

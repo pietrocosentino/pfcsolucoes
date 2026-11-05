@@ -15,7 +15,7 @@ import shot from '../assets/prints/marcia-conversa.png';
       <p class="lead">{hero.lead}</p>
       <div class="actions">
         <Button href={contact.whatsapp} external chat>{hero.primaryCta}</Button>
-        <Button href={contact.schedule} variant="secondary" external>{contact.scheduleLabel}</Button>
+        <a class="text-link" href={hero.secondaryLink.href}>{hero.secondaryLink.label}</a>
       </div>
     </div>
 
@@ -51,7 +51,16 @@ import shot from '../assets/prints/marcia-conversa.png';
     gap: var(--space-4);
   }
   .actions {
+    align-items: center;
     margin-top: var(--space-2);
+  }
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--control-md);
+    padding-inline: var(--space-2);
+    font-weight: var(--weight-bold);
+    color: var(--color-heading);
   }
 
   .shot {
