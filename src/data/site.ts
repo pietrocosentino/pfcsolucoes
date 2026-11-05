@@ -170,7 +170,7 @@ export const solutions = {
       title: 'Site profissional',
       description: 'Feito para o celular, com botão direto para o seu WhatsApp.',
       link: { label: 'Ver as condições', href: '/condicoes' },
-      features: ['A partir de R$ 700', 'Domínio próprio configurado', 'No ar em até 10 dias depois da sua aprovação'],
+      features: ['Domínio próprio configurado', 'No ar em até 10 dias depois da sua aprovação', 'Manutenção com hospedagem incluída'],
     },
   ] satisfies Solution[],
 };
@@ -231,15 +231,16 @@ export const about = {
   portfolio: { href: 'https://www.pietrocosentino.com.br/', label: 'Ver trajetória completa' },
 };
 
-// Preço e prazo: só os números que a PFC já publica; o resto é "na proposta".
+// Como cobramos e prazo: o site não publica valores; o valor fechado sai na proposta.
 export const pricing = {
-  title: 'Quanto custa e quanto leva',
-  columns: ['A partir de', 'Prazo'],
+  title: 'Como cobramos e quanto leva',
+  lead: 'O valor parte da sua ideia: depois da primeira conversa, sem compromisso, você recebe a proposta com o valor fechado.',
+  columns: ['Como é cobrado', 'Prazo'],
   rows: [
-    { label: 'Site profissional', price: 'R$ 700', time: 'Até 10 dias depois da sua aprovação' },
-    { label: 'Manutenção do site', price: 'R$ 200 por mês, com hospedagem', time: 'Assinatura anual' },
-    { label: 'Agente de IA no WhatsApp', price: 'Na proposta', time: 'A partir de 15 dias depois de validado' },
-    { label: 'Agenda online e app de finanças', price: 'Na proposta', time: 'Na proposta' },
+    { label: 'Site profissional', price: 'Valor fechado na proposta', time: 'Até 10 dias depois da sua aprovação' },
+    { label: 'Manutenção do site', price: 'Mensalidade com hospedagem incluída', time: 'Assinatura anual' },
+    { label: 'Agente de IA no WhatsApp', price: 'Valor fechado na proposta', time: 'A partir de 15 dias depois de validado' },
+    { label: 'Agenda online e app de finanças', price: 'Valor fechado na proposta', time: 'Na proposta' },
   ],
   link: { href: '/condicoes', label: 'Ver as condições do site' },
 };
@@ -253,7 +254,7 @@ export const faq = {
     },
     {
       question: 'Quanto custa?',
-      answer: 'Site profissional a partir de R$ 700, entregue com o seu domínio configurado. A manutenção custa R$ 200 por mês, em assinatura anual, com a hospedagem incluída. Agentes de IA, agendas e outros sistemas dependem do que você precisa, e o valor fechado está na proposta.',
+      answer: 'Depende da sua ideia. Depois da primeira conversa, que é sem compromisso, você recebe uma proposta com o valor fechado. No site profissional, a manutenção é uma mensalidade em assinatura anual, com a hospedagem incluída.',
       link: { href: '/condicoes', label: 'Ver as condições do site profissional' },
     },
     {
