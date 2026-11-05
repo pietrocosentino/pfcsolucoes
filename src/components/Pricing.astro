@@ -1,32 +1,32 @@
 ---
-// Ajuda quem pesquisa "sistema sob medida" a decidir contra um aplicativo pronto.
-// Em tabela: fácil de comparar para quem lê e de extrair para buscadores e IAs.
+// Preço e prazo em tabela: os números que a PFC já publica, sem comparação genérica.
 import Section from './Section.astro';
-import { comparison } from '../data/site';
+import { pricing } from '../data/site';
 ---
 
-<Section id="sob-medida-ou-pronto" tone="band" title={comparison.title}>
+<Section id="precos" tone="band" title={pricing.title}>
   <div class="card table-wrap">
     <table>
-      <caption class="visually-hidden">Comparação entre aplicativo pronto e sistema sob medida</caption>
+      <caption class="visually-hidden">Preço inicial e prazo de cada serviço</caption>
       <thead>
         <tr>
           <td></td>
-          <th scope="col">{comparison.columns[0]}</th>
-          <th scope="col" class="custom">{comparison.columns[1]}</th>
+          <th scope="col">{pricing.columns[0]}</th>
+          <th scope="col">{pricing.columns[1]}</th>
         </tr>
       </thead>
       <tbody>
-        {comparison.rows.map((row) => (
+        {pricing.rows.map((row) => (
           <tr>
             <th scope="row">{row.label}</th>
-            <td data-label="Pronto">{row.ready}</td>
-            <td data-label="Sob medida" class="custom">{row.custom}</td>
+            <td data-label={pricing.columns[0]}>{row.price}</td>
+            <td data-label={pricing.columns[1]}>{row.time}</td>
           </tr>
         ))}
       </tbody>
     </table>
   </div>
+  <p class="more"><a class="link-arrow" href={pricing.link.href}>{pricing.link.label}</a></p>
 </Section>
 
 <style>
@@ -47,17 +47,19 @@ import { comparison } from '../data/site';
   thead th,
   thead td {
     border-top: 0;
-    font-size: var(--text-md);
     font-weight: var(--weight-bold);
     color: var(--color-heading);
   }
   tbody th {
-    width: 22%;
+    width: 32%;
     font-weight: var(--weight-bold);
     color: var(--color-heading);
   }
   td {
-    color: var(--color-text-muted);
+    color: var(--color-text);
+  }
+  .more {
+    margin-top: var(--space-4);
   }
   /* No celular, cada linha vira um bloco com o nome da coluna antes do texto. */
   @media (max-width: 560px) {
@@ -79,7 +81,7 @@ import { comparison } from '../data/site';
     }
     td {
       border-top: 0;
-      padding-top: var(--space-2);
+      padding-top: var(--space-1);
     }
     td::before {
       content: attr(data-label) ': ';

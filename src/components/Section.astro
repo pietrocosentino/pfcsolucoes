@@ -67,6 +67,8 @@ const headingId = `${id}-titulo`;
     align-items: start;
   }
   .split .section-head {
+    position: sticky;
+    top: calc(var(--header-offset) + var(--space-4));
     margin-bottom: 0;
   }
   @media (max-width: 900px) {
@@ -74,6 +76,7 @@ const headingId = `${id}-titulo`;
       display: block;
     }
     .split .section-head {
+      position: static;
       margin-bottom: var(--space-8);
     }
   }

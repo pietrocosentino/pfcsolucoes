@@ -83,12 +83,13 @@ export const footer = {
 // (o que oferecemos, como melhora a vida dele, o que fazer agora).
 
 export const hero = {
-  title: 'Sistemas sob medida para pequenos negócios',
+  // A frase de busca fica numa linha pequena dentro do h1; o título diz o que só a PFC pode dizer.
+  kicker: 'Sistemas sob medida para pequenos negócios',
+  title: 'Quem conversa com você é quem constrói o seu sistema',
   lead: 'O WhatsApp responde e marca horários enquanto você atende, o cliente recebe o lembrete na véspera e o caixa do mês fica no seu celular.',
   primaryCta: 'Falar com a atendente virtual',
-  secondaryLink: { href: '#solucoes', label: 'Ver demonstrações' },
   // Print real da marcIA (conversa de teste no site em produção).
-  shotCaption: 'Conversa de teste com a marcIA.',
+  shotCaption: 'Conversa de teste com a marcIA, o agente de IA da PFC que atende neste site.',
 };
 
 type WarningSign = { stat: string; fact: string; source: string; url: string };
@@ -132,8 +133,11 @@ export type Solution = {
 };
 
 export const solutions = {
-  title: 'Demonstrações',
-  lead: 'Para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço. São projetos de demonstração construídos pela PFC, com dados fictícios, para você ver cada solução antes de contratar.',
+  title: 'Como fica no dia a dia',
+  lead: 'Demonstração construída pela PFC, com dados fictícios, de uma barbearia atendida pelo agente de IA.',
+  // Segunda seção: os outros serviços, depois da prova.
+  servicesTitle: 'O que fazemos sob medida',
+  servicesLead: 'Para barbearias, salões, clínicas de estética, personal trainers e prestadores de serviço.',
   items: [
     {
       area: 'Atendimento',
@@ -227,20 +231,21 @@ export const about = {
   portfolio: { href: 'https://www.pietrocosentino.com.br/', label: 'Ver trajetória completa' },
 };
 
-// Seção que ajuda a decidir entre sistema sob medida e aplicativo pronto.
-export const comparison = {
-  title: 'Sob medida ou aplicativo pronto?',
-  columns: ['Aplicativo pronto', 'Sistema sob medida'],
+// Preço e prazo: só os números que a PFC já publica; o resto é "na proposta".
+export const pricing = {
+  title: 'Quanto custa e quanto leva',
+  columns: ['A partir de', 'Prazo'],
   rows: [
-    { label: 'Para começar', ready: 'Você assina e configura sozinho', custom: 'Uma conversa de 1 hora sobre como o seu negócio funciona' },
-    { label: 'Partes do negócio', ready: 'Costuma cobrir uma; o resto fica em planilha', custom: 'Atendimento, agenda, cobrança e finanças juntos' },
-    { label: 'Pedido de mudança', ready: 'Entra na fila do suporte e pode não ser atendido', custom: 'Você pede ao Pietro e combina o prazo' },
-    { label: 'Valor', ready: 'Mensalidade por plano', custom: 'Site a partir de R$ 700; sistemas, na proposta' },
+    { label: 'Site profissional', price: 'R$ 700', time: 'Até 10 dias depois da sua aprovação' },
+    { label: 'Manutenção do site', price: 'R$ 200 por mês, com hospedagem', time: 'Assinatura anual' },
+    { label: 'Agente de IA no WhatsApp', price: 'Na proposta', time: 'A partir de 15 dias depois de validado' },
+    { label: 'Agenda online e app de finanças', price: 'Na proposta', time: 'Na proposta' },
   ],
+  link: { href: '/condicoes', label: 'Ver as condições do site' },
 };
 
 export const faq = {
-  title: 'Perguntas frequentes',
+  title: 'O que mais nos perguntam',
   items: [
     {
       question: 'O que é um sistema sob medida?',
@@ -271,6 +276,6 @@ export const faq = {
 };
 
 export const contactSection = {
-  title: 'Comece com uma conversa de 1 hora',
-  lead: 'Escolha um horário com o Pietro, ou adiante as primeiras perguntas com a marcIA, a nossa atendente virtual.',
+  title: 'Fale direto com o Pietro',
+  lead: 'Pietro Cosentino, fundador da PFC. A primeira conversa é online, dura 1 hora e não tem compromisso.',
 };

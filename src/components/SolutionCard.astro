@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import SolutionIcon from './SolutionIcon.astro';
 import { contact, type Solution } from '../data/site';
 import painelHoje from '../assets/prints/painel-hoje.png';
 
@@ -19,10 +18,8 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
 
 <article class:list={['card', { featured }]} id={id}>
   <div class="text">
-  <div class="head">
-    <SolutionIcon area={solution.area} />
-    <h3>{solution.title}</h3>
-  </div>
+  <p class="label-caps area">{solution.area}</p>
+  <h3>{solution.title}</h3>
   <p class="description">{solution.description}</p>
   {solution.features.length > 0 && (
     <ul class="features">
@@ -30,9 +27,9 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     </ul>
   )}
   {solution.link?.href ? (
-    <a class="card-link" href={solution.link.href}>{solution.link.label}</a>
+    <a class="link-arrow card-link" href={solution.link.href}>{solution.link.label}</a>
   ) : (
-    <a class="card-link" href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{solution.link?.label ?? 'Conversar sobre isto'}</a>
+    <a class="link-arrow card-link" href={contact.whatsapp} data-chat-open aria-haspopup="dialog">{solution.link?.label ?? 'Conversar sobre isto'}</a>
   )}
   </div>
   {solution.shot && (
@@ -56,10 +53,8 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     gap: var(--space-3);
     padding: var(--space-6);
   }
-  .head {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
+  .area {
+    color: var(--color-accent);
   }
   .description {
     color: var(--color-text-muted);
@@ -77,10 +72,9 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
   .featured {
     border-top: 3px solid var(--color-action);
   }
-  .card-link {
+  /* Link na base só nos cartões em grade (mesma altura); no destaque, logo depois da lista. */
+  .card:not(.featured) .card-link {
     margin-top: auto;
-    padding-top: var(--space-2);
-    font-weight: var(--weight-bold);
   }
   .featured h3 {
     font-size: var(--text-h2);
@@ -111,7 +105,16 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     display: grid;
     grid-template-columns: 1fr var(--shot-width);
     gap: var(--space-8);
-    align-items: stretch;
+    align-items: center;
+  }
+  .featured .text {
+    flex: none;
+  }
+  /* Print limitado em altura, recortado a partir do topo da tela (a parte mais informativa). */
+  .featured .shot :global(img) {
+    max-height: var(--shot-height);
+    object-fit: cover;
+    object-position: top;
   }
   .featured .shot.painel-hoje :global(img) {
     border-radius: var(--radius-device-screen);

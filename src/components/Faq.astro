@@ -1,18 +1,23 @@
 ---
 import Section from './Section.astro';
-import { contact, faq } from '../data/site';
+import { about, contact, faq } from '../data/site';
 ---
 
-<Section id="duvidas" title={faq.title} split>
-  <p slot="head" class="help">
-    Não achou sua dúvida? <a href={contact.whatsapp} data-chat-open aria-haspopup="dialog">Fale com a gente</a>.
-  </p>
+<Section id="duvidas" tone="band" title={faq.title} split>
+  <div slot="head" class="help">
+    <p>Não achou sua dúvida? Pergunte para quem constrói.</p>
+    <div class="person">
+      {/* [PREENCHER: foto pequena do Pietro, quando houver uma aprovada] */}
+      <p class="name">{about.name}<span>Fundador da PFC</span></p>
+      <a class="link-arrow" href={`mailto:${contact.email}`}>Perguntar direto</a>
+    </div>
+  </div>
   <div class="faq">
     {faq.items.map((item) => (
       <details class="card">
         <summary><h3>{item.question}</h3></summary>
         <p>{item.answer}</p>
-        {item.link && <p><a href={item.link.href}>{item.link.label}</a></p>}
+        {item.link && <p><a class="link-arrow" href={item.link.href}>{item.link.label}</a></p>}
       </details>
     ))}
   </div>
@@ -25,10 +30,26 @@ import { contact, faq } from '../data/site';
     max-width: var(--width-narrow);
   }
   .help {
+    display: grid;
+    gap: var(--space-4);
     color: var(--color-text-muted);
   }
-  .help a {
-    font-weight: var(--weight-bold);
+  .person {
+    display: grid;
+    gap: var(--space-1);
+    justify-items: start;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  .name {
+    display: grid;
+    font-weight: var(--weight-semibold);
+    color: var(--color-heading);
+  }
+  .name span {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-regular);
+    color: var(--color-text-muted);
   }
   summary {
     display: flex;

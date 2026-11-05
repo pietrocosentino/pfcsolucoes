@@ -192,7 +192,7 @@ test('logo do topo tem o mesmo nome visível e leva à página inicial fora dela
 test('títulos das seções usam a palavra-chave e sinônimos', () => {
   const h2 = [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => m[1].replace(/<[^>]+>/g, ''));
   assert.ok(h2.some((t) => /sob medida/i.test(t)), h2.join(' | '));
-  assert.ok(h2.some((t) => /aplicativo pronto/i.test(t)));
+  assert.ok(h2.some((t) => /quanto custa/i.test(t)));
   const h3 = [...html.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => m[1]);
   assert.ok(h3.includes('Agente de IA no WhatsApp'));
   assert.ok(h3.includes('O que é um sistema sob medida?'));
@@ -332,7 +332,7 @@ test('condições do site ficam em página própria, fora do FAQ de venda', () =
 test('logo usa só cores da paleta e soluções se apresentam como demonstração', () => {
   const favicon = readFileSync(new URL('../public/favicon.svg', import.meta.url), 'utf8');
   assert.doesNotMatch(favicon + html, /#5674AE|#F2542D/i);
-  assert.match(html, /projetos de demonstração construídos pela PFC/i);
+  assert.match(html, /demonstração construída pela PFC, com dados fictícios/i);
 });
 
 test('rodapé e dados estruturados levam à página da empresa no LinkedIn', () => {
@@ -350,4 +350,18 @@ test('rodapé sem coluna repetida de soluções e sem redes duplicadas em texto'
   const footer = html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
   assert.doesNotMatch(footer, /href="\/#solucao-/);
   assert.equal((footer.match(/instagram\.com\/pfc\.solucoes/g) ?? []).length, 1);
+});
+
+test('acabamento: H1 com a categoria, um botão primário por seção e fatos separados', () => {
+  const h1 = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]+>/g, ' ');
+  assert.match(h1, /Sistemas sob medida para pequenos negócios/);
+  assert.match(h1, /Quem conversa com você é quem constrói o seu sistema/);
+  for (const id of ['inicio', 'solucoes', 'servicos', 'como-funciona', 'precos', 'sobre', 'duvidas']) {
+    const sec = html.match(new RegExp(`<section[^>]*id="${id}"[\\s\\S]*?</section>`))[0];
+    assert.ok((sec.match(/btn--primary/g) || []).length <= 1, id);
+  }
+  assert.match(html, /A empresa<\/h3>/);
+  assert.match(html, /Quem atende<\/h3>/);
+  assert.match(html, /Perguntar direto/);
+  assert.doesNotMatch(html, /class="icon/);
 });

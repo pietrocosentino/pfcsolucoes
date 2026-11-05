@@ -8,7 +8,7 @@ Como trabalha: levantamento da rotina do negócio, análise das perdas, constru�
 
 ## Páginas
 
-- [Página inicial](https://pfcsolucoes.com.br/): soluções, comparação entre sistema sob medida e aplicativo pronto, etapas do trabalho e perguntas frequentes.
+- [Página inicial](https://pfcsolucoes.com.br/): demonstração do agente de IA, o que fazemos sob medida, etapas do trabalho, preço e prazo e perguntas frequentes.
 - [LinkedIn da empresa](https://www.linkedin.com/company/pfc-solucoes/): página oficial da PFC Soluções no LinkedIn.
 - [Quem somos](https://pfcsolucoes.com.br/sobre): história, propósito, valores e projetos de demonstração.
 - [Política de privacidade](https://pfcsolucoes.com.br/privacidade): como os dados do site e da atendente virtual marcIA são tratados (LGPD).

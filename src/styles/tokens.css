@@ -113,6 +113,7 @@
   --header-offset: 88px; /* âncoras não ficam escondidas atrás do cabeçalho fixo */
   --device-width: 340px; /* moldura de celular no topo */
   --shot-width: 260px; /* print ao lado do texto no cartão em destaque */
+  --shot-height: 360px; /* altura máxima desse print */
   --chat-width: 400px;
   --chat-height: 620px;
   /* Larguras de tela (media queries não leem variáveis; use só estas três):

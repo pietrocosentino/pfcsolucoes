@@ -52,12 +52,38 @@ h3 {
   line-height: var(--leading-snug);
 }
 
+/* Hierarquia de ações (3 níveis):
+   primária  = botão coral preenchido (Button variant primary), uma por seção;
+   secundária = botão com contorno (Button variant secondary);
+   terciária = .link-arrow, texto escuro com seta, sublinhado só no hover/foco.
+   Links no meio de uma frase seguem sublinhados (não dependem só da cor). */
 a {
-  color: var(--color-accent);
+  color: var(--color-heading);
   text-underline-offset: var(--underline-offset);
 }
 a:hover {
   text-decoration-thickness: 2px;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--control-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-heading);
+  text-decoration: none;
+}
+.link-arrow::after {
+  content: '→';
+  transition: transform var(--duration) ease;
+}
+.link-arrow:hover,
+.link-arrow:focus-visible {
+  text-decoration: underline;
+}
+.link-arrow:hover::after {
+  transform: translateX(2px);
 }
 
 :focus-visible {
