@@ -125,3 +125,42 @@ export const privacyPage = {
     },
   ],
 };
+
+// Condições comerciais do site profissional (o FAQ de venda só resume e linka para cá).
+export const conditionsPage = {
+  title: 'Condições do site profissional',
+  updatedAt: '5 de novembro de 2026',
+  lead: 'O que está incluído no site, como funciona a manutenção e o que acontece se você cancelar. Agentes de IA, agendas e outros sistemas têm condições próprias, descritas na proposta.',
+  sections: [
+    {
+      title: 'Preço e prazo',
+      paragraphs: ['A partir de R$ 700. O site entra no ar em até 10 dias depois que você aprova a versão final.'],
+    },
+    {
+      title: 'O que está incluído',
+      paragraphs: ['A criação do site, feito para o celular e com botão direto para o seu WhatsApp, e a configuração do seu domínio.'],
+    },
+    {
+      title: 'Manutenção',
+      items: [
+        'R$ 200 por mês, em assinatura anual.',
+        'Inclui a hospedagem que mantém o site no ar e a correção de qualquer erro.',
+        'Melhorias, páginas novas e mudanças de conteúdo ou de visual são orçadas à parte.',
+      ],
+    },
+    {
+      title: 'Domínio',
+      paragraphs: [
+        'O endereço do site (por exemplo, seunegocio.com.br) é registrado no CPF ou CNPJ do seu negócio, e a renovação é paga por você direto ao Registro.br. A PFC faz a configuração para o site funcionar nele.',
+      ],
+    },
+    {
+      title: 'Código do site',
+      paragraphs: ['O código é de autoria da PFC e não é entregue junto com o site. Se você quiser comprá-lo, a compra pode ser negociada à parte.'],
+    },
+    {
+      title: 'Cancelamento',
+      paragraphs: ['Se você cancelar a manutenção, o site sai do ar. O domínio continua seu, e para levar o site a outra hospedagem dá para negociar a compra do código.'],
+    },
+  ],
+};

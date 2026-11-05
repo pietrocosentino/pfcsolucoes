@@ -1,0 +1,24 @@
+---
+import { breadcrumbSchema } from '../lib/schema';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import DocSections from '../components/DocSections.astro';
+import Button from '../components/Button.astro';
+import { brand, contact } from '../data/site';
+import { conditionsPage } from '../data/institutional';
+---
+
+<SiteLayout
+  schema={[breadcrumbSchema(conditionsPage.title, '/condicoes')]}
+  title={`${conditionsPage.title} | ${brand.name}`}
+  description="Preço, prazo, manutenção, domínio, código e cancelamento do site profissional da PFC Soluções, por escrito antes de você contratar."
+>
+  <PageIntro eyebrow="Institucional" title={conditionsPage.title} lead={conditionsPage.lead} updatedAt={conditionsPage.updatedAt} />
+
+  <DocSections sections={conditionsPage.sections}>
+    <div class="actions">
+      <Button href={contact.whatsapp} external chat>{contact.ctaLabel}</Button>
+    </div>
+  </DocSections>
+</SiteLayout>
+

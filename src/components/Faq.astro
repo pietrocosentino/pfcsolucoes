@@ -9,6 +9,7 @@ import { faq } from '../data/site';
       <details class="card">
         <summary><h3>{item.question}</h3></summary>
         <p>{item.answer}</p>
+        {item.link && <p><a href={item.link.href}>{item.link.label}</a></p>}
       </details>
     ))}
   </div>

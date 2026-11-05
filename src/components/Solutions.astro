@@ -7,7 +7,7 @@ import { contact, solutions } from '../data/site';
 const [main, ...others] = solutions.items;
 ---
 
-<Section id="solucoes" tone="band" title={solutions.title} lead={solutions.lead}>
+<Section id="solucoes" title={solutions.title} lead={solutions.lead}>
   <SolutionCard solution={main} featured />
   <div class="cards">
     {others.map((solution) => <SolutionCard solution={solution} />)}

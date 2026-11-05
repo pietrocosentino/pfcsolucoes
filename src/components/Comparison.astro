@@ -5,7 +5,7 @@ import Section from './Section.astro';
 import { comparison } from '../data/site';
 ---
 
-<Section id="sob-medida-ou-pronto" title={comparison.title}>
+<Section id="sob-medida-ou-pronto" tone="band" title={comparison.title}>
   <div class="card table-wrap">
     <table>
       <caption class="visually-hidden">Comparação entre aplicativo pronto e sistema sob medida</caption>
@@ -58,13 +58,6 @@ import { comparison } from '../data/site';
   }
   td {
     color: var(--color-text-muted);
-  }
-  .custom {
-    background: var(--color-subtle);
-    color: var(--color-text);
-  }
-  thead .custom {
-    border-top: 3px solid var(--color-action);
   }
   /* No celular, cada linha vira um bloco com o nome da coluna antes do texto. */
   @media (max-width: 560px) {

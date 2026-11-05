@@ -1,0 +1,54 @@
+---
+// Seções de texto das páginas de documento (privacidade, condições).
+interface DocSection {
+  title: string;
+  paragraphs?: string[];
+  items?: string[];
+}
+interface Props {
+  sections: DocSection[];
+}
+const { sections } = Astro.props;
+---
+
+<div class="wrap">
+  <div class="doc">
+    {sections.map((section) => (
+      <section>
+        <h2>{section.title}</h2>
+        {section.paragraphs?.map((text) => <p>{text}</p>)}
+        {section.items && (
+          <ul>
+            {section.items.map((item) => <li>{item}</li>)}
+          </ul>
+        )}
+      </section>
+    ))}
+    <slot />
+  </div>
+</div>
+
+<style>
+  .doc {
+    display: grid;
+    gap: var(--space-8);
+    max-width: var(--measure);
+    padding-block: clamp(var(--space-12), 6vw, var(--space-16));
+  }
+  section {
+    display: grid;
+    gap: var(--space-3);
+  }
+  h2 {
+    font-size: var(--text-xl);
+  }
+  ul {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  li::marker {
+    color: var(--color-accent);
+  }
+</style>

@@ -2,6 +2,7 @@
 import { breadcrumbSchema } from '../lib/schema';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
+import DocSections from '../components/DocSections.astro';
 import { brand } from '../data/site';
 import { privacyPage } from '../data/institutional';
 ---
@@ -11,52 +12,8 @@ import { privacyPage } from '../data/institutional';
   title={`${privacyPage.title} | ${brand.name}`}
   description="Saiba quais dados a PFC Soluções trata no site e na conversa com a marcIA, por quanto tempo guarda e como exercer seus direitos pela LGPD."
 >
-  <PageIntro eyebrow="Institucional" title={privacyPage.title} lead={privacyPage.lead}>
-    <p class="updated">Última atualização: {privacyPage.updatedAt}</p>
-  </PageIntro>
+  <PageIntro eyebrow="Institucional" title={privacyPage.title} lead={privacyPage.lead} updatedAt={privacyPage.updatedAt} />
 
-  <div class="wrap">
-  <div class="policy">
-    {privacyPage.sections.map((section) => (
-      <section>
-        <h2>{section.title}</h2>
-        {section.paragraphs?.map((text) => <p>{text}</p>)}
-        {section.items && (
-          <ul>
-            {section.items.map((item) => <li>{item}</li>)}
-          </ul>
-        )}
-      </section>
-    ))}
-  </div>
-  </div>
+  <DocSections sections={privacyPage.sections} />
 </SiteLayout>
 
-<style>
-  .updated {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-  .policy {
-    display: grid;
-    gap: var(--space-8);
-    max-width: var(--measure);
-    padding-block: clamp(var(--space-12), 6vw, var(--space-16));
-  }
-  section {
-    display: grid;
-    gap: var(--space-3);
-  }
-  h2 {
-    font-size: var(--text-xl);
-  }
-  ul {
-    display: grid;
-    gap: var(--space-3);
-    margin: 0;
-    padding-left: 1.25rem;
-  }
-  li::marker {
-    color: var(--color-accent);
-  }
-</style>
