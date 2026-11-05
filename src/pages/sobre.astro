@@ -42,6 +42,17 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
     </div>
   </Section>
 
+  <Section id="empresa" title={aboutPage.company.title}>
+    <dl class="company">
+      {aboutPage.company.rows.map(([label, value]) => (
+        <div>
+          <dt>{label}</dt>
+          <dd>{label === 'Contato' ? <a href={`mailto:${value}`}>{value}</a> : value}</dd>
+        </div>
+      ))}
+    </dl>
+  </Section>
+
   <Section id="projetos" tone="band" title={aboutPage.built.title}>
     <ul class="built">
       {aboutPage.built.items.map((item) => <li>{item}</li>)}
@@ -78,6 +89,33 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
   }
   .built li::marker {
     color: var(--color-text-muted);
+  }
+  .company {
+    display: grid;
+    max-width: 68ch;
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .company div {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .company dt {
+    font-weight: var(--weight-semibold);
+    color: var(--color-heading);
+  }
+  .company dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 560px) {
+    .company div {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
   }
   .actions {
     display: flex;

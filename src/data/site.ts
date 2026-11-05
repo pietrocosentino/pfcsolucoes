@@ -8,6 +8,13 @@ export const brand = {
   // Título da página inicial no Google: o que fazemos, para quem, e a marca.
   seoTitle: 'Sistemas sob medida para pequenas empresas | PFC Soluções',
   cnpj: '44.404.492/0001-56',
+  // Dados públicos do cartão CNPJ (Receita Federal). "PFC Soluções em Tecnologia"
+  // é o nome comercial; quem confere o CNPJ encontra a razão social abaixo.
+  legalName: 'Pietro F. Cosentino Desenvolvimento de Software Ltda',
+  foundingDate: '2021-11-29',
+  foundingLabel: 'novembro de 2021',
+  city: 'São Paulo',
+  state: 'SP',
   // Data da última revisão do conteúdo. Atualize ao mudar textos importantes.
   updatedAt: '2026-11-04',
   updatedLabel: '4 de novembro de 2026',

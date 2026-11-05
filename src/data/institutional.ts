@@ -24,6 +24,19 @@ export const aboutPage = {
     { title: 'Simples de usar', text: 'Tudo pensado para quem não é da área de tecnologia.' },
     { title: 'Perto de você', text: 'Você fala direto com quem constrói o seu sistema.' },
   ],
+  // Dados públicos do cartão CNPJ, para quem quer conferir a empresa.
+  company: {
+    title: 'Dados da empresa',
+    rows: [
+      ['Razão social', 'Pietro F. Cosentino Desenvolvimento de Software Ltda'],
+      ['Nome comercial', 'PFC Soluções em Tecnologia'],
+      ['CNPJ', '44.404.492/0001-56'],
+      ['Aberta em', 'Novembro de 2021'],
+      ['Sede', 'São Paulo, SP (atendimento online para todo o Brasil)'],
+      ['Atividade principal', 'Desenvolvimento de programas de computador customizáveis (CNAE 62.02-3-00)'],
+      ['Contato', 'contato@pfcsolucoes.com.br'],
+    ],
+  },
   built: {
     title: 'O que já construímos',
     items: [
@@ -42,7 +55,7 @@ export const privacyPage = {
     {
       title: 'Quem é o responsável',
       paragraphs: [
-        'O responsável pelos dados tratados neste site é a PFC Soluções em Tecnologia, CNPJ 44.404.492/0001-56, representada por Pietro Cosentino. Para qualquer assunto sobre os seus dados, use os canais indicados em "Como falar com a gente".',
+        'O responsável pelos dados tratados neste site é a Pietro F. Cosentino Desenvolvimento de Software Ltda (nome comercial PFC Soluções em Tecnologia), CNPJ 44.404.492/0001-56, com sede em São Paulo, SP, representada por Pietro Cosentino. Para qualquer assunto sobre os seus dados, use os canais indicados em "Como falar com a gente".',
       ],
     },
     {
