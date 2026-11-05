@@ -49,6 +49,7 @@ export const aboutPage = {
   },
   built: {
     title: 'O que já construímos',
+    lead: 'Projetos de demonstração, para mostrar como cada solução funciona.',
     items: [
       'Agente de IA que atende e agenda pelo WhatsApp',
       'Agenda online para barbearia',

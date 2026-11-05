@@ -339,3 +339,9 @@ test('condições do site ficam em página própria, fora do FAQ de venda', () =
   assert.doesNotMatch(html, /Recebo o código do site\?/);
   assert.match(html, /href="\/condicoes"/);
 });
+
+test('logo usa só cores da paleta e soluções se apresentam como demonstração', () => {
+  const favicon = readFileSync(new URL('../public/favicon.svg', import.meta.url), 'utf8');
+  assert.doesNotMatch(favicon + html, /#5674AE|#F2542D/i);
+  assert.match(html, /Projetos de demonstração construídos pela PFC/);
+});

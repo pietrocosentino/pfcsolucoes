@@ -221,3 +221,11 @@ test('marcIA não promete o agente em 7 dias', async () => {
   assert.doesNotMatch(text, /7 dias/);
   assert.match(text, /a partir de 15 dias/);
 });
+
+test('marcIA trata os projetos como demonstração e não inventa clientes', async () => {
+  const { systemPrompt } = await import('../src/lib/assistant/prompt.ts');
+  const text = systemPrompt();
+  assert.match(text, /Projetos de demonstração/);
+  assert.match(text, /ainda não há clientes atendidos/);
+  assert.doesNotMatch(text, /prova de que a PFC já entrega/);
+});
