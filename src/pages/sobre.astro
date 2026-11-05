@@ -36,9 +36,17 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
     <div class="prose">
       <p>{about.bio}</p>
     </div>
+    <h3 class="trajectory-title">{aboutPage.trajectory.title}</h3>
+    <ol class="trajectory">
+      {aboutPage.trajectory.items.map((item) => (
+        <li>
+          <span class="when">{item.when}</span>
+          <span>{item.text}</span>
+        </li>
+      ))}
+    </ol>
     <div class="actions">
-      <Button href={about.portfolio.href} variant="secondary" external>{about.portfolio.label}</Button>
-      <Button href={about.linkedin} variant="secondary" external>LinkedIn</Button>
+      <Button href={about.linkedin} variant="secondary" external>Ver no LinkedIn</Button>
     </div>
   </Section>
 
@@ -89,6 +97,34 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
   }
   .built li::marker {
     color: var(--color-text-muted);
+  }
+  .trajectory-title {
+    margin-top: var(--space-8);
+  }
+  .trajectory {
+    display: grid;
+    max-width: 68ch;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+  .trajectory li {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .when {
+    font-weight: var(--weight-semibold);
+    color: var(--color-heading);
+  }
+  @media (max-width: 560px) {
+    .trajectory li {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
   }
   .company {
     display: grid;
