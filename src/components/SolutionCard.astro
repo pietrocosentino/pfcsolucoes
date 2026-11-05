@@ -19,8 +19,10 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
 
 <article class:list={['card', { featured }]} id={id}>
   <div class="text">
-  <SolutionIcon area={solution.area} />
-  <h3>{solution.title}</h3>
+  <div class="head">
+    <SolutionIcon area={solution.area} />
+    <h3>{solution.title}</h3>
+  </div>
   <p class="description">{solution.description}</p>
   {solution.features.length > 0 && (
     <ul class="features">
@@ -33,8 +35,8 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
       <Image
         src={shots[solution.shot.file]}
         alt={solution.shot.alt}
-        widths={[220, 440]}
-        sizes="220px"
+        widths={[260, 520]}
+        sizes="260px"
         loading="lazy"
       />
       <figcaption>{solution.shot.caption}</figcaption>
@@ -48,6 +50,11 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     flex-direction: column;
     gap: var(--space-3);
     padding: var(--space-6);
+  }
+  .head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
   }
   .description {
     color: var(--color-text-muted);
@@ -63,7 +70,7 @@ const id = `solucao-${solution.area.toLowerCase().normalize('NFD').replace(/[\u0
     color: var(--color-text-muted);
   }
   .featured {
-    padding: var(--space-8);
+    padding: var(--space-6) var(--space-8);
     border-top: 3px solid var(--color-action);
   }
   .featured h3 {

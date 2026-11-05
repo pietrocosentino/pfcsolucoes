@@ -45,16 +45,6 @@ const summaryRest = footer.summary.slice(footer.summaryLink.length);
         <li>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </li>
-        <li>
-          <a href={contact.instagramProfile} target="_blank" rel="noopener noreferrer">
-            Instagram<span class="visually-hidden"> (abre em nova aba)</span>
-          </a>
-        </li>
-        <li>
-          <a href={contact.linkedinCompany} target="_blank" rel="noopener noreferrer">
-            LinkedIn<span class="visually-hidden"> (abre em nova aba)</span>
-          </a>
-        </li>
       </ul>
     </div>
   </div>
@@ -74,7 +64,7 @@ const summaryRest = footer.summary.slice(footer.summaryLink.length);
   }
   .grid {
     display: grid;
-    grid-template-columns: 1.4fr repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-8);
   }
   .about {

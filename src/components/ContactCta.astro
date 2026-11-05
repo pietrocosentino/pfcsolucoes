@@ -7,8 +7,8 @@ import { contact, contactSection } from '../data/site';
 <Section id="contato" tone="dark" align="center" title={contactSection.title} lead={contactSection.lead}>
   <div class="cta">
     <div class="actions">
-      <Button href={contact.whatsapp} variant="inverse" external chat>{contact.ctaLabel}</Button>
-      <Button href={contact.schedule} variant="inverse-outline" external>{contact.scheduleLabel}</Button>
+      <Button href={contact.schedule} variant="inverse" external>{contact.scheduleLabel}</Button>
+      <Button href={contact.whatsapp} variant="inverse-outline" external chat>{contact.ctaLabel}</Button>
     </div>
     <p class="email">E-mail: <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
   </div>

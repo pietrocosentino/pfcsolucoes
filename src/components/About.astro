@@ -4,12 +4,12 @@ import Button from './Button.astro';
 import { about } from '../data/site';
 ---
 
-<Section id="sobre" tone="band" title="Quem faz">
+<Section id="sobre" tone="band" title="Você fala com quem constrói">
   <div class="about">
     <div class="bio">
       <p class="lead">{about.short}</p>
       <div class="actions">
-        <Button href="/sobre">Conheça a PFC</Button>
+        <Button href="/sobre" variant="secondary">Conheça a PFC</Button>
         <Button href={about.linkedin} variant="secondary" external>Pietro no LinkedIn</Button>
       </div>
     </div>
