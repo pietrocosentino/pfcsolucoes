@@ -45,7 +45,7 @@ const structuredData = {
       address: { '@type': 'PostalAddress', addressLocality: brand.city, addressRegion: brand.state, addressCountry: 'BR' },
       areaServed: { '@type': 'Country', name: 'Brasil' },
       founder: { '@id': new URL('/#pietro', Astro.site).href },
-      sameAs: [contact.instagramProfile],
+      sameAs: [contact.instagramProfile, contact.linkedinCompany],
       knowsAbout: ['Agente de IA no WhatsApp', 'Agendamento online', 'Controle financeiro', 'Sites profissionais', 'Sistemas sob medida'],
     },
     {
