@@ -6,7 +6,7 @@ import { comparison } from '../data/site';
 ---
 
 <Section id="sob-medida-ou-pronto" title={comparison.title}>
-  <div class="table-wrap">
+  <div class="card table-wrap">
     <table>
       <caption class="visually-hidden">Comparação entre aplicativo pronto e sistema sob medida</caption>
       <thead>
@@ -31,9 +31,6 @@ import { comparison } from '../data/site';
 
 <style>
   .table-wrap {
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-    background: var(--color-surface);
     overflow: hidden;
   }
   table {
@@ -70,7 +67,7 @@ import { comparison } from '../data/site';
     border-top: 3px solid var(--color-action);
   }
   /* No celular, cada linha vira um bloco com o nome da coluna antes do texto. */
-  @media (max-width: 640px) {
+  @media (max-width: 560px) {
     thead {
       display: none;
     }
