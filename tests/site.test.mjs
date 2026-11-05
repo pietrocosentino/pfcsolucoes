@@ -350,3 +350,9 @@ test('rodapé e dados estruturados levam à página da empresa no LinkedIn', () 
   assert.match(html, /href="https:\/\/www\.linkedin\.com\/company\/pfc-solucoes\/"/);
   assert.match(html, /"sameAs":\["https:\/\/www\.instagram\.com\/pfc\.solucoes\/","https:\/\/www\.linkedin\.com\/company\/pfc-solucoes\/"\]/);
 });
+
+test('agendar conversa no topo, no contato e no rodapé, abrindo em nova aba', () => {
+  const links = tags('a').filter((t) => /calendar\.google\.com\/calendar\/appointments\/schedules\//.test(t));
+  assert.ok(links.length >= 3, `só ${links.length} links de agenda`);
+  for (const t of links) assert.match(t, /rel="noopener noreferrer"/);
+});
