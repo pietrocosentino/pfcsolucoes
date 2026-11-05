@@ -252,9 +252,8 @@ test('links de soluções do rodapé levam a cartões diferentes', () => {
   assert.equal((footer.match(/Política de privacidade/g) ?? []).length, 1);
 });
 
-test('chat traz respostas prontas', () => {
-  const raw = html.match(/data-suggestions="([^"]*)"/)[1].replace(/&quot;|&#34;/g, '"');
-  assert.ok(JSON.parse(raw).length >= 3);
+test('chat começa com pergunta aberta, sem respostas prontas', () => {
+  assert.doesNotMatch(html, /data-suggestions|class="suggestion"/);
 });
 
 test('"escopo, prazo" aparece uma vez só na página inicial', () => {
