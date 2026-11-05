@@ -32,7 +32,6 @@ export const aboutPage = {
       { when: 'Desde 2024', text: 'Analista de requisitos de um ERP educacional que unificou processos antes feitos em planilhas e documentos, com integração ao Moodle.' },
       { when: '2022 a 2024', text: 'Product Owner de três produtos: um banco digital para empresas (adiantamento salarial, empréstimos, cartão e Pix), um app de saúde pet com coleira GPS e um ERP de estoque para obras.' },
       { when: 'Antes', text: 'Desenvolvedor de APIs e integrações (telecom e CRM) e analista de produto no setor de turismo.' },
-      { when: 'Formação', text: 'MBA em Inteligência Artificial para Negócios, em andamento.' },
     ],
   },
   // Dados públicos do cartão CNPJ, para quem quer conferir a empresa.

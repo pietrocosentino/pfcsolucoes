@@ -75,7 +75,7 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
   .prose {
     display: grid;
     gap: var(--space-4);
-    max-width: 68ch;
+    max-width: var(--measure);
     font-size: var(--text-lg);
   }
   .purpose {
@@ -103,7 +103,7 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
   }
   .trajectory {
     display: grid;
-    max-width: 68ch;
+    max-width: var(--measure);
     margin: var(--space-4) 0 0;
     padding: 0;
     list-style: none;
@@ -128,7 +128,7 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
   }
   .company {
     display: grid;
-    max-width: 68ch;
+    max-width: var(--measure);
     margin: 0;
     border-top: 1px solid var(--color-border);
   }
@@ -154,9 +154,6 @@ const [leadBefore, leadAfter] = aboutPage.lead.split(anchor);
     }
   }
   .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
     margin-top: var(--space-8);
   }
 </style>
