@@ -347,6 +347,6 @@ test('logo usa só cores da paleta e soluções se apresentam como demonstraçã
 });
 
 test('rodapé e dados estruturados levam à página da empresa no LinkedIn', () => {
-  assert.match(html, /href="https:\/\/www\.linkedin\.com\/company\/pfc-solu%C3%A7%C3%B5es\/"/);
-  assert.match(html, /"sameAs":\["https:\/\/www\.instagram\.com\/pfc\.solucoes\/","https:\/\/www\.linkedin\.com\/company\/pfc-solu%C3%A7%C3%B5es\/"\]/);
+  assert.match(html, /href="https:\/\/www\.linkedin\.com\/company\/pfc-solucoes\/"/);
+  assert.match(html, /"sameAs":\["https:\/\/www\.instagram\.com\/pfc\.solucoes\/","https:\/\/www\.linkedin\.com\/company\/pfc-solucoes\/"\]/);
 });
