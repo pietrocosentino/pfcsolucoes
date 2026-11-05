@@ -4,7 +4,6 @@ import SocialLinks from './SocialLinks.astro';
 import { brand, contact, footer } from '../data/site';
 
 const year = new Date().getFullYear();
-const summaryRest = footer.summary.slice(footer.summaryLink.length);
 ---
 
 <footer class="site-footer">
@@ -14,7 +13,7 @@ const summaryRest = footer.summary.slice(footer.summaryLink.length);
         <Logo size={34} knockout="var(--color-subtle)" />
         <span>{brand.name}</span>
       </a>
-      <p><a class="summary-link" href="/">{footer.summaryLink}</a>{summaryRest}</p>
+      <p>{footer.summary}</p>
       <SocialLinks class="social" />
     </div>
 
@@ -74,9 +73,6 @@ const summaryRest = footer.summary.slice(footer.summaryLink.length);
   }
   .about p {
     color: var(--color-text-muted);
-  }
-  .summary-link {
-    color: inherit;
   }
   .brand {
     display: inline-flex;
