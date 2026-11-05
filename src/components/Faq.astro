@@ -19,7 +19,6 @@ import { faq } from '../data/site';
   .faq {
     display: grid;
     gap: var(--space-3);
-    max-width: var(--width-narrow);
   }
   summary {
     display: flex;
@@ -53,6 +52,7 @@ import { faq } from '../data/site';
     content: '−';
   }
   details p {
+    max-width: var(--measure);
     padding: 0 var(--space-6) var(--space-4);
     color: var(--color-text-muted);
   }

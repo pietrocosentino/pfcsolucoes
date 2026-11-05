@@ -10,9 +10,9 @@ const summaryRest = footer.summary.slice(footer.summaryLink.length);
 <footer class="site-footer">
   <div class="wrap grid">
     <div class="about">
-      <a class="brand" href="/" aria-label={`${brand.fullName}, página inicial`}>
+      <a class="brand" href="/" aria-label={`${brand.name}, página inicial`}>
         <Logo size={34} knockout="var(--color-subtle)" />
-        <span>{brand.fullName}</span>
+        <span>{brand.name}</span>
       </a>
       <p><a class="summary-link" href="/">{footer.summaryLink}</a>{summaryRest}</p>
       <SocialLinks class="social" />
