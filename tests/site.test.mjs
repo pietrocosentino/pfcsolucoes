@@ -292,7 +292,8 @@ test('soluções têm print real e o site não mostra foto do fundador', () => {
 
 test('preço e prazo do site aparecem nas perguntas frequentes', () => {
   assert.match(html, /Site profissional a partir de R\$ 700/);
-  assert.match(html, /R\$ 150 por mês/);
+  assert.match(html, /R\$ 200 por mês/);
+  assert.doesNotMatch(html, /R\$ 150/);
   assert.doesNotMatch(html, /R\$ 1\.500/);
   assert.match(html, /em até 10 dias depois que você aprova a versão final/);
   assert.doesNotMatch(html, /PREENCHER/);

@@ -115,7 +115,7 @@ test('a marcIA conhece o piloto, mas não informa valores', () => {
   assert.match(text, /nunca informe números/);
   // Os únicos valores públicos são os do site (criação e manutenção); nenhum outro preço aparece nas instruções.
   const prices = text.match(/R\$\s?\d{1,3}(?:\.\d{3})*(?:,\d{2})?/g) ?? [];
-  assert.ok(prices.length > 0 && prices.every((p) => p === 'R$ 700' || p === 'R$ 150'), prices.join(', '));
+  assert.ok(prices.length > 0 && prices.every((p) => p === 'R$ 700' || p === 'R$ 200'), prices.join(', '));
   assert.match(text, /Nunca invente preço/);
 });
 
